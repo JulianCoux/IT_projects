@@ -1,6 +1,4 @@
----
-title: Repository of Computer Projects
----
+## Repository of Computer Projects
 
 # Repository of Computer Projects
 
