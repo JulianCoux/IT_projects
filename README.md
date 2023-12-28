@@ -1,7 +1,5 @@
 ## Repository of Computer Projects
 
-# Repository of Computer Projects
-
 This GitHub repository serves as a catalog for all my computer projects, encompassing both academic and personal endeavors. It follows this structure:
 
 ## Repository Structure
