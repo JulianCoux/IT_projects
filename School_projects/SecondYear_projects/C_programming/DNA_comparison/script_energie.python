@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+import os
+import subprocess
+import argparse
+
+def get_core_energy(core_number):
+    file_path = f'/sys/class/powercap/intel-rapl/intel-rapl:{core_number}/energy_uj'
+    
+    try:
+        with open(file_path, 'r') as file:
+            energy_uj = int(file.read().strip())
+            return energy_uj
+    except FileNotFoundError:
+        print(f"Le fichier {file_path} n'a pas été trouvé.")
+        return None
+    except Exception as e:
+        print(f"Une erreur s'est produite lors de la lecture du fichier : {str(e)}")
+        return None
+
+# Définition des arguments en ligne de commande
+parser = argparse.ArgumentParser(description="Mesurer la consommation d'énergie avant et après l'exécution d'une commande.")
+parser.add_argument("N", type=int, help="Valeur de N")
+parser.add_argument("M", type=int, help="Valeur de M")
+
+args = parser.parse_args()
+
+# Mesurer la consommation d'énergie avant l'exécution de la commande
+moyenne = 0
+for _ in range(2):
+    energy_before = get_core_energy(0)
+    command = f"./bin/distanceEdition /matieres/4MMAOD6/TP-AOD-ADN-Benchmark/GCA_024498555.1_ASM2449855v1_genomic.fna 77328790 {args.M} /matieres/4MMAOD6/TP-AOD-ADN-Benchmark/GCF_000001735.4_TAIR10.1_genomic.fna 30808129 {args.N}"
+    subprocess.call(command, shell=True)
+    energy_after = get_core_energy(0)
+    moyenne = (moyenne + energy_after - energy_before)
+moyenne = moyenne / 5
+
+
+# Calculer la consommation d'énergie pendant l'exécution de la commande
+if moyenne is not None:
+    print(f"Consommation d'énergie pendant l'exécution de la commande : {moyenne} microjoules")
