@@ -1,0 +1,35 @@
+Trucs à faire rapidement pour corriger DecaParser.g4
+
+FLOAT ne marche pas (l.416)
+
+L'utilisation de la classe Symbol n'existe pas (l.428 et l.437)
+
+Refaire NEW (l.389)
+
+Refaire cast (l.396)
+
+
+
+Le Decaparser ne marchait pas parce que à un moment donné, on faisait remonter un arbre vide, ce qui faisait lever une erreur "null".
+
+assign_expr returns[AbstractExpr tree]
+    : e=or_expr (
+        /* condition: expression e must be a "LVALUE" */ {
+            if (! ($e.tree instanceof AbstractLValue)) {
+                throw new InvalidLValue(this, $ctx);
+            }
+            // => avant elle était là, donc dans le cas de epsilon, on ne renvoyait rien...
+
+        }
+        EQUALS e2=assign_expr {
+            assert($e.tree != null);
+            assert($e2.tree != null);
+        }
+      | /* epsilon */ {
+            assert($e.tree != null);
+            $tree = $e.tree;    //Il fallait mettre cette instruction ici
+        }
+      )
+    ;
+(c'est ma faute, j'ai mal recopié le truc de Breno...)
+

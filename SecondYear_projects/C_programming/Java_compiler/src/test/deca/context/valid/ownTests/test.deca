@@ -1,0 +1,28 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+{
+    int i = 20;
+    
+    while(i>2)
+    {
+    	println(i, "salut");
+    	
+    	if(i % 2)
+    	{
+	    	i = i - 1;
+    	} else {
+			i = i - 3;
+		}
+		
+		println("tchau");
+    }
+    
+    return i;
+}

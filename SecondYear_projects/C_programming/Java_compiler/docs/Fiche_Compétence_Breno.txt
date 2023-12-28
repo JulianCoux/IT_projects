@@ -1,0 +1,44 @@
+Fiches de compétences :
+
+
+Nom : Da Silva Morais                                        Prénom : Breno
+
+
+1 - Compétences : notez de 1 à 10 vos compétences dans ces domaines :
+
+
+* Théorie des languages (analyse lexicale : étapeA)
+                                         7/10
+
+
+* Grammaire (vérification contextuelle : étape B)
+                                        8/10
+
+
+* Assembleur (génération de code : étape C)
+                                        7/10
+
+* Java
+                                        9/10
+
+
+* ANTLR
+                                        6/10
+
+
+* Méthodes numériques (extension : TRIGO)
+                                        5/10
+
+
+* Test
+                                        5/10
+
+
+* Méthodes agiles
+                                        4/10
+
+
+Commentaires :
+
+
+Spécifiez ici si une partie vous intéresse en particulier, si vous preferez travailler seul ou à plusieurs sur une partie …

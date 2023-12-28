@@ -1,0 +1,45 @@
+Fiches de compétences :
+
+
+Nom : KOUADIO                                    Prénom : Stéphane
+
+1 - Compétences : notez de 1 à 10 vos compétences dans ces domaines :
+
+
+* Théorie des languages (analyse lexicale : étapeA)
+                                        6/10
+
+
+* Grammaire (vérification contextuelle : étape B)
+                                        7/10
+
+
+* Assembleur (génération de code : étape C)
+                                        6/10
+
+* Java
+                                        7/10
+
+
+* ANTLR
+                                        5/10
+
+
+* Méthodes numériques (extension : TRIGO)
+                                        8/10
+
+
+* Test
+                                        6/10
+
+
+* Méthodes agiles
+                                        8/10
+
+
+Commentaires :
+
+
+Spécifiez ici si une partie vous intéresse en particulier, si vous preferez travailler seul ou à plusieurs sur une partie …
+
+Je veux bien travailler sur l'etape B au niveau des vérification contextuelle et de la décoration de l'arbre abstrait. De plus ayant une bonne compréhenhion de l'étape C et de l'extension TRIGO, je pourrai apporter ma contribution aux équipes qui travaillerons dessus.

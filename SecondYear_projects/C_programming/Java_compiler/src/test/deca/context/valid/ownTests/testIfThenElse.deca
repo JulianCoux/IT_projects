@@ -1,0 +1,37 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+{
+    int i = 20;
+    
+    if(i>2)
+    {
+    	println("Simple If");
+    	i = i - 1;
+    }
+    
+    if(i<1)
+    {
+    	println("If with ");
+    } else
+    {
+    	println("else");
+    }
+            assert($dv1.tree != null);
+    if(i==1)
+    {
+    	println("If with ");
+    } else if(i>20)
+    {
+    	println("else if and");
+    } else
+    {
+    	println("else");
+    } 
+}

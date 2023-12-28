@@ -1,0 +1,46 @@
+Fiches de compétences :
+
+
+Nom : MERCIER                                     Prénom : Hugo
+
+1 - Compétences : notez de 1 à 10 vos compétences dans ces domaines :
+
+
+* Théorie des languages (analyse lexicale : étapeA)
+                                        3/10
+
+
+* Grammaire (vérification contextuelle : étape B)
+                                        7/10
+
+
+* Assembleur (génération de code : étape C)
+                                        4/10
+
+* Java
+                                        6/10
+
+
+* ANTLR
+                                        2/10
+
+
+* Méthodes numériques (extension : TRIGO)
+                                        8/10
+
+
+* Test
+                                        3/10
+
+
+* Méthodes agiles
+                                        9/10
+
+
+Commentaires :
+
+
+Spécifiez ici si une partie vous intéresse en pa3rticulier, si vous preferez travailler seul ou à plusieurs sur une partie …
+
+Je veux bien être le Scrum Master du groupe, par ailleur je prefère travailler à plusieurs, je pense être capable de suivre
+ce que un peu tout le monde fait et de voir l'avancée du projet, où l'on souhaite aller, pour organiser les prochains Sprint.

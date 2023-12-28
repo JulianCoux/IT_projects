@@ -1,0 +1,47 @@
+Fiches de compétences :
+
+
+Nom : GATIMEL                                   Prénom : Loan
+
+
+1 - Compétences : notez de 1 à 10 vos compétences dans ces domaines :
+
+
+* Théorie des languages (analyse lexicale : étapeA)
+                                        8/10
+
+
+* Grammaire (vérification contextuelle : étape B)
+                                        6/10
+
+
+* Assembleur (génération de code : étape C)
+                                        9/10
+
+* Java
+                                        8/10
+
+
+* ANTLR
+                                        7/10
+
+
+* Méthodes numériques (extension : TRIGO)
+                                        2/10
+
+
+* Test
+                                        6/10
+
+
+* Méthodes agiles
+                                        5/10
+
+
+Commentaires :
+
+
+Spécifiez ici si une partie vous intéresse en particulier, si vous preferez travailler seul ou à plusieurs sur une partie …
+
+Etant en ISI je suis plutôt partant pour travailler sur les parties développement des étapes plus que sur les parties organisations ou sur l'organisation TRIGO. Je peux travailler sur n'importe
+quelle étape parce que j'ai bien compris les cours sur chacunes de ces étapes. De plus je ne pourrais pas être présent vendredi 22 Décembre mais sinon je suis très sérieux et j'aime travailler à l'ENSIMAG directement.
