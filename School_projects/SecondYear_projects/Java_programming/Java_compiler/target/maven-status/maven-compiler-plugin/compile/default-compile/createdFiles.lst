@@ -3,12 +3,14 @@ fr/ensimag/ima/pseudocode/instructions/BLE.class
 fr/ensimag/deca/syntax/DecaLexer.class
 fr/ensimag/deca/syntax/DecaParser$BlockContext.class
 fr/ensimag/ima/pseudocode/instructions/SETROUND_DOWNWARD.class
+fr/ensimag/deca/tree/MethodAsmBody.class
 fr/ensimag/deca/tree/Program.class
 fr/ensimag/ima/pseudocode/instructions/PEA.class
 fr/ensimag/deca/tree/TreeList.class
 fr/ensimag/ima/pseudocode/instructions/WNL.class
 fr/ensimag/deca/tree/Visibility.class
 fr/ensimag/deca/tree/package-info.class
+fr/ensimag/deca/context/EnvironmentType$DoubleDefException.class
 fr/ensimag/ima/pseudocode/BranchInstruction.class
 fr/ensimag/deca/syntax/DecaParser$Unary_exprContext.class
 fr/ensimag/deca/tree/EmptyMain.class
@@ -17,6 +19,7 @@ fr/ensimag/ima/pseudocode/instructions/BNE.class
 fr/ensimag/ima/pseudocode/ImmediateInteger.class
 fr/ensimag/ima/pseudocode/NullaryInstruction.class
 fr/ensimag/deca/syntax/DecaParser$Decl_varContext.class
+fr/ensimag/deca/tree/ListDeclField.class
 fr/ensimag/ima/pseudocode/NullOperand.class
 fr/ensimag/deca/syntax/DecaParser$Class_declContext.class
 fr/ensimag/deca/syntax/DecaParser$Inequality_exprContext.class
@@ -25,13 +28,16 @@ fr/ensimag/deca/tree/Selection.class
 fr/ensimag/ima/pseudocode/DVal.class
 fr/ensimag/deca/tree/Modulo.class
 fr/ensimag/ima/pseudocode/instructions/SEQ.class
+fr/ensimag/deca/tree/ListDeclParam.class
 fr/ensimag/deca/tree/AbstractOpIneq.class
 fr/ensimag/deca/tree/AbstractInitialization.class
+fr/ensimag/deca/tree/Null.class
 fr/ensimag/deca/tree/Cast.class
 fr/ensimag/deca/package-info.class
 fr/ensimag/deca/tree/AbstractBinaryExpr.class
 fr/ensimag/deca/DecacCompiler.class
 fr/ensimag/deca/tree/AbstractOpCmp.class
+fr/ensimag/deca/codegen/BooleanValue.class
 fr/ensimag/ima/pseudocode/instructions/TSTO.class
 fr/ensimag/deca/tree/TreeFunction.class
 fr/ensimag/deca/context/IntType.class
@@ -45,10 +51,12 @@ fr/ensimag/deca/context/ParamDefinition.class
 fr/ensimag/ima/pseudocode/instructions/WSTR.class
 fr/ensimag/deca/tree/AbstractReadExpr.class
 fr/ensimag/deca/tree/InstanceOf.class
+fr/ensimag/deca/tree/AbstractVisibility.class
 fr/ensimag/deca/syntax/DecaParser$MainContext.class
 fr/ensimag/deca/context/NullType.class
 fr/ensimag/deca/tree/Assign.class
 fr/ensimag/deca/tree/AbstractExpr.class
+fr/ensimag/deca/tree/AbstractDeclMethod.class
 fr/ensimag/deca/tools/DecacInternalError.class
 fr/ensimag/deca/syntax/DecaParser$Eq_neq_exprContext.class
 fr/ensimag/deca/context/ClassType.class
@@ -59,6 +67,7 @@ fr/ensimag/deca/syntax/DecaParser$Class_extensionContext.class
 fr/ensimag/deca/syntax/AbstractDecaLexer$1.class
 fr/ensimag/deca/syntax/DecaParser$If_then_elseContext.class
 fr/ensimag/ima/pseudocode/Register.class
+fr/ensimag/deca/tree/ListDeclMethod.class
 fr/ensimag/deca/tree/ReadFloat.class
 fr/ensimag/deca/syntax/DecaParser$List_paramsContext.class
 fr/ensimag/deca/syntax/DecaParser$Mult_exprContext.class
@@ -85,6 +94,7 @@ fr/ensimag/deca/tree/Location.class
 fr/ensimag/ima/pseudocode/ImmediateFloat.class
 fr/ensimag/deca/syntax/DecacErrorListner.class
 fr/ensimag/deca/tree/ListInst.class
+fr/ensimag/deca/tree/AbstractMethodBody.class
 fr/ensimag/deca/context/EnvironmentExp$DoubleDefException.class
 fr/ensimag/ima/pseudocode/instructions/SETROUND_UPWARD.class
 fr/ensimag/ima/pseudocode/instructions/SLE.class
@@ -109,6 +119,7 @@ fr/ensimag/deca/context/Definition.class
 fr/ensimag/deca/tools/package-info.class
 fr/ensimag/deca/DecacFatalError.class
 fr/ensimag/deca/context/package-info.class
+fr/ensimag/deca/tree/AbstractDeclParam.class
 fr/ensimag/deca/tree/New.class
 fr/ensimag/deca/tree/Println.class
 fr/ensimag/ima/pseudocode/IMAInternalError.class
@@ -141,9 +152,11 @@ fr/ensimag/deca/context/Signature.class
 fr/ensimag/ima/pseudocode/instructions/BGE.class
 fr/ensimag/ima/pseudocode/BinaryInstruction.class
 fr/ensimag/deca/tree/Equals.class
+fr/ensimag/deca/tree/DeclField.class
 fr/ensimag/deca/context/EnvironmentType.class
 fr/ensimag/ima/pseudocode/instructions/SGT.class
 fr/ensimag/deca/context/VariableDefinition.class
+fr/ensimag/deca/tree/DeclParam.class
 fr/ensimag/deca/tree/ReadInt.class
 fr/ensimag/ima/pseudocode/instructions/HALT.class
 fr/ensimag/deca/syntax/AbstractDecaParser$1.class
@@ -172,7 +185,9 @@ fr/ensimag/deca/tree/Return.class
 fr/ensimag/ima/pseudocode/package-info.class
 fr/ensimag/deca/syntax/DecaParser$InstContext.class
 fr/ensimag/deca/syntax/DecaParser$List_exprContext.class
+fr/ensimag/deca/tree/Public.class
 fr/ensimag/deca/context/StringType.class
+fr/ensimag/deca/tree/This.class
 fr/ensimag/ima/pseudocode/Instruction.class
 fr/ensimag/deca/tree/AbstractUnaryExpr.class
 fr/ensimag/ima/pseudocode/GPRegister.class
@@ -186,6 +201,7 @@ fr/ensimag/ima/pseudocode/instructions/SNE.class
 fr/ensimag/ima/pseudocode/instructions/QUO.class
 fr/ensimag/ima/pseudocode/instructions/FMA.class
 fr/ensimag/deca/syntax/DecaParser$Decl_fieldContext.class
+fr/ensimag/deca/tree/MethodBody.class
 fr/ensimag/deca/context/VoidType.class
 fr/ensimag/ima/pseudocode/instructions/SOV.class
 fr/ensimag/ima/pseudocode/UnaryInstructionImmInt.class
@@ -197,6 +213,7 @@ fr/ensimag/ima/pseudocode/AbstractLine.class
 fr/ensimag/ima/pseudocode/DAddr.class
 fr/ensimag/deca/syntax/DecaParser.class
 fr/ensimag/deca/syntax/DecaParser$ParamContext.class
+fr/ensimag/deca/tree/MethodCall.class
 fr/ensimag/deca/tree/Identifier.class
 fr/ensimag/ima/pseudocode/instructions/BGT.class
 fr/ensimag/deca/CLIException.class
@@ -204,6 +221,7 @@ fr/ensimag/deca/tree/IntLiteral.class
 fr/ensimag/ima/pseudocode/instructions/package-info.class
 fr/ensimag/deca/syntax/AbstractDecaParser.class
 fr/ensimag/deca/syntax/AbstractDecaLexer.class
+fr/ensimag/deca/codegen/StackController.class
 fr/ensimag/ima/pseudocode/instructions/BEQ.class
 fr/ensimag/deca/syntax/DecaParser$Multi_line_stringContext.class
 fr/ensimag/ima/pseudocode/instructions/STORE.class
@@ -214,7 +232,12 @@ fr/ensimag/deca/context/TypeDefinition.class
 fr/ensimag/deca/syntax/DecaParser$Decl_var_setContext.class
 fr/ensimag/deca/tree/NoInitialization.class
 fr/ensimag/deca/tree/FloatLiteral.class
+fr/ensimag/deca/codegen/MethodName.class
 fr/ensimag/deca/syntax/DecaParser$Assign_exprContext.class
+fr/ensimag/deca/tree/AbstractLiteral.class
+fr/ensimag/deca/tree/AbstractDeclField.class
+fr/ensimag/deca/tree/DeclMethod.class
+fr/ensimag/deca/tree/Protected.class
 fr/ensimag/deca/tree/DeclClass.class
 fr/ensimag/deca/tools/SymbolTable$1.class
 fr/ensimag/ima/pseudocode/instructions/NEW.class

@@ -1,0 +1,5 @@
+//Test d'un cast Int sur un Boolean
+
+{
+    int a = (int)(true);
+}

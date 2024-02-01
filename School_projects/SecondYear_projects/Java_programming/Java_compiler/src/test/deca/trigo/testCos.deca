@@ -1,0 +1,34 @@
+#include "Math.decah"
+// Description : test de la fonction ulp
+// Résultat attendu :
+// cos(1.0) = 5.40302e-01
+// cos(0.0) = 1.00000e+00
+// cos(-1.0) = 5.40302e-01
+// cos(0.5) = 8.77583e-01
+// cos(-0.5) = 8.77583e-01
+// cos(1.5) = 7.07372e-02
+// cos(-1.5) = 7.07372e-02
+// cos(2.5) = -8.01144e-01
+// cos(-2.5) = -8.01144e-01
+// cos(3.5) = -9.36457e-01
+// cos(-3.5) = -9.36457e-01
+// cos(12.2134) = 9.38350e-01
+// cos(-12.2134) = 9.38350e-01
+//
+
+{
+    Math m = new Math();
+    println("cos(1.0) = ", m.cos(1.0));
+    println("cos(0.0) = ", m.cos(0.0));
+    println("cos(-1.0) = ", m.cos(-1.0));
+    println("cos(0.5) = ", m.cos(0.5));
+    println("cos(-0.5) = ", m.cos(-0.5));
+    println("cos(1.5) = ", m.cos(1.5));
+    println("cos(-1.5) = ", m.cos(-1.5));
+    println("cos(2.5) = ", m.cos(2.5));
+    println("cos(-2.5) = ", m.cos(-2.5));
+    println("cos(3.5) = ", m.cos(3.5));
+    println("cos(-3.5) = ", m.cos(-3.5));
+    println("cos(12.2134) = ", m.cos(12.2134));
+    println("cos(-12.2134) = ", m.cos(-12.2134));
+}

@@ -1,0 +1,2879 @@
+	TSTO #21
+	BOV pile_pleine
+	ADDSP #49
+; start main program
+; --------------------------------------------------
+;       Construction des tables des methodes        
+; --------------------------------------------------
+; Construction de la table des methodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; Construction de la table des methodes de Math
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Math.sin, R0
+	STORE R0, 5(GB)
+	LOAD code.Math.cos, R0
+	STORE R0, 6(GB)
+	LOAD code.Math.asin, R0
+	STORE R0, 7(GB)
+	LOAD code.Math.atan, R0
+	STORE R0, 8(GB)
+	LOAD code.Math.ulp, R0
+	STORE R0, 9(GB)
+	LOAD code.Math._power, R0
+	STORE R0, 10(GB)
+	LOAD code.Math._factorial, R0
+	STORE R0, 11(GB)
+	LOAD code.Math._absVal, R0
+	STORE R0, 12(GB)
+	LOAD code.Math._getExposant, R0
+	STORE R0, 13(GB)
+	LOAD code.Math._falseSinus, R0
+	STORE R0, 14(GB)
+	LOAD code.Math._falseCosinus, R0
+	STORE R0, 15(GB)
+	LOAD code.Math._pi, R0
+	STORE R0, 16(GB)
+	LOAD code.Math.modulo, R0
+	STORE R0, 17(GB)
+; --------------------------------------------------
+;            Code du programme principal            
+; --------------------------------------------------
+; Variables declarations:
+; Instruction new ligne [8, 13]
+	NEW #1, R2
+	BOV tas_plein
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Math
+	POP R2
+	STORE R2, 18(GB)
+; Beginning of main instructions:
+	WSTR "ulp(1.0) = "
+; Appel de methode Math.ulp ligne [9, 27]
+	ADDSP #2
+	LOAD 18(GB), R2
+	STORE R2, 0(SP)
+	LOAD #0x1.0p0, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 6(R2)
+	SUBSP #2
+	LOAD R0, R1
+	WFLOAT
+	WNL
+	HALT
+; --------------------------------------------------
+;                   Class Object                   
+; --------------------------------------------------
+; ---------- Code de la methode equals dans la classe Object
+code.Object.equals:
+	TSTO #1
+	BOV pile_pleine
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+; --------------------------------------------------
+;                Class Math               
+; --------------------------------------------------
+; ---------- Initialisation des champs de Math
+init.Math:
+	TSTO #0
+	BOV pile_pleine
+; Initialisation des registres
+	LOAD -2(LB), R1
+	RTS
+; ---------- Code de la methode sin dans la classe Math
+code.Math.sin:
+	TSTO #10
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0x1.0p0, R2
+	STORE R2, 19(GB)
+; Beginning of IF ELSE
+; Instruction && ligne [8, 23]
+; Instruction <= ligne [8, 12]
+	LOAD -3(LB), R0
+	CMP #0x1.0p0, R0
+	SLE R0
+; Instruction >= ligne [8, 26]
+	LOAD -3(LB), R1
+	CMP #0x0.0p0, R1
+	SGE R1
+; Beginning of AND
+; Instruction <= ligne [8, 12]
+	LOAD -3(LB), R2
+	CMP #0x1.0p0, R2
+	SLE R2
+	CMP #0, R2
+	BEQ AND_not_bool.0
+; Instruction >= ligne [8, 26]
+	LOAD -3(LB), R2
+	CMP #0x0.0p0, R2
+	SGE R2
+	CMP #0, R2
+	BNE AND_bool.0
+	BRA AND_not_bool.0
+AND_bool.0:
+	LOAD #1, R0
+	BRA AND_bool_fin.0
+AND_not_bool.0:
+	LOAD #0, R0
+AND_bool_fin.0:
+	CMP #0, R0
+	BNE E_Sioui.0
+	BRA E_Sinon.0
+E_Sioui.0:
+; Appel de methode Math._falseSinus ligne [9, 19]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 11(R2)
+	SUBSP #2
+	LOAD R0, R0
+	BRA fin.Math.sin
+	BRA E_Fin.0
+E_Sinon.0:
+E_Fin.0:
+; Beginning of IF ELSE
+; Instruction && ligne [12, 22]
+; Instruction > ligne [12, 12]
+	LOAD -3(LB), R0
+	CMP #0x1.0p0, R0
+	SGT R0
+; Instruction <= ligne [12, 25]
+	LOAD -3(LB), R1
+; Instruction / ligne [12, 31]
+; Appel de methode Math._pi ligne [12, 32]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+	DIV R3, R2
+	CMP R2, R1
+	SLE R1
+; Beginning of AND
+; Instruction > ligne [12, 12]
+	LOAD -3(LB), R2
+	CMP #0x1.0p0, R2
+	SGT R2
+	CMP #0, R2
+	BEQ AND_not_bool.1
+; Instruction <= ligne [12, 25]
+	LOAD -3(LB), R2
+; Instruction / ligne [12, 31]
+; Appel de methode Math._pi ligne [12, 32]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	CMP R3, R2
+	SLE R2
+	CMP #0, R2
+	BNE AND_bool.1
+	BRA AND_not_bool.1
+AND_bool.1:
+	LOAD #1, R0
+	BRA AND_bool_fin.1
+AND_not_bool.1:
+	LOAD #0, R0
+AND_bool_fin.1:
+	CMP #0, R0
+	BNE E_Sioui.1
+	BRA E_Sinon.1
+E_Sioui.1:
+; Instruction = ligne [13, 12]
+; Instruction - ligne [13, 29]
+; Instruction / ligne [13, 19]
+; Appel de methode Math._pi ligne [13, 20]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	SUB -3(LB), R3
+; Instruction - ligne [13, 29]
+; Instruction / ligne [13, 19]
+; Appel de methode Math._pi ligne [13, 20]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+	DIV R3, R2
+	SUB -3(LB), R2
+	STORE R2, 19(GB)
+; Appel de methode Math._falseCosinus ligne [14, 19]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 19(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 12(R2)
+	SUBSP #2
+	LOAD R0, R0
+	BRA fin.Math.sin
+	BRA E_Fin.1
+E_Sinon.1:
+E_Fin.1:
+; Beginning of IF ELSE
+; Instruction && ligne [17, 27]
+; Instruction > ligne [17, 11]
+	LOAD -3(LB), R0
+; Instruction / ligne [17, 16]
+; Appel de methode Math._pi ligne [17, 17]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R1
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+	DIV R2, R1
+	CMP R1, R0
+	SGT R0
+; Instruction <= ligne [17, 30]
+	LOAD -3(LB), R1
+; Appel de methode Math._pi ligne [17, 36]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+	CMP R2, R1
+	SLE R1
+; Beginning of AND
+; Instruction > ligne [17, 11]
+	LOAD -3(LB), R2
+; Instruction / ligne [17, 16]
+; Appel de methode Math._pi ligne [17, 17]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	CMP R3, R2
+	SGT R2
+	CMP #0, R2
+	BEQ AND_not_bool.2
+; Instruction <= ligne [17, 30]
+	LOAD -3(LB), R2
+; Appel de methode Math._pi ligne [17, 36]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	CMP R3, R2
+	SLE R2
+	CMP #0, R2
+	BNE AND_bool.2
+	BRA AND_not_bool.2
+AND_bool.2:
+	LOAD #1, R0
+	BRA AND_bool_fin.2
+AND_not_bool.2:
+	LOAD #0, R0
+AND_bool_fin.2:
+	CMP #0, R0
+	BNE E_Sioui.2
+	BRA E_Sinon.2
+E_Sioui.2:
+; Instruction = ligne [18, 12]
+; Instruction - ligne [18, 25]
+; Appel de methode Math._pi ligne [18, 19]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	SUB -3(LB), R3
+; Instruction - ligne [18, 25]
+; Appel de methode Math._pi ligne [18, 19]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+	SUB -3(LB), R2
+	STORE R2, 19(GB)
+; Appel de methode Math.sin ligne [19, 19]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 19(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	LOAD R0, R0
+	BRA fin.Math.sin
+	BRA E_Fin.2
+E_Sinon.2:
+E_Fin.2:
+; Beginning of IF ELSE
+; Instruction && ligne [22, 23]
+; Instruction > ligne [22, 11]
+	LOAD -3(LB), R0
+; Appel de methode Math._pi ligne [22, 16]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R1
+	CMP R1, R0
+	SGT R0
+; Instruction <= ligne [22, 26]
+	LOAD -3(LB), R1
+; Instruction * ligne [22, 32]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [22, 37]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	CMP R2, R1
+	SLE R1
+; Beginning of AND
+; Instruction > ligne [22, 11]
+	LOAD -3(LB), R2
+; Appel de methode Math._pi ligne [22, 16]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	CMP R3, R2
+	SGT R2
+	CMP #0, R2
+	BEQ AND_not_bool.3
+; Instruction <= ligne [22, 26]
+	LOAD -3(LB), R2
+; Instruction * ligne [22, 32]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+; Appel de methode Math._pi ligne [22, 37]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R4
+	MUL R4, R3
+	CMP R3, R2
+	SLE R2
+	CMP #0, R2
+	BNE AND_bool.3
+	BRA AND_not_bool.3
+AND_bool.3:
+	LOAD #1, R0
+	BRA AND_bool_fin.3
+AND_not_bool.3:
+	LOAD #0, R0
+AND_bool_fin.3:
+	CMP #0, R0
+	BNE E_Sioui.3
+	BRA E_Sinon.3
+E_Sioui.3:
+; Instruction = ligne [23, 12]
+; Instruction - ligne [23, 21]
+	LOAD -3(LB), R3
+; Appel de methode Math._pi ligne [23, 23]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R4
+	SUB R4, R3
+; Instruction - ligne [23, 21]
+	LOAD -3(LB), R2
+; Appel de methode Math._pi ligne [23, 23]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	SUB R3, R2
+	STORE R2, 19(GB)
+; Instruction - ligne [24, 19]
+; Appel de methode Math.sin ligne [24, 20]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 19(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	LOAD R0, R0
+	OPP R0, R0
+	BRA fin.Math.sin
+	BRA E_Fin.3
+E_Sinon.3:
+; Beginning of IF ELSE
+; Instruction < ligne [28, 17]
+	LOAD -3(LB), R0
+; Instruction /* conv float */ ligne null
+	LOAD #0, R1
+	FLOAT R1, R1
+	CMP R1, R0
+	SLT R0
+	CMP #0, R0
+	BNE E_Sioui.4
+	BRA E_Sinon.4
+E_Sioui.4:
+; Instruction = ligne [29, 16]
+	LOAD -3(LB), R3
+	LOAD -3(LB), R2
+	STORE R2, 19(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	BRA E_Cond.0
+E_Debut.0:
+; Instruction = ligne [31, 20]
+; Instruction + ligne [31, 38]
+; Instruction * ligne [31, 26]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+; Appel de methode Math._pi ligne [31, 31]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R4
+	MUL R4, R3
+	ADD 19(GB), R3
+; Instruction + ligne [31, 38]
+; Instruction * ligne [31, 26]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [31, 31]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	ADD 19(GB), R2
+	STORE R2, 19(GB)
+E_Cond.0:
+; Instruction < ligne [30, 27]
+	LOAD 19(GB), R1
+; Instruction /* conv float */ ligne null
+	LOAD #0, R2
+	FLOAT R2, R2
+	CMP R2, R1
+	SLT R1
+	CMP #0, R1
+	BNE E_Debut.0
+; Restauration des registres
+	POP R4
+	POP R3
+	BRA E_Fin.4
+E_Sinon.4:
+; Instruction = ligne [36, 20]
+; Appel de methode Math.modulo ligne [36, 27]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction * ligne [36, 39]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [36, 41]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 14(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Appel de methode Math.modulo ligne [36, 27]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction * ligne [36, 39]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [36, 41]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 14(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, 19(GB)
+E_Fin.4:
+; Appel de methode Math.sin ligne [38, 19]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 19(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	LOAD R0, R0
+	BRA fin.Math.sin
+E_Fin.3:
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math.sin:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode cos dans la classe Math
+code.Math.cos:
+	TSTO #10
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0x1.0p0, R2
+	STORE R2, 20(GB)
+; Beginning of IF ELSE
+; Instruction && ligne [45, 23]
+; Instruction <= ligne [45, 12]
+	LOAD -3(LB), R0
+	CMP #0x1.0p0, R0
+	SLE R0
+; Instruction >= ligne [45, 26]
+	LOAD -3(LB), R1
+	CMP #0x0.0p0, R1
+	SGE R1
+; Beginning of AND
+; Instruction <= ligne [45, 12]
+	LOAD -3(LB), R2
+	CMP #0x1.0p0, R2
+	SLE R2
+	CMP #0, R2
+	BEQ AND_not_bool.4
+; Instruction >= ligne [45, 26]
+	LOAD -3(LB), R2
+	CMP #0x0.0p0, R2
+	SGE R2
+	CMP #0, R2
+	BNE AND_bool.4
+	BRA AND_not_bool.4
+AND_bool.4:
+	LOAD #1, R0
+	BRA AND_bool_fin.4
+AND_not_bool.4:
+	LOAD #0, R0
+AND_bool_fin.4:
+	CMP #0, R0
+	BNE E_Sioui.5
+	BRA E_Sinon.5
+E_Sioui.5:
+; Appel de methode Math._falseCosinus ligne [46, 19]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 12(R2)
+	SUBSP #2
+	LOAD R0, R0
+	BRA fin.Math.cos
+	BRA E_Fin.5
+E_Sinon.5:
+E_Fin.5:
+; Beginning of IF ELSE
+; Instruction && ligne [49, 22]
+; Instruction > ligne [49, 12]
+	LOAD -3(LB), R0
+	CMP #0x1.0p0, R0
+	SGT R0
+; Instruction <= ligne [49, 25]
+	LOAD -3(LB), R1
+; Instruction / ligne [49, 31]
+; Appel de methode Math._pi ligne [49, 32]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+	DIV R3, R2
+	CMP R2, R1
+	SLE R1
+; Beginning of AND
+; Instruction > ligne [49, 12]
+	LOAD -3(LB), R2
+	CMP #0x1.0p0, R2
+	SGT R2
+	CMP #0, R2
+	BEQ AND_not_bool.5
+; Instruction <= ligne [49, 25]
+	LOAD -3(LB), R2
+; Instruction / ligne [49, 31]
+; Appel de methode Math._pi ligne [49, 32]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	CMP R3, R2
+	SLE R2
+	CMP #0, R2
+	BNE AND_bool.5
+	BRA AND_not_bool.5
+AND_bool.5:
+	LOAD #1, R0
+	BRA AND_bool_fin.5
+AND_not_bool.5:
+	LOAD #0, R0
+AND_bool_fin.5:
+	CMP #0, R0
+	BNE E_Sioui.6
+	BRA E_Sinon.6
+E_Sioui.6:
+; Instruction = ligne [50, 12]
+; Instruction - ligne [50, 29]
+; Instruction / ligne [50, 19]
+; Appel de methode Math._pi ligne [50, 20]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	SUB -3(LB), R3
+; Instruction - ligne [50, 29]
+; Instruction / ligne [50, 19]
+; Appel de methode Math._pi ligne [50, 20]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+	DIV R3, R2
+	SUB -3(LB), R2
+	STORE R2, 20(GB)
+; Appel de methode Math._falseSinus ligne [51, 19]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 20(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 11(R2)
+	SUBSP #2
+	LOAD R0, R0
+	BRA fin.Math.cos
+	BRA E_Fin.6
+E_Sinon.6:
+E_Fin.6:
+; Beginning of IF ELSE
+; Instruction && ligne [54, 27]
+; Instruction > ligne [54, 11]
+	LOAD -3(LB), R0
+; Instruction / ligne [54, 16]
+; Appel de methode Math._pi ligne [54, 17]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R1
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+	DIV R2, R1
+	CMP R1, R0
+	SGT R0
+; Instruction <= ligne [54, 30]
+	LOAD -3(LB), R1
+; Appel de methode Math._pi ligne [54, 36]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+	CMP R2, R1
+	SLE R1
+; Beginning of AND
+; Instruction > ligne [54, 11]
+	LOAD -3(LB), R2
+; Instruction / ligne [54, 16]
+; Appel de methode Math._pi ligne [54, 17]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+	LOAD #2, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	CMP R3, R2
+	SGT R2
+	CMP #0, R2
+	BEQ AND_not_bool.6
+; Instruction <= ligne [54, 30]
+	LOAD -3(LB), R2
+; Appel de methode Math._pi ligne [54, 36]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	CMP R3, R2
+	SLE R2
+	CMP #0, R2
+	BNE AND_bool.6
+	BRA AND_not_bool.6
+AND_bool.6:
+	LOAD #1, R0
+	BRA AND_bool_fin.6
+AND_not_bool.6:
+	LOAD #0, R0
+AND_bool_fin.6:
+	CMP #0, R0
+	BNE E_Sioui.7
+	BRA E_Sinon.7
+E_Sioui.7:
+; Instruction = ligne [55, 12]
+; Instruction - ligne [55, 25]
+; Appel de methode Math._pi ligne [55, 19]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	SUB -3(LB), R3
+; Instruction - ligne [55, 25]
+; Appel de methode Math._pi ligne [55, 19]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R2
+	SUB -3(LB), R2
+	STORE R2, 20(GB)
+; Instruction - ligne [56, 19]
+; Appel de methode Math.cos ligne [56, 20]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 20(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #2
+	LOAD R0, R0
+	OPP R0, R0
+	BRA fin.Math.cos
+	BRA E_Fin.7
+E_Sinon.7:
+E_Fin.7:
+; Beginning of IF ELSE
+; Instruction && ligne [59, 23]
+; Instruction > ligne [59, 11]
+	LOAD -3(LB), R0
+; Appel de methode Math._pi ligne [59, 16]
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	LOAD R0, R1
+	CMP R1, R0
+	SGT R0
+; Instruction <= ligne [59, 26]
+	LOAD -3(LB), R1
+; Instruction * ligne [59, 32]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [59, 37]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	CMP R2, R1
+	SLE R1
+; Beginning of AND
+; Instruction > ligne [59, 11]
+	LOAD -3(LB), R2
+; Appel de methode Math._pi ligne [59, 16]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	CMP R3, R2
+	SGT R2
+	CMP #0, R2
+	BEQ AND_not_bool.7
+; Instruction <= ligne [59, 26]
+	LOAD -3(LB), R2
+; Instruction * ligne [59, 32]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+; Appel de methode Math._pi ligne [59, 37]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R4
+	MUL R4, R3
+	CMP R3, R2
+	SLE R2
+	CMP #0, R2
+	BNE AND_bool.7
+	BRA AND_not_bool.7
+AND_bool.7:
+	LOAD #1, R0
+	BRA AND_bool_fin.7
+AND_not_bool.7:
+	LOAD #0, R0
+AND_bool_fin.7:
+	CMP #0, R0
+	BNE E_Sioui.8
+	BRA E_Sinon.8
+E_Sioui.8:
+; Instruction = ligne [60, 12]
+; Instruction - ligne [60, 21]
+	LOAD -3(LB), R3
+; Appel de methode Math._pi ligne [60, 23]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R4
+	SUB R4, R3
+; Instruction - ligne [60, 21]
+	LOAD -3(LB), R2
+; Appel de methode Math._pi ligne [60, 23]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	SUB R3, R2
+	STORE R2, 20(GB)
+; Instruction - ligne [61, 19]
+; Appel de methode Math.cos ligne [61, 20]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 20(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #2
+	LOAD R0, R0
+	OPP R0, R0
+	BRA fin.Math.cos
+	BRA E_Fin.8
+E_Sinon.8:
+; Beginning of IF ELSE
+; Instruction < ligne [65, 17]
+	LOAD -3(LB), R0
+; Instruction /* conv float */ ligne null
+	LOAD #0, R1
+	FLOAT R1, R1
+	CMP R1, R0
+	SLT R0
+	CMP #0, R0
+	BNE E_Sioui.9
+	BRA E_Sinon.9
+E_Sioui.9:
+; Instruction = ligne [66, 16]
+	LOAD -3(LB), R3
+	LOAD -3(LB), R2
+	STORE R2, 20(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	BRA E_Cond.1
+E_Debut.1:
+; Instruction = ligne [68, 20]
+; Instruction + ligne [68, 39]
+; Instruction * ligne [68, 27]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R3
+	FLOAT R3, R3
+; Appel de methode Math._pi ligne [68, 32]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R4
+	MUL R4, R3
+	ADD 20(GB), R3
+; Instruction + ligne [68, 39]
+; Instruction * ligne [68, 27]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [68, 32]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	ADD 20(GB), R2
+	STORE R2, 20(GB)
+E_Cond.1:
+; Instruction < ligne [67, 27]
+	LOAD 20(GB), R1
+; Instruction /* conv float */ ligne null
+	LOAD #0, R2
+	FLOAT R2, R2
+	CMP R2, R1
+	SLT R1
+	CMP #0, R1
+	BNE E_Debut.1
+; Restauration des registres
+	POP R4
+	POP R3
+	BRA E_Fin.9
+E_Sinon.9:
+; Instruction = ligne [73, 20]
+; Appel de methode Math.modulo ligne [73, 27]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction * ligne [73, 39]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [73, 41]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 14(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Appel de methode Math.modulo ligne [73, 27]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction * ligne [73, 39]
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+; Appel de methode Math._pi ligne [73, 41]
+	PUSH R2
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 13(R2)
+	SUBSP #1
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 14(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, 20(GB)
+E_Fin.9:
+; Appel de methode Math.cos ligne [75, 19]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 20(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #2
+	LOAD R0, R0
+	BRA fin.Math.cos
+E_Fin.8:
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math.cos:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode asin dans la classe Math
+code.Math.asin:
+	TSTO #13
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0x0.0p0, R2
+	STORE R2, 21(GB)
+	LOAD #0x1.0p0, R2
+	STORE R2, 22(GB)
+	LOAD #8, R2
+	STORE R2, 23(GB)
+	LOAD #17, R2
+	STORE R2, 24(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	BRA E_Cond.2
+E_Debut.2:
+; Instruction = ligne [85, 12]
+; Instruction + ligne [85, 36]
+; Instruction * ligne [85, 25]
+	LOAD #2, R3
+	MUL 23(GB), R3
+	ADD #1, R3
+; Instruction + ligne [85, 36]
+; Instruction * ligne [85, 25]
+	LOAD #2, R2
+	MUL 23(GB), R2
+	ADD #1, R2
+	STORE R2, 24(GB)
+; Instruction = ligne [86, 12]
+; Instruction / ligne [86, 68]
+; Instruction * ligne [86, 20]
+; Appel de methode Math._power ligne [86, 21]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 24(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [86, 42]
+	PUSH R2
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction * ligne [86, 56]
+	LOAD #2, R2
+	MUL 23(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	POP R2
+	LOAD R0, R4
+	FLOAT R4, R4
+	MUL R4, R3
+; Instruction * ligne [86, 69]
+; Instruction * ligne [86, 79]
+; Instruction /* conv float */ ligne null
+	LOAD 24(GB), R4
+	FLOAT R4, R4
+; Appel de methode Math._power ligne [86, 81]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #2, R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [86, 88]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 23(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	LOAD R0, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R5
+	MUL R5, R4
+; Appel de methode Math._power ligne [86, 115]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 23(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+	LOAD #4, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R5
+	MUL R5, R4
+	DIV R4, R3
+; Instruction / ligne [86, 68]
+; Instruction * ligne [86, 20]
+; Appel de methode Math._power ligne [86, 21]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 24(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	LOAD R0, R2
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [86, 42]
+	PUSH R2
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction * ligne [86, 56]
+	LOAD #2, R2
+	MUL 23(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	POP R2
+	LOAD R0, R3
+	FLOAT R3, R3
+	MUL R3, R2
+; Instruction * ligne [86, 69]
+; Instruction * ligne [86, 79]
+; Instruction /* conv float */ ligne null
+	LOAD 24(GB), R3
+	FLOAT R3, R3
+; Appel de methode Math._power ligne [86, 81]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD #2, R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [86, 88]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 23(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	LOAD R0, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R4
+	MUL R4, R3
+; Appel de methode Math._power ligne [86, 115]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 23(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+	LOAD #4, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R4
+	MUL R4, R3
+	DIV R3, R2
+	STORE R2, 22(GB)
+; Instruction = ligne [87, 12]
+; Instruction + ligne [87, 26]
+	LOAD 21(GB), R3
+	ADD 22(GB), R3
+; Instruction + ligne [87, 26]
+	LOAD 21(GB), R2
+	ADD 22(GB), R2
+	STORE R2, 21(GB)
+; Instruction = ligne [88, 12]
+; Instruction - ligne [88, 32]
+	LOAD 23(GB), R3
+	SUB #1, R3
+; Instruction - ligne [88, 32]
+	LOAD 23(GB), R2
+	SUB #1, R2
+	STORE R2, 23(GB)
+E_Cond.2:
+; Instruction >= ligne [84, 23]
+	LOAD 23(GB), R1
+	CMP #0, R1
+	SGE R1
+	CMP #0, R1
+	BNE E_Debut.2
+; Restauration des registres
+	POP R5
+	POP R4
+	POP R3
+	LOAD 21(GB), R0
+	BRA fin.Math.asin
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math.asin:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode atan dans la classe Math
+code.Math.atan:
+	TSTO #10
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0x0.0p0, R2
+	STORE R2, 25(GB)
+	LOAD #0x1.0p0, R2
+	STORE R2, 26(GB)
+	LOAD #30, R2
+	STORE R2, 27(GB)
+	LOAD #60, R2
+	STORE R2, 28(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	BRA E_Cond.3
+E_Debut.3:
+; Instruction = ligne [99, 12]
+; Instruction + ligne [99, 36]
+; Instruction * ligne [99, 25]
+	LOAD #2, R3
+	MUL 27(GB), R3
+	ADD #1, R3
+; Instruction + ligne [99, 36]
+; Instruction * ligne [99, 25]
+	LOAD #2, R2
+	MUL 27(GB), R2
+	ADD #1, R2
+	STORE R2, 28(GB)
+; Instruction = ligne [100, 12]
+; Instruction / ligne [100, 64]
+; Instruction * ligne [100, 20]
+; Appel de methode Math._power ligne [100, 21]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 28(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Appel de methode Math._power ligne [100, 42]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 27(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Instruction - ligne [100, 49]
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R4
+	MUL R4, R3
+; Instruction /* conv float */ ligne null
+	LOAD 28(GB), R4
+	FLOAT R4, R4
+	DIV R4, R3
+; Instruction / ligne [100, 64]
+; Instruction * ligne [100, 20]
+; Appel de methode Math._power ligne [100, 21]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 28(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	LOAD R0, R2
+; Appel de methode Math._power ligne [100, 42]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 27(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Instruction - ligne [100, 49]
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+	MUL R3, R2
+; Instruction /* conv float */ ligne null
+	LOAD 28(GB), R3
+	FLOAT R3, R3
+	DIV R3, R2
+	STORE R2, 26(GB)
+; Instruction = ligne [101, 12]
+; Instruction + ligne [101, 26]
+	LOAD 25(GB), R3
+	ADD 26(GB), R3
+; Instruction + ligne [101, 26]
+	LOAD 25(GB), R2
+	ADD 26(GB), R2
+	STORE R2, 25(GB)
+; Instruction = ligne [102, 12]
+; Instruction - ligne [102, 32]
+	LOAD 27(GB), R3
+	SUB #1, R3
+; Instruction - ligne [102, 32]
+	LOAD 27(GB), R2
+	SUB #1, R2
+	STORE R2, 27(GB)
+E_Cond.3:
+; Instruction >= ligne [98, 23]
+	LOAD 27(GB), R1
+	CMP #0, R1
+	SGE R1
+	CMP #0, R1
+	BNE E_Debut.3
+; Restauration des registres
+	POP R4
+	POP R3
+	LOAD 25(GB), R0
+	BRA fin.Math.atan
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math.atan:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode ulp dans la classe Math
+code.Math.ulp:
+	TSTO #8
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+; Appel de methode Math._getExposant ligne [109, 23]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 10(R2)
+	SUBSP #2
+	LOAD R0, R2
+	STORE R2, 29(GB)
+; Appel de methode Math._power ligne [110, 20]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 29(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+	LOAD #2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, 30(GB)
+; Instruction = ligne [111, 8]
+; Instruction - ligne [111, 28]
+	LOAD 29(GB), R3
+	SUB #150, R3
+; Instruction - ligne [111, 28]
+	LOAD 29(GB), R2
+	SUB #150, R2
+	STORE R2, 29(GB)
+	LOAD 30(GB), R0
+	BRA fin.Math.ulp
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math.ulp:
+; Restauration des registres
+	POP R4
+	POP R3
+	RTS
+; ---------- Code de la methode _power dans la classe Math
+code.Math._power:
+	TSTO #5
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+; Beginning of IF ELSE
+; Instruction == ligne [118, 20]
+	LOAD -4(LB), R0
+	CMP #0, R0
+	SEQ R0
+	CMP #0, R0
+	BNE E_Sioui.10
+	BRA E_Sinon.10
+E_Sioui.10:
+	LOAD #0x1.0p0, R0
+	BRA fin.Math._power
+	BRA E_Fin.10
+E_Sinon.10:
+E_Fin.10:
+; Beginning of IF ELSE
+; Instruction > ligne [121, 20]
+	LOAD -4(LB), R0
+	CMP #0, R0
+	SGT R0
+	CMP #0, R0
+	BNE E_Sioui.11
+	BRA E_Sinon.11
+E_Sioui.11:
+; Instruction = ligne [122, 12]
+	LOAD #1, R3
+	LOAD #1, R2
+	STORE R2, 31(GB)
+; Instruction = ligne [123, 12]
+	LOAD -3(LB), R3
+	LOAD -3(LB), R2
+	STORE R2, 32(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	BRA E_Cond.4
+E_Debut.4:
+; Instruction = ligne [125, 16]
+; Instruction * ligne [125, 34]
+	LOAD 32(GB), R3
+	MUL -3(LB), R3
+; Instruction * ligne [125, 34]
+	LOAD 32(GB), R2
+	MUL -3(LB), R2
+	STORE R2, 32(GB)
+; Instruction = ligne [126, 16]
+; Instruction + ligne [126, 36]
+	LOAD 31(GB), R3
+	ADD #1, R3
+; Instruction + ligne [126, 36]
+	LOAD 31(GB), R2
+	ADD #1, R2
+	STORE R2, 31(GB)
+E_Cond.4:
+; Instruction < ligne [124, 27]
+	LOAD 31(GB), R1
+	CMP -4(LB), R1
+	SLT R1
+	CMP #0, R1
+	BNE E_Debut.4
+; Restauration des registres
+	POP R4
+	POP R3
+	BRA E_Fin.11
+E_Sinon.11:
+; Instruction = ligne [130, 12]
+; Instruction - ligne [130, 23]
+	LOAD #1, R3
+	OPP R3, R3
+; Instruction - ligne [130, 23]
+	LOAD #1, R2
+	OPP R2, R2
+	STORE R2, 31(GB)
+; Instruction = ligne [131, 12]
+; Instruction / ligne [131, 24]
+; Instruction /* conv float */ ligne null
+	LOAD #1, R3
+	FLOAT R3, R3
+	DIV -3(LB), R3
+; Instruction / ligne [131, 24]
+; Instruction /* conv float */ ligne null
+	LOAD #1, R2
+	FLOAT R2, R2
+	DIV -3(LB), R2
+	STORE R2, 32(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	BRA E_Cond.5
+E_Debut.5:
+; Instruction = ligne [133, 16]
+; Instruction / ligne [133, 34]
+	LOAD 32(GB), R3
+	DIV -3(LB), R3
+; Instruction / ligne [133, 34]
+	LOAD 32(GB), R2
+	DIV -3(LB), R2
+	STORE R2, 32(GB)
+; Instruction = ligne [134, 16]
+; Instruction - ligne [134, 36]
+	LOAD 31(GB), R3
+	SUB #1, R3
+; Instruction - ligne [134, 36]
+	LOAD 31(GB), R2
+	SUB #1, R2
+	STORE R2, 31(GB)
+E_Cond.5:
+; Instruction > ligne [132, 27]
+	LOAD 31(GB), R1
+	CMP -4(LB), R1
+	SGT R1
+	CMP #0, R1
+	BNE E_Debut.5
+; Restauration des registres
+	POP R4
+	POP R3
+E_Fin.11:
+	LOAD 32(GB), R0
+	BRA fin.Math._power
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math._power:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode _factorial dans la classe Math
+code.Math._factorial:
+	TSTO #4
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD -3(LB), R2
+	STORE R2, 33(GB)
+	LOAD -3(LB), R2
+	STORE R2, 34(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	BRA E_Cond.6
+E_Debut.6:
+; Instruction = ligne [144, 12]
+; Instruction - ligne [144, 32]
+	LOAD 33(GB), R3
+	SUB #1, R3
+; Instruction - ligne [144, 32]
+	LOAD 33(GB), R2
+	SUB #1, R2
+	STORE R2, 33(GB)
+; Instruction = ligne [145, 12]
+; Instruction * ligne [145, 30]
+	LOAD 34(GB), R3
+	MUL 33(GB), R3
+; Instruction * ligne [145, 30]
+	LOAD 34(GB), R2
+	MUL 33(GB), R2
+	STORE R2, 34(GB)
+E_Cond.6:
+; Instruction > ligne [143, 23]
+	LOAD 33(GB), R1
+	CMP #1, R1
+	SGT R1
+	CMP #0, R1
+	BNE E_Debut.6
+; Restauration des registres
+	POP R4
+	POP R3
+	LOAD 34(GB), R0
+	BRA fin.Math._factorial
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math._factorial:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode _absVal dans la classe Math
+code.Math._absVal:
+	TSTO #1
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+; Beginning of IF ELSE
+; Instruction < ligne [151, 13]
+	LOAD -3(LB), R0
+; Instruction /* conv float */ ligne null
+	LOAD #0, R1
+	FLOAT R1, R1
+	CMP R1, R0
+	SLT R0
+	CMP #0, R0
+	BNE E_Sioui.12
+	BRA E_Sinon.12
+E_Sioui.12:
+; Instruction - ligne [152, 19]
+	LOAD -3(LB), R0
+	OPP R0, R0
+	BRA fin.Math._absVal
+	BRA E_Fin.12
+E_Sinon.12:
+	LOAD -3(LB), R0
+	BRA fin.Math._absVal
+E_Fin.12:
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math._absVal:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode _getExposant dans la classe Math
+code.Math._getExposant:
+	TSTO #11
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0, R2
+	STORE R2, 35(GB)
+	LOAD #255, R2
+	STORE R2, 36(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	BRA E_Cond.7
+E_Debut.7:
+; Instruction = ligne [167, 12]
+; Instruction + ligne [167, 23]
+	LOAD 35(GB), R3
+; Instruction / ligne [167, 25]
+; Instruction - ligne [167, 26]
+	LOAD 36(GB), R4
+	SUB 35(GB), R4
+	QUO #2, R4
+	BOV division_par_zero
+	ADD R4, R3
+; Instruction + ligne [167, 23]
+	LOAD 35(GB), R2
+; Instruction / ligne [167, 25]
+; Instruction - ligne [167, 26]
+	LOAD 36(GB), R3
+	SUB 35(GB), R3
+	QUO #2, R3
+	BOV division_par_zero
+	ADD R3, R2
+	STORE R2, 37(GB)
+; Instruction = ligne [168, 12]
+; Appel de methode Math._power ligne [168, 24]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction - ligne [168, 36]
+	LOAD 37(GB), R2
+	SUB #126, R2
+	STORE R2, -2(SP)
+	LOAD #0x1.0p1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Appel de methode Math._power ligne [168, 24]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction - ligne [168, 36]
+	LOAD 37(GB), R2
+	SUB #126, R2
+	STORE R2, -2(SP)
+	LOAD #0x1.0p1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, 38(GB)
+; Instruction = ligne [169, 12]
+; Appel de methode Math._power ligne [169, 24]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction - ligne [169, 36]
+	LOAD 37(GB), R2
+	SUB #127, R2
+	STORE R2, -2(SP)
+	LOAD #0x1.0p1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Appel de methode Math._power ligne [169, 24]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+; Instruction - ligne [169, 36]
+	LOAD 37(GB), R2
+	SUB #127, R2
+	STORE R2, -2(SP)
+	LOAD #0x1.0p1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	LOAD R0, R2
+	STORE R2, 39(GB)
+; Beginning of IF ELSE
+; Instruction && ligne [170, 41]
+; Instruction <= ligne [170, 15]
+	LOAD 39(GB), R0
+; Appel de methode Math._absVal ligne [170, 29]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 9(R2)
+	SUBSP #2
+	LOAD R0, R1
+	CMP R1, R0
+	SLE R0
+; Instruction < ligne [170, 44]
+; Appel de methode Math._absVal ligne [170, 45]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 9(R2)
+	SUBSP #2
+	LOAD R0, R1
+	CMP 38(GB), R1
+	SLT R1
+; Beginning of AND
+; Instruction <= ligne [170, 15]
+	LOAD 39(GB), R2
+; Appel de methode Math._absVal ligne [170, 29]
+	PUSH R2
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 9(R2)
+	SUBSP #2
+	POP R2
+	LOAD R0, R3
+	CMP R3, R2
+	SLE R2
+	CMP #0, R2
+	BEQ AND_not_bool.8
+; Instruction < ligne [170, 44]
+; Appel de methode Math._absVal ligne [170, 45]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 9(R2)
+	SUBSP #2
+	LOAD R0, R2
+	CMP 38(GB), R2
+	SLT R2
+	CMP #0, R2
+	BNE AND_bool.8
+	BRA AND_not_bool.8
+AND_bool.8:
+	LOAD #1, R0
+	BRA AND_bool_fin.8
+AND_not_bool.8:
+	LOAD #0, R0
+AND_bool_fin.8:
+	CMP #0, R0
+	BNE E_Sioui.13
+	BRA E_Sinon.13
+E_Sioui.13:
+	LOAD 37(GB), R0
+	BRA fin.Math._getExposant
+	BRA E_Fin.13
+E_Sinon.13:
+E_Fin.13:
+; Beginning of IF ELSE
+; Instruction < ligne [173, 26]
+; Appel de methode Math._absVal ligne [173, 15]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 9(R2)
+	SUBSP #2
+	LOAD R0, R0
+	CMP 39(GB), R0
+	SLT R0
+	CMP #0, R0
+	BNE E_Sioui.14
+	BRA E_Sinon.14
+E_Sioui.14:
+; Instruction = ligne [174, 16]
+	LOAD 37(GB), R3
+	LOAD 37(GB), R2
+	STORE R2, 36(GB)
+	BRA E_Fin.14
+E_Sinon.14:
+E_Fin.14:
+; Beginning of IF ELSE
+; Instruction > ligne [176, 26]
+; Appel de methode Math._absVal ligne [176, 15]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 9(R2)
+	SUBSP #2
+	LOAD R0, R0
+	CMP 38(GB), R0
+	SGT R0
+	CMP #0, R0
+	BNE E_Sioui.15
+	BRA E_Sinon.15
+E_Sioui.15:
+; Instruction = ligne [177, 16]
+	LOAD 37(GB), R3
+	LOAD 37(GB), R2
+	STORE R2, 35(GB)
+	BRA E_Fin.15
+E_Sinon.15:
+E_Fin.15:
+; Beginning of IF ELSE
+; Instruction == ligne [179, 26]
+; Appel de methode Math._absVal ligne [179, 15]
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 9(R2)
+	SUBSP #2
+	LOAD R0, R0
+	CMP 38(GB), R0
+	SEQ R0
+	CMP #0, R0
+	BNE E_Sioui.16
+	BRA E_Sinon.16
+E_Sioui.16:
+; Instruction = ligne [180, 16]
+; Instruction + ligne [180, 26]
+	LOAD 37(GB), R3
+	ADD #1, R3
+; Instruction + ligne [180, 26]
+	LOAD 37(GB), R2
+	ADD #1, R2
+	STORE R2, 37(GB)
+	LOAD 37(GB), R0
+	BRA fin.Math._getExposant
+	BRA E_Fin.16
+E_Sinon.16:
+E_Fin.16:
+E_Cond.7:
+; Instruction < ligne [166, 19]
+	LOAD 35(GB), R1
+	CMP 36(GB), R1
+	SLT R1
+	CMP #0, R1
+	BNE E_Debut.7
+; Restauration des registres
+	POP R5
+	POP R4
+	POP R3
+; Beginning of IF ELSE
+; Instruction && ligne [184, 27]
+; Instruction == ligne [184, 11]
+	LOAD 35(GB), R0
+	CMP 36(GB), R0
+	SEQ R0
+; Instruction == ligne [184, 30]
+	LOAD 36(GB), R1
+	CMP #0, R1
+	SEQ R1
+; Beginning of AND
+; Instruction == ligne [184, 11]
+	LOAD 35(GB), R2
+	CMP 36(GB), R2
+	SEQ R2
+	CMP #0, R2
+	BEQ AND_not_bool.9
+; Instruction == ligne [184, 30]
+	LOAD 36(GB), R2
+	CMP #0, R2
+	SEQ R2
+	CMP #0, R2
+	BNE AND_bool.9
+	BRA AND_not_bool.9
+AND_bool.9:
+	LOAD #1, R0
+	BRA AND_bool_fin.9
+AND_not_bool.9:
+	LOAD #0, R0
+AND_bool_fin.9:
+	CMP #0, R0
+	BNE E_Sioui.17
+	BRA E_Sinon.17
+E_Sioui.17:
+	LOAD #0, R0
+	BRA fin.Math._getExposant
+	BRA E_Fin.17
+E_Sinon.17:
+E_Fin.17:
+; Instruction - ligne [187, 15]
+	LOAD #1, R0
+	OPP R0, R0
+	BRA fin.Math._getExposant
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math._getExposant:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode _falseSinus dans la classe Math
+code.Math._falseSinus:
+	TSTO #11
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0x0.0p0, R2
+	STORE R2, 40(GB)
+	LOAD #5, R2
+	STORE R2, 41(GB)
+	LOAD #11, R2
+	STORE R2, 42(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	BRA E_Cond.8
+E_Debut.8:
+; Instruction = ligne [197, 12]
+; Instruction + ligne [197, 38]
+; Instruction * ligne [197, 23]
+	LOAD #2, R3
+	MUL 41(GB), R3
+	ADD #1, R3
+; Instruction + ligne [197, 38]
+; Instruction * ligne [197, 23]
+	LOAD #2, R2
+	MUL 41(GB), R2
+	ADD #1, R2
+	STORE R2, 42(GB)
+; Instruction = ligne [198, 12]
+; Instruction * ligne [198, 41]
+; Appel de methode Math._power ligne [198, 20]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 41(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Instruction - ligne [198, 27]
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Instruction / ligne [198, 44]
+; Appel de methode Math._power ligne [198, 45]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 42(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R4
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [198, 65]
+	PUSH R2
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 42(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	POP R2
+	LOAD R0, R5
+	FLOAT R5, R5
+	DIV R5, R4
+	MUL R4, R3
+; Instruction * ligne [198, 41]
+; Appel de methode Math._power ligne [198, 20]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 41(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Instruction - ligne [198, 27]
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	LOAD R0, R2
+; Instruction / ligne [198, 44]
+; Appel de methode Math._power ligne [198, 45]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 42(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [198, 65]
+	PUSH R2
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 42(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	POP R2
+	LOAD R0, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	MUL R3, R2
+	STORE R2, 43(GB)
+; Instruction = ligne [199, 12]
+; Instruction + ligne [199, 26]
+	LOAD 40(GB), R3
+	ADD 43(GB), R3
+; Instruction + ligne [199, 26]
+	LOAD 40(GB), R2
+	ADD 43(GB), R2
+	STORE R2, 40(GB)
+; Instruction = ligne [200, 12]
+; Instruction - ligne [200, 32]
+	LOAD 41(GB), R3
+	SUB #1, R3
+; Instruction - ligne [200, 32]
+	LOAD 41(GB), R2
+	SUB #1, R2
+	STORE R2, 41(GB)
+E_Cond.8:
+; Instruction >= ligne [196, 23]
+	LOAD 41(GB), R1
+	CMP #0, R1
+	SGE R1
+	CMP #0, R1
+	BNE E_Debut.8
+; Restauration des registres
+	POP R5
+	POP R4
+	POP R3
+	LOAD 40(GB), R0
+	BRA fin.Math._falseSinus
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math._falseSinus:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode _falseCosinus dans la classe Math
+code.Math._falseCosinus:
+	TSTO #11
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0x0.0p0, R2
+	STORE R2, 44(GB)
+	LOAD #5, R2
+	STORE R2, 45(GB)
+	LOAD #10, R2
+	STORE R2, 46(GB)
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	BRA E_Cond.9
+E_Debut.9:
+; Instruction = ligne [211, 12]
+; Instruction * ligne [211, 23]
+	LOAD #2, R3
+	MUL 45(GB), R3
+; Instruction * ligne [211, 23]
+	LOAD #2, R2
+	MUL 45(GB), R2
+	STORE R2, 46(GB)
+; Instruction = ligne [212, 12]
+; Instruction * ligne [212, 41]
+; Appel de methode Math._power ligne [212, 20]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 45(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Instruction - ligne [212, 27]
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Instruction / ligne [212, 44]
+; Appel de methode Math._power ligne [212, 45]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 46(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R4
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [212, 65]
+	PUSH R2
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 46(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	POP R2
+	LOAD R0, R5
+	FLOAT R5, R5
+	DIV R5, R4
+	MUL R4, R3
+; Instruction * ligne [212, 41]
+; Appel de methode Math._power ligne [212, 20]
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 45(GB), R2
+	STORE R2, -2(SP)
+; Instruction /* conv float */ ligne null
+; Instruction - ligne [212, 27]
+	LOAD #1, R2
+	OPP R2, R2
+	FLOAT R2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	LOAD R0, R2
+; Instruction / ligne [212, 44]
+; Appel de methode Math._power ligne [212, 45]
+	PUSH R2
+	ADDSP #3
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 46(GB), R2
+	STORE R2, -2(SP)
+	LOAD -3(LB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 7(R2)
+	SUBSP #3
+	POP R2
+	LOAD R0, R3
+; Instruction /* conv float */ ligne null
+; Appel de methode Math._factorial ligne [212, 65]
+	PUSH R2
+	ADDSP #2
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 46(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 8(R2)
+	SUBSP #2
+	POP R2
+	LOAD R0, R4
+	FLOAT R4, R4
+	DIV R4, R3
+	MUL R3, R2
+	STORE R2, 47(GB)
+; Instruction = ligne [213, 12]
+; Instruction + ligne [213, 26]
+	LOAD 44(GB), R3
+	ADD 47(GB), R3
+; Instruction + ligne [213, 26]
+	LOAD 44(GB), R2
+	ADD 47(GB), R2
+	STORE R2, 44(GB)
+; Instruction = ligne [214, 12]
+; Instruction - ligne [214, 32]
+	LOAD 45(GB), R3
+	SUB #1, R3
+; Instruction - ligne [214, 32]
+	LOAD 45(GB), R2
+	SUB #1, R2
+	STORE R2, 45(GB)
+E_Cond.9:
+; Instruction >= ligne [210, 23]
+	LOAD 45(GB), R1
+	CMP #0, R1
+	SGE R1
+	CMP #0, R1
+	BNE E_Debut.9
+; Restauration des registres
+	POP R5
+	POP R4
+	POP R3
+	LOAD 44(GB), R0
+	BRA fin.Math._falseCosinus
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math._falseCosinus:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode _pi dans la classe Math
+code.Math._pi:
+	TSTO #1
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD #0x1.921fb6p1, R0
+	BRA fin.Math._pi
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math._pi:
+; Restauration des registres
+	RTS
+; ---------- Code de la methode modulo dans la classe Math
+code.Math.modulo:
+	TSTO #2
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+; Instruction / ligne [224, 24]
+	LOAD -3(LB), R2
+	DIV -4(LB), R2
+	STORE R2, 48(GB)
+; Instruction - ligne [225, 27]
+	LOAD 48(GB), R2
+; Instruction /* conv float */ ligne null
+	LOAD 48(GB), R3
+	INT R3, R3
+	FLOAT R3, R3
+	SUB R3, R2
+	STORE R2, 49(GB)
+; Instruction * ligne [227, 21]
+	LOAD 49(GB), R0
+	MUL -4(LB), R0
+	BRA fin.Math.modulo
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.Math.modulo:
+; Restauration des registres
+	POP R3
+	RTS
+; --------------------------------------------------
+;        Message d'erreur : pile_pleine        
+; --------------------------------------------------
+pile_pleine:
+	WSTR "Erreur: Pile pleine "
+	WNL
+	ERROR
+; --------------------------------------------------
+; Message d'erreur : dereferencement_null
+; --------------------------------------------------
+dereferencement_null:
+	WSTR "Erreur: Dereferencement de null"
+	WNL
+	ERROR
+; --------------------------------------------------
+;           Message d'erreur : io_error           
+; --------------------------------------------------
+io_error:
+	WSTR "Erreur: Input/Output error"
+	WNL
+	ERROR
+; --------------------------------------------------
+;          Message d'erreur : tas_plein          
+; --------------------------------------------------
+tas_plein:
+	WSTR "Erreur: Tas plein"
+	WNL
+	ERROR
+; --------------------------------------------------
+;  Message d'erreur : division_par_zero  
+; --------------------------------------------------
+division_par_zero:
+	WSTR "Erreur: Division par zero"
+	WNL
+	ERROR
+; --------------------------------------------------
+;     Message d'erreur : float_imprecis     
+; --------------------------------------------------
+float_imprecis:
+	WSTR "Erreur: Résultat n’est pas codable sur un flottant"
+	WNL
+	ERROR
+; end main program

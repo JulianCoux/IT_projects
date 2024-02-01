@@ -1,0 +1,9 @@
+// Tokens attendus: OBRACE, IDENT, EQUALS, INT, SEMI, OPARENT, PLUS, CPARENT, TIMES, SLASH, PERCENT, CBRACE
+// Fichier source avec des opérateurs et des parenthèses
+{
+    int a = 5;
+    int b = a;
+    int c = 50;
+    int d = 10;
+    int result = (a + b) * (c / d) % 10;
+}

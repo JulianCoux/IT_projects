@@ -5,6 +5,8 @@
 /home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/context/TestEnvironmentExp.java
 /home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/tools/ManualTestSymbol.java
 /home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/context/ManualTestContext.java
+/home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/syntax/TestLex.java
+/home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/context/ManualTestDecompile.java
 /home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/tools/SymbolTest.java
 /home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/context/TestPlusWithoutMock.java
 /home/julian/Documents/ENSIMAG/2A/Projet_GL/gl25/src/test/java/fr/ensimag/deca/context/TestPlusPlain.java

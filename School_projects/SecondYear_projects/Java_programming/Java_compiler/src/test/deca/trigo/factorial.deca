@@ -1,0 +1,10 @@
+#include "Math.decah"
+// Description : test de la fonction factorial
+// Résultat attendu :
+// factorial(5) = 120
+//
+
+{
+    Math m = new Math();
+    println("factorial(5) = ", m._factorial(5));
+}

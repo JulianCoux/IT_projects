@@ -1,0 +1,5 @@
+//Caster un Int en un Int
+//erreur attendue : (pas d'erreur pour le moment, on arrive pas à récupérer le type du cast)
+{
+    int a = (int)(10);
+}

@@ -1,0 +1,10 @@
+//test de l'operateur OR ||
+//
+
+{
+    int i = 10;
+    boolean b = (false || 15>10) || (true || 2==2);
+    if(b || i<15){
+        println("OR marche");
+    }
+}

@@ -1,0 +1,25 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+class A {
+	protected int x ;
+	int getX() {
+		return x ;
+	}
+	void setX(int x, B b) {
+		this.x = x ;
+	}
+}
+
+{
+	A a = new A() ;
+
+	a.setX(1) ;
+	println("a.getX() = ", a.getX()) ;
+}

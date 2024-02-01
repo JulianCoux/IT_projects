@@ -1,0 +1,10 @@
+#include "Math.decah"
+// Description : test de la fonction ulp
+// Résultat attendu :
+// ulp(1.0) =
+//
+
+{
+    Math m = new Math();
+    println("ulp(1.0) = ", m.ulp(1.0));
+}

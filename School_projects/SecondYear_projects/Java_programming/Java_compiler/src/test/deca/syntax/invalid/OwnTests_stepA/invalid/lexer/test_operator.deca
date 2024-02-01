@@ -1,0 +1,5 @@
+// Fichier source avec une erreur syntaxique délibérée
+{
+    int x = 10 + *' 2; // Erreur : opérateur * mal placé
+    int result = x / (3 - 1);
+}

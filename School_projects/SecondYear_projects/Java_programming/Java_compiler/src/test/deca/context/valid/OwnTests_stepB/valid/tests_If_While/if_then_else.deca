@@ -1,0 +1,33 @@
+//Test d'une simple utilisation de if(), else if() et else
+//
+
+
+{
+    int i = 20;
+    if(i>2){
+        println("Simple If");
+        i = i - 1;
+    }
+
+    if(i<1){
+        println("If with ");
+    } else{
+        println("else");
+    }
+    if(i==1){
+        println("If with ");
+    } else if(i>20){
+        println("else if and");
+    } else{
+        println("else");
+    }
+    if(5>=5){
+        println("sub or eq");
+    }
+    if(4!=5){
+        println("not equal");
+    }
+    if(5<=6){
+        println("inf or eq");
+    }
+}

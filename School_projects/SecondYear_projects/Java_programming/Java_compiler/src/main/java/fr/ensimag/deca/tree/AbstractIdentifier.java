@@ -10,7 +10,15 @@ import fr.ensimag.deca.context.FieldDefinition;
 import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.context.ExpDefinition;
 import fr.ensimag.deca.context.VariableDefinition;
+import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.ima.pseudocode.*;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.BNE;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+
+import java.util.Objects;
 
 /**
  *
@@ -18,7 +26,6 @@ import fr.ensimag.deca.tools.SymbolTable;
  * @date 01/01/2024
  */
 public abstract class AbstractIdentifier extends AbstractLValue {
-
     /**
      * Like {@link #getDefinition()}, but works only if the definition is a
      * ClassDefinition.
@@ -30,8 +37,6 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      *             if the definition is not a class definition.
      */
     public abstract ClassDefinition getClassDefinition();
-
-    public abstract Definition getDefinition();
 
     /**
      * Like {@link #getDefinition()}, but works only if the definition is a
@@ -82,9 +87,10 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      */
     public abstract VariableDefinition getVariableDefinition();
 
-    public abstract void setDefinition(Definition definition);
-
-
+    @Override
+    public Type getType() {
+        return this.getDefinition().getType();
+    }
 
     /**
      * Implements non-terminal "type" of [SyntaxeContextuelle] in the 3 passes
@@ -93,4 +99,22 @@ public abstract class AbstractIdentifier extends AbstractLValue {
      *         (corresponds to the "type" attribute)
      */
     public abstract Type verifyType(DecacCompiler compiler) throws ContextualError;
+
+    @Override
+    public String toString() {
+        return getName().getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractIdentifier that = (AbstractIdentifier) o;
+        return getName().equals(that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
 }

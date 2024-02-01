@@ -1,0 +1,34 @@
+//Test de tous les opérateurs de comparaison (doit renvoyer un booléen) entre un Float et un Int
+//
+
+{
+    //inférieur ou égal
+
+
+    boolean b = 1.0 <= 2;
+    b = 2.0 <= 2;
+    b = 3.0 <= 2;
+    //inférieur strict
+    b = 1.0 < 2;
+    b = 3.0 < 2;
+    b = 2 < 2.0;
+    //egalité
+    b = 1.0 == 2;
+    b = 1.0 == 1;
+    //pas égale
+    b = 1.0 != 1;
+    b = 1.0 != 2;
+    //supérieur ou égal
+    b = 3.0 >= 2;
+    b = 2.0 >= 2;
+    b = 1.0 >= 2;
+    //supérieur strict
+    b = 3.0 > 2;
+    b = 1.0 > 2;
+    b = 2 > 2.0;
+    if (b) {
+        println("true");
+    } else {
+        println("false");
+    }
+}

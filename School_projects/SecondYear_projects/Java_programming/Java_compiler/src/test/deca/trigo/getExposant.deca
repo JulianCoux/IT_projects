@@ -1,0 +1,10 @@
+#include "Math.decah"
+// Description : test de la fonction getExposant
+// Résultat attendu :
+// getExposant(1.0) = 127
+//
+
+{
+    Math m = new Math();
+    println("getExposant(1.0) = ", m._getExposant(1.0));
+}

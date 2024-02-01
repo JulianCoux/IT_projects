@@ -1,0 +1,7 @@
+//déclarer deux fois une même variable
+//erreur attendue : Error, type already declared in Declvar
+
+{
+    int x;
+    int x = 6;
+}

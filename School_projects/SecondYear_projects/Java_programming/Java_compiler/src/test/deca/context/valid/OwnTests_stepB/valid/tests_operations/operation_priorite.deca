@@ -1,0 +1,10 @@
+//Test de plusieurs opérations en ajoutant des ordres de priorité avec des parenthèses
+//
+
+{
+    int a = 10;
+    int b = ((a + 2) - ((15-12)+3))*2;
+    int c = (((b+8)-4)/2)%2;
+    
+    print(a, " ", b, " ", c);
+}

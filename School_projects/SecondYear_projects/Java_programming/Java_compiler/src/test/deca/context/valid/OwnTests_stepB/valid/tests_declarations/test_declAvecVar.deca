@@ -1,0 +1,13 @@
+//declaration d'une variable avec une autre variable
+//
+
+{
+    int a = 10;
+    float b = 12.3;
+
+    int c = a + 10;
+    float d = b + 45.6;
+
+    boolean e = true;
+    boolean f = !e;
+}

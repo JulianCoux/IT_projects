@@ -1,0 +1,10 @@
+{
+    int count = 0;
+
+    while (count < 5 || count % 2 == 0) {
+        println("Current count: ", count);
+        count = count + 1;
+    }
+
+    println("While loop finished.");
+}

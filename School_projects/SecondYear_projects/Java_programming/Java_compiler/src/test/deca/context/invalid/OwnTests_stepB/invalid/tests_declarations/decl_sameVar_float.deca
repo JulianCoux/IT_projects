@@ -1,0 +1,7 @@
+//déclarer deux fois une même variable
+//erreur attendue : Error, type already declared in Declvar
+
+{
+    float x = 12.5;
+    float x = 6.5;
+}

@@ -1,0 +1,7 @@
+// Tokens attendus: OBRACE, IDENT, EQUALS, FLOAT, SEMI, TIMES, OPARENT, INT, MINUS, CPARENT, CBRACE
+// Fichier source avec des nombres à virgule flottante
+{
+    float price = 19.99;
+    float discount = 0.2;
+    float final_price = price * (1 - discount);
+}

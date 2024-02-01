@@ -1,0 +1,6 @@
+// Simple If avec une mauvaise syntax
+{
+    if (45 > 2 {
+        print("ok");
+    }
+}

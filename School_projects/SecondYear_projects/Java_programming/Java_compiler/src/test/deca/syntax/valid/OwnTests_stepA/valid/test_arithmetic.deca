@@ -1,0 +1,6 @@
+// Tokens attendus: OBRACE, IDENT, EQUALS, INT, TIMES, PLUS, SEMI, SLASH, OPARENT, MINUS, CPARENT, CBRACE
+// Fichier source avec des opérations arithmétiques
+{
+    int x = 10 + 5 * 2;
+    int result = x / (3 - 1);
+}

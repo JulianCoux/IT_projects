@@ -1,9 +1,11 @@
 package fr.ensimag.deca;
 
+import fr.ensimag.deca.codegen.StackController;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
 import fr.ensimag.deca.tools.DecacInternalError;
+import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.AbstractProgram;
@@ -17,6 +19,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Arrays;
+
+import fr.ensimag.ima.pseudocode.instructions.BOV;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.log4j.Logger;
@@ -44,10 +49,13 @@ public class DecacCompiler {
      */
     private static final String nl = System.getProperty("line.separator", "\n");
 
+    public final SymbolTable symbolTable = new SymbolTable();
+
     public DecacCompiler(CompilerOptions compilerOptions, File source) {
         super();
         this.compilerOptions = compilerOptions;
         this.source = source;
+        this.stackController = new StackController(0);
     }
 
     /**
@@ -104,6 +112,19 @@ public class DecacCompiler {
     public void addInstruction(Instruction instruction, String comment) {
         program.addInstruction(instruction, comment);
     }
+
+    public void addErrorCheck(Label errorLabel) {
+        if(!compilerOptions.getNoCheck())
+            program.addInstruction(new BOV(errorLabel));
+    }
+
+    /**
+     * @see
+     * fr.ensimag.ima.pseudocode.IMAProgram#addFirst(fr.ensimag.ima.pseudocode.Instruction)
+     */
+    public void addFirst(Instruction instruction) {
+        program.addFirst(instruction);
+    }
     
     /**
      * @see 
@@ -123,13 +144,12 @@ public class DecacCompiler {
 
     /** The global environment for types (and the symbolTable) */
     public final EnvironmentType environmentType = new EnvironmentType(this);
-    public final SymbolTable symbolTable = new SymbolTable();
 
     public Symbol createSymbol(String name) {
-        return null; // A FAIRE: remplacer par la ligne en commentaire ci-dessous
-        // return symbolTable.create(name);
+        // return null; // A FAIRE: remplacer par la ligne en commentaire ci-dessous
+        return symbolTable.create(name);
     }
-
+    
     /**
      * Run the compiler (parse source file, generate code)
      *
@@ -137,7 +157,9 @@ public class DecacCompiler {
      */
     public boolean compile() {
         String sourceFile = source.getAbsolutePath();
-        String destFile = null;
+        int indicePoint = sourceFile.lastIndexOf(".");
+        String destFile = sourceFile.substring(0, indicePoint) + ".ass";
+
         // A FAIRE: calculer le nom du fichier .ass à partir du nom du
         // A FAIRE: fichier .deca.
         PrintStream err = System.err;
@@ -153,6 +175,7 @@ public class DecacCompiler {
             return true;
         } catch (StackOverflowError e) {
             LOG.debug("stack overflow", e);
+            err.println(Arrays.toString(e.getStackTrace()));
             err.println("Stack overflow while compiling file " + sourceFile + ".");
             return true;
         } catch (Exception e) {
@@ -190,9 +213,16 @@ public class DecacCompiler {
         }
         assert(prog.checkAllLocations());
 
+        if (compilerOptions.getParse()){
+            prog.decompile(new IndentPrintStream(out));
+            return false;
+        }
 
         prog.verifyProgram(this);
         assert(prog.checkAllDecorations());
+        if (compilerOptions.getVerification()){
+            return false;
+        }
 
         addComment("start main program");
         prog.codeGenProgram(this);
@@ -240,6 +270,27 @@ public class DecacCompiler {
         DecaParser parser = new DecaParser(tokens);
         parser.setDecacCompiler(this);
         return parser.parseProgramAndManageErrors(err);
+    }
+
+    private StackController stackController;
+    public void initStackController(int stack) {
+        stackController = new StackController(stack);
+    }
+    public void addToStack(int i) {
+        stackController.addToStack(i);
+    }
+    public void removeFromStack(int i) {
+        stackController.removeFromStack(i);
+    }
+    public int getMaxStack() {
+        return stackController.getMaxStack();
+    }
+    public void append(DecacCompiler compiler) {
+        stackController.append(compiler);
+        program.append(compiler.program);
+    }
+    public int getStack() {
+        return stackController.getStack();
     }
 
 }

@@ -1,0 +1,7 @@
+//Declaration d'une variable avec un type qui n'existe pas
+//erreur attendue : inte is an invalid type
+
+{
+    inte i = 10;
+    println("faute de frappe...");
+}

@@ -7,9 +7,15 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
+
 import java.io.PrintStream;
+import java.util.LinkedList;
+import java.util.List;
+
+import fr.ensimag.ima.pseudocode.*;
+import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
 
 /**
  * Expression, i.e. anything that has a value.
@@ -18,6 +24,7 @@ import org.apache.commons.lang.Validate;
  * @date 01/01/2024
  */
 public abstract class AbstractExpr extends AbstractInst {
+    private static final Logger LOG = Logger.getLogger(AbstractExpr.class);
     /**
      * @return true if the expression does not correspond to any concrete token
      * in the source code (and should be decompiled to the empty string).
@@ -82,7 +89,26 @@ public abstract class AbstractExpr extends AbstractInst {
             EnvironmentExp localEnv, ClassDefinition currentClass, 
             Type expectedType)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verifyRValue AbstractExpr : start");
+
+        Type type = this.verifyExpr(compiler, localEnv, currentClass);
+
+        if (type.sameType(expectedType)){
+            LOG.debug("verifyRValue AbstractExpr : end");
+            return this;
+        }
+        if (type.isInt() && expectedType.isFloat()) {
+            LOG.debug("verifyRValue AbstractExpr : end");
+            ConvFloat convFloat = new ConvFloat(this);
+            convFloat.verifyExpr(compiler, localEnv, currentClass);
+            return convFloat;
+        }
+        if (type.isClass()){
+            LOG.debug("verifyRValue AbstractExpr : end");
+            return this;
+        }
+        LOG.debug("verifyRValue AbstractExpr : end");
+        throw new ContextualError("Type incompatibility in AbstractExpr", getLocation());
     }
     
     
@@ -90,7 +116,9 @@ public abstract class AbstractExpr extends AbstractInst {
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verifyInst AbstractExpr : start");
+        verifyExpr(compiler, localEnv, currentClass);
+        LOG.debug("verifyInst AbstractExpr : end");
     }
 
     /**
@@ -105,20 +133,59 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        Type type = this.verifyExpr(compiler, localEnv, currentClass);
+        if (!type.isBoolean()) {
+            throw new ContextualError(type + " is not a valid condition for IfThenElse", getLocation());
+        }
     }
+
+    public boolean areBothArith(Type leftType, Type rightType) throws ContextualError{
+        if(isArithType(leftType) && isArithType(rightType)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isArithType(Type unaryType) throws ContextualError{
+        if (unaryType.isFloat() || unaryType.isInt()){
+            return true;
+        }
+        return false;
+    }
+
+
 
     /**
      * Generate code to print the expression
      *
      * @param compiler
      */
-    protected void codeGenPrint(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+    protected void codeGenPrint(DecacCompiler compiler, boolean hex) {
+        this.codeGen(compiler, 1);
+        if (this.getType() != null) {
+            if (this.getType().toString() == "int") {
+                compiler.addInstruction(new WINT());
+            } else {
+                if (hex){
+                    compiler.addInstruction(new WFLOATX());
+                } else {
+                    compiler.addInstruction(new WFLOAT());
+                }
+            }
+        }
     }
+
+
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
+        codeGen(compiler, 2);
+    }
+
+    /**
+     * Generate code to resolve the expression and stores the result in the register Rm
+     * */
+    protected void codeGen(DecacCompiler compiler, int registerNumber) {
         throw new UnsupportedOperationException("not yet implemented");
     }
     
@@ -139,4 +206,11 @@ public abstract class AbstractExpr extends AbstractInst {
             s.println();
         }
     }
+
+    public void addImaInstruction(DecacCompiler compiler, DVal value, GPRegister register) {
+
+    }
+
+    /* The division inside expressions should be floats, */
+    private boolean finalDivide = true;
 }

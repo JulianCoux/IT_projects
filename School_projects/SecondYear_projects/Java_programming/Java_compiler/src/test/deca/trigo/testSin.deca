@@ -1,0 +1,32 @@
+#include "Math.decah"
+// Description : test de la fonction ulp
+// Résultat attendu :
+// sin(1.0) = 8.41471e-01
+// sin(0.0) = 0.00000e+00
+// sin(-1.0) = -8.41471e-01
+// sin(0.5) = 4.79426e-01
+// sin(-0.5) = -4.79426e-01
+// sin(1.5) = 9.97495e-01
+// sin(-1.5) = -9.97495e-01
+// sin(2.5) = 5.98472e-01
+// sin(-2.5) = -5.98472e-01
+// sin(3.5) = -3.50783e-01
+// sin(-3.5) = 3.50783e-01
+//
+
+{
+    Math m = new Math();
+    println("sin(1.0) = ", m.sin(1.0));
+    println("sin(0.0) = ", m.sin(0.0));
+    println("sin(-1.0) = ", m.sin(-1.0));
+    println("sin(0.5) = ", m.sin(0.5));
+    println("sin(-0.5) = ", m.sin(-0.5));
+    println("sin(1.5) = ", m.sin(1.5));
+    println("sin(-1.5) = ", m.sin(-1.5));
+    println("sin(2.5) = ", m.sin(2.5));
+    println("sin(-2.5) = ", m.sin(-2.5));
+    println("sin(3.5) = ", m.sin(3.5));
+    println("sin(-3.5) = ", m.sin(-3.5));
+    println("sin(12.2134) = ", m.sin(12.2134));
+    println("sin(-12.2134) = ", m.sin(-12.2134));
+}

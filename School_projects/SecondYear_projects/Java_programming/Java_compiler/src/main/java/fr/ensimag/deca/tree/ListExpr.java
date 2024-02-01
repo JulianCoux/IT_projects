@@ -15,9 +15,13 @@ import fr.ensimag.deca.tools.IndentPrintStream;
  */
 public class ListExpr extends TreeList<AbstractExpr> {
 
-
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String delim = "";
+        for (AbstractExpr i : this.getList()) {
+            s.print(delim);
+            i.decompile(s);
+            delim = ",";
+        }
     }
 }

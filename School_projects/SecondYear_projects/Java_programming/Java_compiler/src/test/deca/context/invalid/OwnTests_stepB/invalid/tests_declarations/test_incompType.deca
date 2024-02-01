@@ -1,0 +1,6 @@
+//test qui invalide les déclarations de type
+{
+    int wrong_int = 1.1;
+    float wrong_float = 10;
+    boolean wrong_bool = 0;
+}

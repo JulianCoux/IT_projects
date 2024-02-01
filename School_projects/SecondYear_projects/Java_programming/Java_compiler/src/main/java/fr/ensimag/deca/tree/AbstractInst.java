@@ -6,7 +6,12 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Instruction
@@ -43,5 +48,15 @@ public abstract class AbstractInst extends Tree {
      */
     protected void decompileInst(IndentPrintStream s) {
         decompile(s);
+    }
+
+    // Return list of register used in the resolution of the expression
+    public List<GPRegister> getRegisters(int registerNumber) {
+        List<GPRegister> regs = new LinkedList<GPRegister>();
+        GPRegister reg = Register.getR(registerNumber);
+        if(reg != null)
+            regs.add(reg);
+
+        return regs;
     }
 }

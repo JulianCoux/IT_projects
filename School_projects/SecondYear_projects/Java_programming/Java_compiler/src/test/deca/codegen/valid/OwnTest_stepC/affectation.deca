@@ -1,0 +1,22 @@
+// Description : différentes affectations
+//
+// Resultats:
+//    a: 12
+//    b: 7.50000e+00
+//
+// Historique:
+//    cree le 01/01/2024
+
+{
+    int a = 10;
+    float b = 5.0;
+    boolean c = true;
+
+    a = a + 2;
+    b = b * 1.5;
+    c = a > b;
+
+    println("a: ", a);
+    println("b: ", b);
+    //println("c: ", c);
+}

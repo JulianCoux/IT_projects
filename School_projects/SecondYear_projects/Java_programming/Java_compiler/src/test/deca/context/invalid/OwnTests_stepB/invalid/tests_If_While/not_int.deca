@@ -1,0 +1,8 @@
+//test de l'opérateur not sur un int
+//erreur attendue : ça casse
+
+{
+    if(!(1)){
+        println("salut");
+    }
+}

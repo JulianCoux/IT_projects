@@ -1,0 +1,8 @@
+//test des opérations mathématiques
+//
+{
+    int a = 1;
+    int b = 10;
+    int c = a + b;
+    println(a, " ", b, " ", c, " ", a + b);
+}

@@ -1,0 +1,11 @@
+//Affichage d'une variable avec printx
+//
+
+{
+    int a = 10;
+    float b = 11.1;
+    printx(a);
+    printx("variable a = ", a);
+    printx("variable b = ", b);
+    printx(b);
+}

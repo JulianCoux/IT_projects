@@ -1,0 +1,8 @@
+//Mauvaise declaration avec extends
+class A extends B{
+    int x;
+}
+
+class B{
+    float y;
+}

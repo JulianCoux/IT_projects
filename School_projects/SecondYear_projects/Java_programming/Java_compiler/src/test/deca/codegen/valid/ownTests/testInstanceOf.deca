@@ -1,0 +1,64 @@
+// Description:
+//    Test instanceof
+//
+// Resultats:
+//    a is instance of B
+//    a is instance of Object
+//    b is instance of B
+//    b is instance of BA
+//    b is instance of Object
+//    b is not instance of C
+//    c is instance of Object
+//
+// Historique:
+//    cree le 22/12/2023
+
+class A {
+}
+
+class B extends A {
+}
+
+class C {
+}
+
+{
+    A a = new A();
+    B b = new B();
+    C c = new C();
+    
+    if(a instanceof A)
+    {
+    	println("a is instance of B");
+    }
+    
+    if(a instanceof Object)
+    {
+    	println("a is instance of Object");
+    }
+    
+    if(b instanceof B)
+    {
+    	println("b is instance of B");
+    }
+    
+    if(b instanceof A)
+    {
+    	println("b is instance of A");
+    }
+    
+    if(b instanceof Object)
+    {
+    	println("b is instance of Object");
+    }
+    
+    if(!(b instanceof C))
+    {
+    	println("b is not instance of C");
+    }
+    
+    if(c instanceof Object)
+    {
+    	println("c is instance of Object");
+    }
+}

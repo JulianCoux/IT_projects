@@ -1,0 +1,6 @@
+// While avec un int
+{
+    while(1){
+        print("infini");
+    }
+}

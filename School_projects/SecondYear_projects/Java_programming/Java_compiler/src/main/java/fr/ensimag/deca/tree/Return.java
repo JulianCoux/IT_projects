@@ -6,12 +6,16 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
+import org.apache.log4j.Logger;
 
 import java.io.PrintStream;
 
 public class Return extends AbstractInst {
-
+    private static final Logger LOG = Logger.getLogger(Identifier.class);
     private AbstractExpr expression;
+    private Label endMethod;
 
     public Return(AbstractExpr expression) {
         this.expression = expression;
@@ -20,17 +24,29 @@ public class Return extends AbstractInst {
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
                               ClassDefinition currentClass, Type returnType) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verifyInst Return : start");
+
+        /* Should be a run time error for some reason
+        //verifier que return != void
+        if(returnType.isVoid()){
+            throw new ContextualError("return type is VOID in Return", getLocation());
+        } */
+
+        expression.verifyRValue(compiler, localEnv, currentClass, returnType);
+        LOG.debug("verifyInst Return : end");
     }
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+        expression.codeGen(compiler, 0);
+
+        compiler.addInstruction(new BRA(endMethod));
     }
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
+        s.print("return ");
+        expression.decompile(s);
     }
 
     @Override
@@ -41,5 +57,13 @@ public class Return extends AbstractInst {
     @Override
     protected void iterChildren(TreeFunction f) {
         expression.iter(f);
+    }
+
+    public void setEndMethod(Label endMethod) {
+        this.endMethod = endMethod;
+    }
+
+    public Label getEndMethod() {
+        return endMethod;
     }
 }

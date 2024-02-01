@@ -1,0 +1,4 @@
+{
+    boolean bool_int_true = 1;
+    boolean bool_int_false = 0;
+}

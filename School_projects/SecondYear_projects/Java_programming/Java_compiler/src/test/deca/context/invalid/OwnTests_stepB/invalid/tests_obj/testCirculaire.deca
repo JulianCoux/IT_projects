@@ -1,0 +1,9 @@
+//Déclaration de classe qui forme un cercle d'extension
+class A extends C{
+}
+
+class B extends A{
+}
+
+class C extends B {
+}

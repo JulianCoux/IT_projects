@@ -1,0 +1,12 @@
+#include "Math.decah"
+// Description : test de la fonction absVal
+// Résultat attendu :
+// absVal(5) = 5
+// absVal(-5) = 5
+//
+
+{
+    Math m = new Math();
+    println("absVal(5) = ", m._absVal(5));
+    println("absVal(-5) = ", m._absVal(-5));
+}

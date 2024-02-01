@@ -1,0 +1,9 @@
+// Tokens attendus: OBRACE, IDENT, SEMI, EQUALS, FLOAT, IF, OPARENT, GT, INT, CPARENT, PRINT, STRING, CBRACE
+//Fichier source avec des identificateurs et des mots-clés
+{
+    int variable1;
+    float pi = 3.14;
+    if (pi > 3) {
+        print("pi is greater than 3");
+    }
+}

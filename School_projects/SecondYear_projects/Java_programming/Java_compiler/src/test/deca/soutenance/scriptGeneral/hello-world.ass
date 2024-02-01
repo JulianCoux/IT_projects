@@ -1,0 +1,74 @@
+	TSTO #1
+	BOV pile_pleine
+	ADDSP #1
+; start main program
+; --------------------------------------------------
+;       Construction des tables des methodes        
+; --------------------------------------------------
+; Construction de la table des methodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; --------------------------------------------------
+;            Code du programme principal            
+; --------------------------------------------------
+; Variables declarations:
+; Beginning of main instructions:
+	WSTR "Hello, world!"
+	WNL
+	HALT
+; --------------------------------------------------
+;                   Class Object                   
+; --------------------------------------------------
+; ---------- Code de la methode equals dans la classe Object
+code.Object.equals:
+	TSTO #1
+	BOV pile_pleine
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+; --------------------------------------------------
+;        Message d'erreur : pile_pleine        
+; --------------------------------------------------
+pile_pleine:
+	WSTR "Erreur: Pile pleine "
+	WNL
+	ERROR
+; --------------------------------------------------
+; Message d'erreur : dereferencement_null
+; --------------------------------------------------
+dereferencement_null:
+	WSTR "Erreur: Dereferencement de null"
+	WNL
+	ERROR
+; --------------------------------------------------
+;           Message d'erreur : io_error           
+; --------------------------------------------------
+io_error:
+	WSTR "Erreur: Input/Output error"
+	WNL
+	ERROR
+; --------------------------------------------------
+;          Message d'erreur : tas_plein          
+; --------------------------------------------------
+tas_plein:
+	WSTR "Erreur: Tas plein"
+	WNL
+	ERROR
+; --------------------------------------------------
+;  Message d'erreur : division_par_zero  
+; --------------------------------------------------
+division_par_zero:
+	WSTR "Erreur: Division par zero"
+	WNL
+	ERROR
+; --------------------------------------------------
+;     Message d'erreur : float_imprecis     
+; --------------------------------------------------
+float_imprecis:
+	WSTR "Erreur: Résultat n’est pas codable sur un flottant"
+	WNL
+	ERROR
+; end main program

@@ -1,0 +1,7 @@
+//Division d'un int avec un int
+//
+{
+    int a = 9;
+    int b = 3;
+    int c = a/b;
+}

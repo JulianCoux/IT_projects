@@ -1,0 +1,17 @@
+//Test de tous les opérateurs de comparaison (doit renvoyer un booléen) avec des FLOAT
+//
+// Resultats:
+//    Sum is greater than 15
+//
+// Historique:
+//    cree le 01/01/2024
+{
+    int x = 8;
+    int y = 12;
+
+    if (x + y > 15) {
+        println("Sum is greater than 15");
+    } else {
+        println("Sum is not greater than 15");
+    }
+}

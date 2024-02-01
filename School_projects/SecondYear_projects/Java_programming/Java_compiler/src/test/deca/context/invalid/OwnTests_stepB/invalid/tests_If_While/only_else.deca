@@ -1,0 +1,9 @@
+//Tester en mettant seulement un else
+//erreur attendue : (casse dans l'étape A) mismatched input 'else' expecting {'instanceof', ... '}'
+
+{
+    int i = 10;
+    else{
+        println(i);
+    }
+}

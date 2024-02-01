@@ -1,7 +1,16 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
+
+import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.GPRegister;
+import fr.ensimag.ima.pseudocode.Instruction;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.FLOAT;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -21,12 +30,13 @@ public abstract class AbstractUnaryExpr extends AbstractExpr {
         this.operand = operand;
     }
 
-
     protected abstract String getOperatorName();
   
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
+        s.print("(");
+        getOperand().decompile(s);
+        s.print(")");
     }
 
     @Override
@@ -37,6 +47,19 @@ public abstract class AbstractUnaryExpr extends AbstractExpr {
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         operand.prettyPrint(s, prefix, true);
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) {
+        getOperand().codeGenInst(compiler);
+        addImaInstruction(compiler, Register.R2, Register.R2);
+    }
+
+    @Override
+    protected void codeGen(DecacCompiler compiler, int registerNumber) {
+        compiler.addComment("Instruction " + getOperatorName() + " ligne " + getLocation());
+        getOperand().codeGen(compiler, registerNumber);
+        addImaInstruction(compiler, Register.getR(registerNumber), Register.getR(registerNumber));
     }
 
 }

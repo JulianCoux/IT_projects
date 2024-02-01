@@ -1,0 +1,6 @@
+//Déclaration d'un paramètre avec le même nom de fonction
+class A{
+    int add(int a, int get){
+        return a + get;
+    }
+}

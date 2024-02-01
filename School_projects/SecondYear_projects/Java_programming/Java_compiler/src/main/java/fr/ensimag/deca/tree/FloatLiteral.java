@@ -7,7 +7,13 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
+
+import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
 
 /**
  * Single precision, floating-point literal
@@ -15,10 +21,14 @@ import org.apache.commons.lang.Validate;
  * @author gl25
  * @date 01/01/2024
  */
-public class FloatLiteral extends AbstractExpr {
-
+public class FloatLiteral extends AbstractLiteral {
+    private static final Logger LOG = Logger.getLogger(Program.class);
     public float getValue() {
         return value;
+    }
+
+    public DVal getDValue() {
+        return new ImmediateFloat(getValue());
     }
 
     private float value;
@@ -34,13 +44,16 @@ public class FloatLiteral extends AbstractExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");        
+        //LOG.debug("verifyExpr FloatLiteral : start");
+        setType(compiler.environmentType.FLOAT);
+        //LOG.debug("verifyExpr FloatLiteral : end");
+        return compiler.environmentType.FLOAT;
     }
 
 
     @Override
     public void decompile(IndentPrintStream s) {
-        s.print(java.lang.Float.toHexString(value));
+        s.print(Float.toString(value));
     }
 
     @Override

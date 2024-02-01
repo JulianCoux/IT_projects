@@ -1,6 +1,7 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.tree.Location;
+import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.Label;
 import org.apache.commons.lang.Validate;
 
@@ -76,5 +77,19 @@ public class ClassDefinition extends TypeDefinition {
         members = new EnvironmentExp(parent);
         this.superClass = superClass;
     }
-    
+
+    DAddr methodTableAddress;
+
+    public DAddr getMethodTableAddress() {
+        return methodTableAddress;
+    }
+
+    public void setMethodTableAddress(DAddr methodTableAddress) {
+        this.methodTableAddress = methodTableAddress;
+    }
+
+    @Override
+    public ClassDefinition asClassDefinition(String errorMessage, Location l) throws ContextualError {
+        return this;
+    }
 }

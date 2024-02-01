@@ -1,0 +1,26 @@
+{
+    int nombreMystere = 76;
+
+    // Initialiser la proposition du joueur
+    int propositionJoueur = 0;
+
+    // Afficher les instructions
+    println("Bienvenue dans le jeu du Juste Prix!");
+    println("Essayez de deviner le nombre mystère entre 1 et 100.");
+
+    // Boucle du jeu
+    while (propositionJoueur != nombreMystere) {
+        // Demander au joueur de faire une proposition
+        println("Entrez votre proposition : ");
+        propositionJoueur = readInt();
+
+        // Vérifier si la proposition est correcte, trop basse ou trop haute
+        if (propositionJoueur == nombreMystere) {
+            println("Félicitations ! Vous avez deviné le nombre mystère.");
+        } else if (propositionJoueur < nombreMystere) {
+            println("Trop bas ! Essayez à nouveau.");
+        } else {
+            println("Trop haut ! Essayez à nouveau.");
+        }
+    }
+}

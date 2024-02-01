@@ -78,6 +78,15 @@ public abstract class Definition {
         throw new ContextualError(errorMessage, l);
     }
 
+    /**
+     * Return the same object, as type ClassDefinition, if possible. Throws
+     * ContextualError(errorMessage, l) otherwise.
+     */
+    public ClassDefinition asClassDefinition(String errorMessage, Location l)
+            throws ContextualError {
+        throw new ContextualError(errorMessage, l);
+    }
+
     public abstract boolean isExpression();
 
 }

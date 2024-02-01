@@ -1,0 +1,19 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+class A {
+	int x;
+}
+class B extends A {
+	int y;
+}
+
+{
+    A a = new A();
+}

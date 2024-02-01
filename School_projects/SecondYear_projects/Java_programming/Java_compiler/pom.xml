@@ -239,8 +239,24 @@
                         </goals>
                     </execution>
                     <execution>
+                        <id>basic-decompile</id>
+                        <configuration>
+                            <executable>./src/test/script/basic-decompile.sh</executable>
+                            <!-- If we need to pass arguments :
+                                 <arguments>
+                                 <argument>...</argument>
+                                 </arguments>
+                            -->
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
                         <id>basic-gencode</id>
                         <configuration>
+                            <executable>/bin/bash</executable>
                             <executable>./src/test/script/basic-gencode.sh</executable>
                         </configuration>
                         <phase>test</phase>
@@ -272,6 +288,17 @@
                     	<id>unit-test-EnvironmentExp</id>
                     	<configuration>
                     		<mainClass>fr.ensimag.deca.context.TestEnvironmentExp</mainClass>
+                    		<classpathScope>test</classpathScope>
+                    	</configuration>
+                    	<phase>test</phase>
+                    	<goals>
+                    		<goal>java</goal>
+                    	</goals>
+                    </execution>
+                    <execution>
+                    	<id>unit-test-Lexer</id>
+                    	<configuration>
+                    		<mainClass>fr.ensimag.deca.syntax.TestLex</mainClass>
                     		<classpathScope>test</classpathScope>
                     	</configuration>
                     	<phase>test</phase>

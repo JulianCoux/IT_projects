@@ -1,0 +1,7 @@
+//test des opérations mathématiques en mettant 2 + (unary + qui n'existe pas)
+//erreur attendue : extraneous input '+' expecting {'false', 'new', 'null', 'readInt', ... }
+{
+    int a = 1;
+    int b = 10;
+    int c = a + (+b);
+}

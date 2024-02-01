@@ -1,6 +1,8 @@
 package fr.ensimag.ima.pseudocode.instructions;
 
 import fr.ensimag.ima.pseudocode.ImmediateString;
+import fr.ensimag.ima.pseudocode.Operand;
+import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.UnaryInstruction;
 
 /**
@@ -15,5 +17,5 @@ public class WSTR extends UnaryInstruction {
     public WSTR(String message) {
         super(new ImmediateString(message));
     }
-    
+
 }

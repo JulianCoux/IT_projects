@@ -1,0 +1,8 @@
+//test d'un entier négatif, expression unaire (UnaryMinus)
+//test de l'opérateur not avec une expression booléenne
+{
+    int i = -1;
+    if(!(1>2)){
+        println("ok", i);
+    }
+}

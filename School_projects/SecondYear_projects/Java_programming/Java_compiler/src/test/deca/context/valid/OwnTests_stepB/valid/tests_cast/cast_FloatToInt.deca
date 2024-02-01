@@ -1,0 +1,6 @@
+//Utilisation d'un cast int sur un float
+//
+{
+    int i = (int)(1.6);
+    println(i);
+}

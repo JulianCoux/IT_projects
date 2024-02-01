@@ -1,0 +1,5 @@
+//declaration d'un int avec une variable qui n'existe pas (encore)
+//erreur attendue : "a" is an invalid expression in Identifier
+{
+    int a = a;
+}

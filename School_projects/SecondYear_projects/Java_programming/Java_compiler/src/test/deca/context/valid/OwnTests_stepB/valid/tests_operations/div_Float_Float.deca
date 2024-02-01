@@ -1,0 +1,7 @@
+//Division d'un float avec un float
+//
+{
+    float a = 9.0;
+    float b = 3.0;
+    float c = a/b;
+}

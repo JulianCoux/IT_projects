@@ -1,0 +1,42 @@
+// test exDoc
+// Description:
+//    Test of inherited methods and attributes
+//
+// Resultats:
+//    a.getX() = 1
+//    b.getX() = 2
+//    b.getY() = 4
+//
+// Historique:
+//    cree le 01/01/2024
+
+class A {
+   protected int x ;
+   int getX() {
+      return this.x ;
+   }
+   void setX(int x) {
+      this.x = x ;
+   }
+}
+
+class B extends A {
+   protected int y ;
+   int getY() {
+      return this.y ;
+   }
+   void setY(int y) {
+      this.y = y ;
+   }
+}
+
+{
+   A a = new A() ;
+   B b = new B() ;
+   a.setX(1) ;
+   b.setX(a.getX() + 1);
+   b.setY(a.getX() + 3);
+   println("a.getX() = ", a.getX()) ;
+   println("b.getX() = ", b.getX()) ;
+   println("b.getY() = ", b.getY()) ;
+}

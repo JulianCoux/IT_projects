@@ -2,20 +2,229 @@
 // Library for class Math of Deca, coded in Deca
 
 class Math {
-    float sin(float f) {
-        println("sin(f) not yet implemented");
+    float sin(float f){
+        float newF = 1.0;
+        //On vérifie si on est entre 0 et 1 :
+        if ((f <= 1.0) && (f >= 0.0)){
+            return _falseSinus(f);
+            }
+        //On vérifie si on est entre [1, Pi/2] :
+        if ((f > 1.0) && (f <= (_pi()/2))){
+            newF = (_pi()/2) - f;
+            return _falseCosinus(newF);
+            }
+        //On vérifie si on est entre [PI/2, PI] :
+        if((f > (_pi()/2)) && (f <= _pi())){
+            newF = _pi() - f;
+            return sin(newF);
+        }
+        //On vérifie si c'est entre [Pi; 2 pi]
+        if((f > _pi()) && (f <= (2 * _pi()))){
+            newF = f - _pi();
+            return -sin(newF);
+            }
+        //Maintenant si la valeur est pas entre 0 et 2 PI
+        else{
+            if(f < 0){
+                newF = f;
+                while(newF < 0){
+                    newF =(2 * _pi()) + newF;
+                }
+            }
+            else{
+                    //newF = f % (2 * _pi());
+                    newF = modulo(f, 2 * _pi());
+            }
+            return sin(newF);
+        }
     }
-    float cos(float f) {
-        println("cos(f) not yet implemented");
+
+    float cos(float f){
+        float newF = 1.0;
+        //On vérifie si on est entre 0 et 1 :
+        if ((f <= 1.0) && (f >= 0.0)){
+            return _falseCosinus(f);
+            }
+        //On vérifie si on est entre [1, Pi/2] :
+        if ((f > 1.0) && (f <= (_pi()/2))){
+            newF = (_pi()/2) - f;
+            return _falseSinus(newF);
+            }
+        //On vérifie si on est entre [PI/2, PI] :
+        if((f > (_pi()/2)) && (f <= _pi())){
+            newF = _pi() - f;
+            return -cos(newF);
+        }
+        //On vérifie si c'est entre [Pi; 2 pi]
+        if((f > _pi()) && (f <= (2 * _pi()))){
+            newF = f - _pi();
+            return -cos(newF);
+            }
+        //Maintenant si la valeur est pas entre 0 et 2 PI
+        else{
+            if(f < 0){
+                newF = f;
+                while(newF < 0){
+                    newF = (2 * _pi()) + newF;
+                }
+            }
+            else{
+                    //newF = f % (2 * _pi());
+                    newF = modulo(f, 2 * _pi());
+            }
+            return cos(newF);
+        }
     }
+
     float asin(float f) {
-        println("asin(f) not yet implemented");
+        float somme = 0.0;//On initialise la somme à 0.
+        float terme = 1.0;//On initialise à 1 le premier terme.
+        int compteur = 8;
+        int exposant = 17;
+        while(compteur >= 0){ //Tant que on a pas calculé les 5 premier termes.
+            exposant = 2 * compteur + 1;
+            terme = (_power(f,exposant) * _factorial(2  * compteur))/(exposant * _power(_factorial(compteur), 2) * _power(4 , compteur)) ;
+            somme = somme + terme;
+            compteur = compteur - 1;
+        }
+        return somme;
     }
+
     float atan(float f) {
-        println("atan(f) not yet implemented");
+        float somme = 0.0;//On initialise la somme à 0.
+        float terme = 1.0;//On initialise à 1 le premier terme.
+        int compteur = 30;
+        int exposant = 60;
+        while(compteur >= 0){ //Tant que on a pas calculé les 5 premier termes.
+            exposant = 2 * compteur + 1;
+            terme = (_power(f,exposant) * _power(-1 , compteur))/(exposant);
+            somme = somme + terme;
+            compteur = compteur - 1;
+        }
+        return somme;
     }
+
+
     float ulp(float f) {
-        println("ulp(f) not yet implemented");
+        int exposant = _getExposant(f);
+        float ulp = _power(2, exposant);
+        exposant = exposant - 150;
+        return ulp;
+    }
+
+    float _power(float indice, int exposant){
+        int compteur;
+        float produit;
+        if(exposant == 0){
+            return 1.0;
+        }
+        if(exposant > 0){
+            compteur = 1;
+            produit = indice;
+            while(compteur < exposant){
+                produit = produit * indice;
+                compteur = compteur + 1;
+            }
+        }
+        else{
+            compteur = -1;
+            produit = 1 / indice;
+            while(compteur > exposant){
+                produit = produit / indice;
+                compteur = compteur - 1;
+            }
+        }
+        return produit;
+    }
+
+    int _factorial(int factor){
+        int compteur = factor;
+        int produit = factor;
+        while(compteur > 1){
+            compteur = compteur - 1;
+            produit = produit * compteur;
+        }
+        return produit;
+    }
+
+    float _absVal(float f){
+        if(f < 0){
+            return -f;
+        }
+        else{
+            return f;
+        }
+    }
+
+    int _getExposant(float f){
+        //On réalise une méthode de recherche dichotomique pour obtenir l'exposant du flottant dans sa représentation IEEE754.
+        int left = 0;
+        int right = 255;
+        int mid;
+        float valeurSup;
+        float valeurInf;
+        while(left < right){
+            mid = left + ((right - left) / 2);
+            valeurSup = _power(2.0, (mid - 126));
+            valeurInf = _power(2.0, (mid - 127));
+            if((valeurInf <= _absVal(f)) && (_absVal(f) < valeurSup)){
+                return mid;
+                }
+            if(_absVal(f) < valeurInf){
+                right = mid;
+                }
+            if(_absVal(f) > valeurSup){
+                left = mid;
+                }
+            if(_absVal(f) == valeurSup){
+                mid = mid + 1;
+                return mid;
+                }
+            }
+        if((left == right) && (right == 0)){
+            return 0;
+        }
+        return -1;
+    }
+
+    float _falseSinus(float f){
+    //Cette fonction sinus fonctionne seulement entre -1 et 1.
+        float somme = 0.0;//On initialise la somme à 0.
+        int compteur = 5;//On initialise le compteur a 5, et on décroit ensuite de 1 par tour de boucle pour calculer les 5 premiers termes de la somme.
+        int exposant = 11;
+        float terme;
+        while(compteur >= 0){ //Tant que on a pas calculé les 5 premiers termes.
+            exposant = (2 * compteur) + 1;
+            terme = _power(-1, compteur) *  (_power(f, exposant)/this._factorial(exposant));
+            somme = somme + terme;//On met à jour la somme.
+            compteur = compteur - 1;//On met à jour le compteur.
+            }
+        return somme;
+    }
+
+    float _falseCosinus(float f){
+        float somme = 0.0;//On initialise la somme à 0.
+        int compteur = 5;//On initialise le compteur a 5, et on décroit ensuite de 1 par tour de boucle pour calculer les 5 premiers termes de la somme.
+        int exposant = 10;
+        float terme;
+        while(compteur >= 0){ //Tant que on a pas calculé les 5 premiers termes.
+            exposant = (2 * compteur);
+            terme = _power(-1, compteur) *  (_power(f, exposant)/this._factorial(exposant));
+            somme = somme + terme;//On met à jour la somme.
+            compteur = compteur - 1;//On met à jour le compteur.
+            }
+        return somme;
+   }
+
+    float _pi(){
+        return 3.1415927;
+    }
+
+    float modulo(float value, float range) {
+    	float norm = value / range;
+    	float fracPart = norm - ((int)(norm));
+    	
+    	return fracPart * range;
     }
 }
 

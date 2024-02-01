@@ -1,0 +1,23 @@
+// Description:
+//    Programme qui retourne un mauvais type
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+class A {
+	int x;
+
+	int getX(){
+	    float f = 10.0;
+	    return f;
+	}
+}
+
+{
+    A a = new A();
+    float f = a.getX();
+    int i = a.getX();
+}

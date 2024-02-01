@@ -1,0 +1,9 @@
+//declaration d'une variable en fin du fichier après des opérations
+//erreur attendue : no viable alternative at input 'b'
+
+{
+    int a = 10;
+    println("variable a = ", a);
+    int b = a + 1;
+    println("variable b = ", b);
+}

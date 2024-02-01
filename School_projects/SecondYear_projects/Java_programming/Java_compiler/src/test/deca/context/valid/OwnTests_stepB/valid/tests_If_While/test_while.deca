@@ -1,0 +1,11 @@
+//
+//
+
+{
+    int i = 20;
+    while(i>2)
+    {
+    	println(i, "salut");
+    	i = i - 1;
+    }
+}

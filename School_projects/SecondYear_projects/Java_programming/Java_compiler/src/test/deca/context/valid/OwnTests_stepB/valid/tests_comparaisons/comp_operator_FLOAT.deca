@@ -1,0 +1,102 @@
+//Test de tous les opérateurs de comparaison (doit renvoyer un booléen) avec des FLOAT
+//
+
+{
+    //inférieur ou égal
+    boolean b = 1.0 <= 2.0;
+    println("inf ou egal");
+    if (b) {
+        println("true");
+        printlnx("nombre hexa = ", 0.5);
+    } else {
+        println("false");
+    }
+    b = 2.0 <= 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 3.0 <= 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //inférieur strict
+    println("inf str");
+    b = 1.0 < 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 3.0 < 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //egalité
+    println("égalit");
+    b = 1.0 == 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1.0 == 1.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //pas égale
+    println("pas egal");
+    b = 1.0 != 1.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1.0 != 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //supérieur ou égal
+    println("supp ou egal");
+    b = 3.0 >= 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 2.0 >= 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1.0 >= 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //supérieur strict
+    println("supp str");
+    b = 3.0 > 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1.0 > 2.0;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+}

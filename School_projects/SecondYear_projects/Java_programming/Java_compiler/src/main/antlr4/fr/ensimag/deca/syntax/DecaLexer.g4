@@ -84,14 +84,15 @@ fragment FLOATHEX: ('0x' | '0X') NUMHEX '.' NUMHEX ('P' | 'p') SIGN NUM ('F' | '
 FLOAT: FLOATDEC | FLOATHEX;
 
 //Chaines de caractère
-STRING_CAR: ~('"' | '\n' | '\\');
+fragment STRING_CAR: ~('"' | '\n' | '\\');
 STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
 MULTI_LINE_STRING: '"' (STRING_CAR | EOL | '\\"' | '\\\\')* '"';
 
 //Commentaires
-COMMENT: ('/*' .*? '*/') | ('//' .*? '\n') {skip();};
+COMMENT: ('/*' .*? '*/') {skip();};
+ONE_LINE_COMMENT: ('//' .*? '\n') {skip();};
 
 //Inclusion de fichier
-FILENAME:  (LETTER | DIGIT | '.' | '-' | '_')+;
+fragment FILENAME:  (LETTER | DIGIT | '.' | '-' | '_')+;
 INCLUDE: '#include' (' ')* '"' FILENAME '"' {doInclude(getText());};
 

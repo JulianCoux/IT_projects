@@ -1,0 +1,43 @@
+// Description:
+//    Tests if calling a method of a field of another object
+//
+// Resultats:
+//    inside
+//    	double inside
+//    		triple inside
+//
+// Historique:
+//    cree le 22/12/2023
+
+class Q {
+	C c;
+	
+	void initC() {
+		c = new C();
+	}
+	
+	void in1() {
+		println("inside");
+		in2();
+	}
+
+	void in2() {		
+		println("	double inside");
+		
+	}
+}
+
+class C {
+	void in3() {
+		println("		triple inside");
+	}
+}
+
+{    
+    Q q = new Q();
+    
+    q.initC();
+    q.in1();
+    (q.c).in3();
+}
+

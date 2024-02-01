@@ -1,0 +1,30 @@
+// Description:
+//    Programme qui génère une erreur parce que on ne donne pas le bon nombre d'arguments à une méthode
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+
+class B{
+    int b;
+}
+
+class A {
+	protected int x ;
+	int getX() {
+		return x ;
+	}
+	void setX(int x, float f) {
+		this.x = x ;
+	}
+}
+
+{
+	A a = new A() ;
+
+	a.setX(1) ;
+	println("a.getX() = ", a.getX()) ;
+}

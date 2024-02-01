@@ -17,26 +17,34 @@ cd "$(dirname "$0")"/../../.. || exit 1
 
 PATH=./src/test/script/launchers:"$PATH"
 
-# /!\ test valide lexicalement, mais invalide pour l'étape A.
-# test_lex peut au choix afficher les messages sur la sortie standard
-# (1) ou sortie d'erreur (2). On redirige la sortie d'erreur sur la
-# sortie standard pour accepter les deux (2>&1)
-if test_lex src/test/deca/syntax/invalid/provided/simple_lex.deca 2>&1 \
-    | head -n 1 | grep -q 'simple_lex.deca:[0-9]'
-then
-    echo "Echec inattendu de test_lex"
-    exit 1
-else
-    echo "OK"
-fi
+# exemple de définition d'une fonction
+test_lex_invalide () {
+    # $1 = premier argument.
+    if test_lex "$1" 2>&1 | grep -q -e "$1:[0-9][0-9]*:"
+    then
+        echo "Echec attendu pour test_lex sur $1."
+    else
+        echo "Succes inattendu de test_lex sur $1."
+        exit 1
+    fi
+}
 
-# Ligne 10 codée en dur. Il faudrait stocker ça quelque part ...
-if test_lex src/test/deca/syntax/invalid/provided/chaine_incomplete.deca 2>&1 \
-    | grep -q -e 'chaine_incomplete.deca:10:'
-then
-    echo "Echec attendu pour test_lex"
-else
-    echo "Erreur non detectee par test_lex pour chaine_incomplete.deca"
-    exit 1
-fi
+for cas_de_test in src/test/deca/syntax/invalid/OwnTests_stepA/invalid/lexer/*.deca
+do
+    test_lex_invalide "$cas_de_test"
+done
+
+
+# Tests valides
+for cas_de_test in src/test/deca/syntax/valid/OwnTests_stepA/valid/*.deca
+do
+    if test_lex "$cas_de_test" 2>&1 | grep -q -e "$cas_de_test:[0-9][0-9]*:"
+    then
+        echo "Echec inattendu pour test_lex sur $cas_de_test."
+        exit 1
+    else
+        echo "Succes attendu de test_lex sur $cas_de_test."
+    fi
+done
+
 

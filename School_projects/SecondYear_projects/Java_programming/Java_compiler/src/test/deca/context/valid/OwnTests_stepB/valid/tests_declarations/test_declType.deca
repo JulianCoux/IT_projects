@@ -1,0 +1,10 @@
+//fichier qui test la déclaration de tous les types
+{
+    int entier = 1;
+    float flotant = 1.5;
+    boolean binaire = true;
+    //on ne peut pas déclarer de String
+    println("it is a string");
+    println("int : ", entier);
+    println("float : ", flotant);
+}

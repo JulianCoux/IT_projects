@@ -1,0 +1,42 @@
+//Test de la table de vérité de OR
+
+{
+    boolean p = true;
+    boolean q = true;
+
+    println("p   |   q   |  p OR q");
+    println("----------------------");
+
+    // Test pour chaque combinaison de valeurs de p et q
+    p = false;
+    q = false;
+    if (p || q) {
+        println("false | false | true");
+    } else {
+        println("false | false | false");
+    }
+
+    p = false;
+    q = true;
+    if (p || q) {
+        println("false | true  | true");
+    } else {
+        println("false | true  | false");
+    }
+
+    p = true;
+    q = false;
+    if (p || q) {
+        println("true | false | true");
+    } else {
+        println("true | false | false");
+    }
+
+    p = true;
+    q = true;
+    if (p || q) {
+        println("true  | true  | true");
+    } else {
+        println("true  | true  | false");
+    }
+}

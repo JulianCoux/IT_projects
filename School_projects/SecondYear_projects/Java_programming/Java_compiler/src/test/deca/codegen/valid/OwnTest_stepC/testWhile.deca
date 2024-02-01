@@ -1,0 +1,31 @@
+//test complet et technique
+//
+// Resultats:
+//    20 salut
+//    17 salut
+//    16 salut
+//    13 salut
+//    12 salut
+//    9 salut
+//    8 salut
+//    5 salut
+//    4 salut
+//
+// Historique:
+//    cree le 01/01/2024
+
+{
+    int i = 20;
+
+    while(i>2)
+    {
+    	println(i, " salut");
+
+    	if((i % 2 == 1))
+    	{
+	    	i = i - 1;
+    	} else {
+			i = i - 3;
+		}
+    }
+}

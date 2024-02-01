@@ -1,0 +1,356 @@
+	TSTO #18
+	BOV pile_pleine
+	ADDSP #15
+; start main program
+; --------------------------------------------------
+;       Construction des tables des methodes        
+; --------------------------------------------------
+; Construction de la table des methodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; Construction de la table des methodes de A
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.A.getX, R0
+	STORE R0, 5(GB)
+	LOAD code.A.setX, R0
+	STORE R0, 6(GB)
+; Construction de la table des methodes de B
+	LEA 3(GB), R0
+	STORE R0, 7(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 8(GB)
+	LOAD code.A.getX, R0
+	STORE R0, 9(GB)
+	LOAD code.A.setX, R0
+	STORE R0, 10(GB)
+	LOAD code.B.getY, R0
+	STORE R0, 11(GB)
+	LOAD code.B.setY, R0
+	STORE R0, 12(GB)
+; --------------------------------------------------
+;            Code du programme principal            
+; --------------------------------------------------
+; Variables declarations:
+; Instruction new ligne [34, 9]
+	NEW #2, R2
+	BOV tas_plein
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.A
+	POP R2
+	STORE R2, 13(GB)
+; Instruction new ligne [35, 9]
+	NEW #3, R2
+	BOV tas_plein
+	LEA 7(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.B
+	POP R2
+	STORE R2, 14(GB)
+; Beginning of main instructions:
+; Appel de methode A.setX ligne [36, 3]
+	ADDSP #2
+	LOAD 13(GB), R2
+	STORE R2, 0(SP)
+	LOAD #1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #2
+; Appel de methode B.setX ligne [37, 3]
+	ADDSP #2
+	LOAD 14(GB), R2
+	STORE R2, 0(SP)
+; Instruction + ligne [37, 19]
+; Appel de methode A.getX ligne [37, 10]
+	ADDSP #1
+	LOAD 13(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #1
+	LOAD R0, R2
+	ADD #1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #2
+; Appel de methode B.setY ligne [38, 3]
+	ADDSP #2
+	LOAD 14(GB), R2
+	STORE R2, 0(SP)
+; Instruction + ligne [38, 19]
+; Appel de methode A.getX ligne [38, 10]
+	ADDSP #1
+	LOAD 13(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #1
+	LOAD R0, R2
+	ADD #3, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 5(R2)
+	SUBSP #2
+	WSTR "a.getX() = "
+; Appel de methode A.getX ligne [39, 26]
+	ADDSP #1
+	LOAD 13(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #1
+	LOAD R0, R1
+	WINT
+	WNL
+	WSTR "b.getX() = "
+; Appel de methode B.getX ligne [40, 26]
+	ADDSP #1
+	LOAD 14(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #1
+	LOAD R0, R1
+	WINT
+	WNL
+	WSTR "b.getY() = "
+; Appel de methode B.getY ligne [41, 26]
+	ADDSP #1
+	LOAD 14(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #1
+	LOAD R0, R1
+	WINT
+	WNL
+	HALT
+; --------------------------------------------------
+;                   Class Object                   
+; --------------------------------------------------
+; ---------- Code de la methode equals dans la classe Object
+code.Object.equals:
+	TSTO #1
+	BOV pile_pleine
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+; --------------------------------------------------
+;                   Class A                  
+; --------------------------------------------------
+; ---------- Initialisation des champs de A
+init.A:
+; Initialisation des registres
+	LOAD -2(LB), R1
+	LOAD #0, R0
+	STORE R0, 1(R1)
+	RTS
+; ---------- Code de la methode getX dans la classe A
+code.A.getX:
+	TSTO #1
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD -2(LB), R0
+	CMP #null, R0
+	BEQ dereferencement_null
+	LOAD 1(R0), R0
+	BRA fin.B.getX
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.A.getX:
+; Restauration des registres
+	POP R2
+	RTS
+; ---------- Code de la methode setX dans la classe A
+code.A.setX:
+	TSTO #2
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+; Instruction = ligne [19, 6]
+	LOAD -3(LB), R3
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	STORE R3, 1(R2)
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.A.setX:
+; Restauration des registres
+	POP R2
+	POP R3
+	RTS
+; --------------------------------------------------
+;                   Class B                  
+; --------------------------------------------------
+; ---------- Initialisation des champs de B
+init.B:
+	TSTO #2
+	BOV pile_pleine
+	BSR init.A
+; Initialisation des registres
+	LOAD -2(LB), R1
+	LOAD #0, R0
+	STORE R0, 1(R1)
+	LOAD #0, R0
+	STORE R0, 2(R1)
+	RTS
+; ---------- Code de la methode getX dans la classe B
+code.B.getX:
+	TSTO #1
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD -2(LB), R0
+	CMP #null, R0
+	BEQ dereferencement_null
+	LOAD 1(R0), R0
+	BRA fin.B.getX
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.B.getX:
+; Restauration des registres
+	POP R2
+	RTS
+; ---------- Code de la methode setX dans la classe B
+code.B.setX:
+	TSTO #2
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+; Instruction = ligne [19, 6]
+	LOAD -3(LB), R3
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	STORE R3, 1(R2)
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.B.setX:
+; Restauration des registres
+	POP R2
+	POP R3
+	RTS
+; ---------- Code de la methode getY dans la classe B
+code.B.getY:
+	TSTO #1
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	LOAD -2(LB), R0
+	CMP #null, R0
+	BEQ dereferencement_null
+	LOAD 2(R0), R0
+	BRA fin.B.getY
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.B.getY:
+; Restauration des registres
+	POP R2
+	RTS
+; ---------- Code de la methode setY dans la classe B
+code.B.setY:
+	TSTO #2
+	BOV pile_pleine
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+; Instruction = ligne [29, 6]
+	LOAD -3(LB), R3
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencement_null
+	STORE R3, 2(R2)
+	WSTR "Erreur : sortie de la methode sans return"
+	WNL
+	ERROR
+fin.B.setY:
+; Restauration des registres
+	POP R2
+	POP R3
+	RTS
+; --------------------------------------------------
+;        Message d'erreur : pile_pleine        
+; --------------------------------------------------
+pile_pleine:
+	WSTR "Erreur: Pile pleine "
+	WNL
+	ERROR
+; --------------------------------------------------
+; Message d'erreur : dereferencement_null
+; --------------------------------------------------
+dereferencement_null:
+	WSTR "Erreur: Dereferencement de null"
+	WNL
+	ERROR
+; --------------------------------------------------
+;           Message d'erreur : io_error           
+; --------------------------------------------------
+io_error:
+	WSTR "Erreur: Input/Output error"
+	WNL
+	ERROR
+; --------------------------------------------------
+;          Message d'erreur : tas_plein          
+; --------------------------------------------------
+tas_plein:
+	WSTR "Erreur: Tas plein"
+	WNL
+	ERROR
+; --------------------------------------------------
+;  Message d'erreur : division_par_zero  
+; --------------------------------------------------
+division_par_zero:
+	WSTR "Erreur: Division par zero"
+	WNL
+	ERROR
+; --------------------------------------------------
+;     Message d'erreur : float_imprecis     
+; --------------------------------------------------
+float_imprecis:
+	WSTR "Erreur: Résultat n’est pas codable sur un flottant"
+	WNL
+	ERROR
+; end main program

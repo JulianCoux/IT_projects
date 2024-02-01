@@ -1,0 +1,26 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+{
+    int i;
+    
+    i = (2 * (8 / 2) - ((3 + 6) + (8 * (9*2))));
+    
+    println(i);
+    if(i>20)
+    {
+    	println("Maior que 20");
+    } else if(i < 20)
+    {
+    	println("Menor que 20");
+    } else
+    {
+    	println("Igual a 20");
+    }
+}

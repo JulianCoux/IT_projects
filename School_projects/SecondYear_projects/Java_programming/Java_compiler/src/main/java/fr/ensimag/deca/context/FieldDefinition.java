@@ -11,9 +11,10 @@ import fr.ensimag.deca.tree.Visibility;
  */
 public class FieldDefinition extends ExpDefinition {
     public int getIndex() {
-        return index;
+        return index + 1;
     }
 
+    // TODO: Keep in mind the attributes inherited, just add the last index of the parent
     private int index;
     
     @Override

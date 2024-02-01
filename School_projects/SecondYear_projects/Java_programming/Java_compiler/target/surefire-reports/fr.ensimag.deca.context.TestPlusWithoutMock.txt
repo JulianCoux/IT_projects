@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: fr.ensimag.deca.context.TestPlusWithoutMock
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.003 s <<< FAILURE! -- in fr.ensimag.deca.context.TestPlusWithoutMock
-fr.ensimag.deca.context.TestPlusWithoutMock.testType -- Time elapsed: 0.002 s <<< ERROR!
-java.lang.UnsupportedOperationException: not yet implemented
-	at fr.ensimag.deca.tree.AbstractOpArith.verifyExpr(AbstractOpArith.java:24)
-	at fr.ensimag.deca.context.TestPlusWithoutMock.testType(TestPlusWithoutMock.java:71)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in fr.ensimag.deca.context.TestPlusWithoutMock

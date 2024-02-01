@@ -74,5 +74,9 @@ public class TestEnvironmentExp {
         ExpDefinition defGet = filsEnvironment.get(x);
         assertEquals(def, defGet);
     }
+
+    public static void main(String[] args) {
+        // Vous pouvez exécuter vos tests ici si nécessaire
+    }
 }
 

@@ -1,0 +1,37 @@
+// Description:
+//    Programme utilisant les classes
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+class A {
+	int x;
+	void setX(int x){
+	    this.x = x;
+	}
+	int getX() {
+        return x ;
+    }
+}
+
+class B extends A {
+	protected int y = 2;
+}
+class C {
+    protected float z = 1.5;
+}
+
+class D extends B {
+    int w = 5;
+}
+
+{
+    A a = new A();
+    B b = new B();
+    C c = new C();
+    a.setX(2);
+    println("A.x = ", a.getX());
+}

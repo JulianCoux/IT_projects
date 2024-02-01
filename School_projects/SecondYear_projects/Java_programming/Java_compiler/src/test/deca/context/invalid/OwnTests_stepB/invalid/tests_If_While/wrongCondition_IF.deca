@@ -1,0 +1,8 @@
+//test d'une condition qui n'est pas un bool dans un if
+//erreur attendue : int is not a valid condition for IfThenElse
+
+{
+    if(10){
+        println("salut");
+    }
+}

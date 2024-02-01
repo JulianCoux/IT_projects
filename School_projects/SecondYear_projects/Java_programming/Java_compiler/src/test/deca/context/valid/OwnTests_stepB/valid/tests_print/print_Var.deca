@@ -1,0 +1,11 @@
+//Affichage d'une variable avec print
+//
+
+{
+    int a = 10;
+    float b = 11.1;
+    print(a);
+    print("variable a = ", a);
+    print("variable b = ", b);
+    print(b);
+}

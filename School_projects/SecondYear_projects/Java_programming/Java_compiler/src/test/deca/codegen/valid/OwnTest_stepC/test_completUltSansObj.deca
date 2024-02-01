@@ -1,0 +1,54 @@
+// Test prenant en compte quasiment tout le sans objet
+// 
+// Resultats:
+//    Result: 3.50000e+00
+//    Current counter: 0
+//    Counter is divisible by 3
+//    Current counter: 1
+//    Counter is not divisible by 3
+//    Current counter: 2
+//    Counter is not divisible by 3
+//    Current counter: 3
+//    Counter is divisible by 3
+//    Current counter: 4
+//    Counter is not divisible by 3
+//    Condition is false
+//
+// Historique:
+//    cree le 01/01/2024
+
+{
+    int num1 = 15;
+    int num2 = 7;
+    float result;
+    int counter = 0;
+    boolean condition = num1 >= 10 && num2 < 5;
+
+    if (num1 > num2) {
+        result = num1 / num2 + 1.5;
+        println("Result: ", result);
+    } else {
+        result = num2 % num1 * 2.0;
+        println("Result: ", result);
+    }
+
+
+    while (counter < 5 || counter % 2 == 0) {
+        println("Current counter: ", counter);
+
+        if (counter % 3 == 0) {
+            println("Counter is divisible by 3");
+        } else {
+            println("Counter is not divisible by 3");
+        }
+
+        counter = counter + 1;
+    }
+
+
+    if (condition) {
+        println("Condition is true");
+    } else {
+        println("Condition is false");
+    }
+}

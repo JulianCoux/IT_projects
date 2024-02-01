@@ -1,0 +1,15 @@
+// Description:
+//    Programme qui teste tous les litéraux
+//
+// Resultats:
+//    ...
+//
+// Historique:
+//    cree le 22/12/2023
+
+{
+    int i = 1;
+    float f = 1.5;
+    Boolean b = true;
+    int a = null;
+}

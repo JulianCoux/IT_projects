@@ -1,0 +1,7 @@
+// Tokens attendus: OBRACE, IDENT, EQUALS, INT, PERCENT, SEMI, CBRACE
+// Fichier source avec des caractères spéciaux
+{
+    int percent = 100 % 7;
+    int atVariable = 42;
+    int dollar$Value = 50;
+}

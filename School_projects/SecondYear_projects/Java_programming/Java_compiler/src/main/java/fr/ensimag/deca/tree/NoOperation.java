@@ -7,6 +7,8 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Label;
+import org.apache.log4j.Logger;
+
 import java.io.PrintStream;
 
 /**
@@ -15,17 +17,18 @@ import java.io.PrintStream;
  * @date 01/01/2024
  */
 public class NoOperation extends AbstractInst {
-
+    private static final Logger LOG = Logger.getLogger(Identifier.class);
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verifyInst NoOperation : start");
+        LOG.debug("verifyInst NoOperation : end");
+        //rien a faire... Pas de truc contextuels à vérifier
     }
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
     }
 
     @Override

@@ -1,20 +1,20 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
 
 /**
  * @author gl25
  * @date 01/01/2024
  */
 public class Initialization extends AbstractInitialization {
+    private static final Logger LOG = Logger.getLogger(Identifier.class);
 
+    @Override
     public AbstractExpr getExpression() {
         return expression;
     }
@@ -35,13 +35,21 @@ public class Initialization extends AbstractInitialization {
     protected void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verifyInitialization Initialization : start");
+        Type exprType = expression.verifyExpr(compiler, localEnv, currentClass);
+        if(!exprType.sameType(t) && !(exprType.isInt() && t.isFloat())){
+            throw new ContextualError("not the Type expected in Initialization", getLocation());
+        }
+        this.expression = this.expression.verifyRValue(compiler, localEnv, currentClass, t);
+        LOG.debug("verifyInitialization Initialization : end");
+        //TODO mettre des setDefinition
     }
 
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        s.print(" = ");
+        expression.decompile(s);
     }
 
     @Override

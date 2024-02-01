@@ -1,0 +1,5 @@
+// Fichier source avec des erreurs syntaxiques
+{
+    invalid_identifier@ = 10; // Error: invalid character in identifier
+    missing_operand = * 5;    // Error: missing operand
+}

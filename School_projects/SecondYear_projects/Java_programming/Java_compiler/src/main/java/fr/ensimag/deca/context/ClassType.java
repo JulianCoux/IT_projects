@@ -3,6 +3,9 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.Location;
+import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.NullOperand;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -53,7 +56,7 @@ public class ClassType extends Type {
 
     @Override
     public boolean sameType(Type otherType) {
-        throw new UnsupportedOperationException("not yet implemented");
+        return otherType.isClass();
     }
 
     /**
@@ -63,5 +66,8 @@ public class ClassType extends Type {
         throw new UnsupportedOperationException("not yet implemented"); 
     }
 
-
+    @Override
+    public DVal getDefaultValue() {
+        return new NullOperand();
+    }
 }

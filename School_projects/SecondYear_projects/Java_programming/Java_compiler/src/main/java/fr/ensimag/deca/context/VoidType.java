@@ -3,6 +3,8 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.NullOperand;
 
 /**
  *
@@ -22,8 +24,11 @@ public class VoidType extends Type {
 
     @Override
     public boolean sameType(Type otherType) {
-        throw new UnsupportedOperationException("not yet implemented");
+        return otherType.isVoid();
     }
 
-
+    @Override
+    public DVal getDefaultValue() {
+        throw new RuntimeException("Void doesn't have a default value");
+    }
 }

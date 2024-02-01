@@ -1,0 +1,6 @@
+//Affichage d'une variable avec println qui n'existe pas dans le context actuel
+//erreur attendue : "a" is an invalid expression in Identifier => la variable n'existe pas
+
+{
+    println(a);
+}

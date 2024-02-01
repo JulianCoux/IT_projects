@@ -1,0 +1,7 @@
+//Test du calcul du modulo avec un float
+//erreur attendue : "an INT was expected in Modulo"
+
+{
+    float a = 16.0%2.0;
+    println(a);
+}

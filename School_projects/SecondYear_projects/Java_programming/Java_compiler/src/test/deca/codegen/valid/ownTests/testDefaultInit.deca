@@ -1,0 +1,30 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    a.i = 0
+//    a.f = 0.00000e+00
+//    a.b = false
+//
+// Historique:
+//    cree le 22/12/2023
+
+class I {
+	int i;
+	float f;
+	boolean b;
+	I o;
+}
+
+{
+	I a = new I();
+	
+	println("a.i = ", a.i);
+	println("a.f = ", a.f);
+	print("a.b = ");	
+	if(a.b) {
+		print("true");	
+	} else {
+		print("false");
+	}					
+}

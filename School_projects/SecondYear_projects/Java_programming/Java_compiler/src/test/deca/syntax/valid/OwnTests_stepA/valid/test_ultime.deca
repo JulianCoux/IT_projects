@@ -1,0 +1,37 @@
+// Tokens attendus: OBRACE, IDENT, EQUALS, INT, SEMI, GEQ, AND, LT, IF, OPARENT, GT, CPARENT, SLASH, PLUS, FLOAT, PRINTLN, STRING, COMMA, ELSE, PERCENT, TIMES, WHILE, OR, EQEQ, CBRACE, EXCLAM, NEQ, FALSE
+// Fichier avec tout
+{
+    int num1 = 15;
+    int num2 = 7;
+    float result;
+    int counter = 0;
+    boolean condition = num1 >= 10 && num2 < 5;
+
+    if (!(num1 > num2)) {
+        result = num1 / num2 + 1.5;
+        println("Result: ", result);
+    } else {
+        result = num2 % num1 * 2.0;
+        println("Result: ", result);
+    }
+
+
+    while (counter < 5 || counter % 5 == 0) {
+        println("Current counter: ", counter);
+
+        if (counter % 3 == 0) {
+            println("Counter is divisible by 3");
+        } else {
+            println("Counter is not divisible by 3");
+        }
+
+        counter = counter + 1;
+    }
+
+    if (condition != false) {
+        println("Condition is true");
+    } else {
+        println("Condition is false");
+    }
+
+}

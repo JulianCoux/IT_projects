@@ -1,0 +1,77 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    print "a is instance of A"
+//    print "a is not instance of C"
+//    print "a is not instance of B"
+//    print "b is instance of B"
+//    print "b is instance of A"
+//    print "b is instance of Object"
+//    print "c is instance of Object"
+//    print "c is not instance of A"
+//
+// Historique:
+//    cree le 22/12/2023
+
+class A {
+}
+
+class B extends A {
+}
+
+class C {
+}
+
+{
+    A a = new A();
+    B b = new B();
+    C c = new C();
+
+    if(a instanceof A) {
+    	println("a is instance of A");
+    } else {
+       	println("a is not instance of A");
+    }
+    if(a instanceof C) {
+    	println("a is instance of C");
+    } else {
+       	println("a is not instance of C");
+    }
+    
+    if(a instanceof B) {
+    	println("a is instance of B");
+    } else {
+       	println("a is not instance of B");
+    }
+    
+    if(!!(b instanceof B)) {
+    	println("b is instance of B");
+    } else {
+       	println("b is not instance of B");
+    }
+    
+    if(b instanceof A) {
+    	println("b is instance of A");
+    } else {
+       	println("b is not instance of A");
+    }
+
+    if(!!(b instanceof Object)) {
+    	println("b is instance of Object");
+    } else {
+       	println("b is not instance of Object");
+    }
+    
+    if(c instanceof Object) {
+    	println("c is instance of Object");
+    } else {
+       	println("c is not instance of Object");
+    }
+    
+    if(c instanceof A) {
+    	println("c is instance of A");
+    } else {
+    	println("c is not instance of A");
+    }
+}

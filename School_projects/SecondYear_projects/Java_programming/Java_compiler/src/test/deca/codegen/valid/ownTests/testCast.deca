@@ -1,0 +1,13 @@
+// Description:
+//    Test the implict cast of int to float in operations
+//
+// Resultats:
+//    2.60000e+00
+//
+// Historique:
+//    cree le 22/12/2023
+
+{
+    float i = 1.6 + (8 / 5);
+    println(i);
+}

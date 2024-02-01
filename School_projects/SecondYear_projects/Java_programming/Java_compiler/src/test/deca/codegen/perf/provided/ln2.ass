@@ -1,0 +1,276 @@
+	TSTO #17
+	BOV pile_pleine
+	ADDSP #13
+; start main program
+; --------------------------------------------------
+;       Construction des tables des methodes        
+; --------------------------------------------------
+; Construction de la table des methodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; --------------------------------------------------
+;            Code du programme principal            
+; --------------------------------------------------
+; Variables declarations:
+	LOAD #0x0.0p0, R2
+	STORE R2, 3(GB)
+	LOAD #0x1.0p0, R2
+	STORE R2, 4(GB)
+; Instruction - ligne [14, 15]
+	LOAD #0x1.0p0, R2
+	OPP R2, R2
+	STORE R2, 5(GB)
+	LOAD #0x1.6fc2ecp-1, R2
+	STORE R2, 6(GB)
+; Beginning of main instructions:
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	PUSH R5
+	PUSH R6
+	PUSH R7
+	PUSH R8
+	PUSH R9
+	PUSH R10
+	PUSH R11
+	BRA E_Cond.0
+E_Debut.0:
+; Instruction = ligne [18, 1]
+; Instruction / ligne [18, 11]
+; Instruction + ligne [18, 5]
+	LOAD 3(GB), R3
+	ADD 4(GB), R3
+	DIV #0x1.0p1, R3
+; Instruction / ligne [18, 11]
+; Instruction + ligne [18, 5]
+	LOAD 3(GB), R2
+	ADD 4(GB), R2
+	DIV #0x1.0p1, R2
+	STORE R2, 7(GB)
+; Instruction = ligne [19, 2]
+; Instruction - ligne [19, 122]
+; Instruction * ligne [19, 9]
+	LOAD 7(GB), R3
+; Instruction + ligne [19, 11]
+; Instruction * ligne [19, 14]
+	LOAD 7(GB), R4
+; Instruction + ligne [19, 16]
+; Instruction * ligne [19, 19]
+	LOAD 7(GB), R5
+; Instruction + ligne [19, 21]
+; Instruction * ligne [19, 24]
+	LOAD 7(GB), R6
+; Instruction + ligne [19, 26]
+; Instruction * ligne [19, 29]
+	LOAD 7(GB), R7
+; Instruction + ligne [19, 31]
+; Instruction * ligne [19, 34]
+	LOAD 7(GB), R8
+; Instruction + ligne [19, 36]
+; Instruction * ligne [19, 40]
+	LOAD 7(GB), R9
+; Instruction / ligne [19, 42]
+	LOAD #0x1.0p0, R10
+	DIV #0x1.3bp12, R10
+	MUL R10, R9
+; Instruction / ligne [19, 60]
+	LOAD #0x1.0p0, R10
+	DIV #0x1.68p9, R10
+	ADD R10, R9
+	MUL R9, R8
+; Instruction / ligne [19, 73]
+	LOAD #0x1.0p0, R9
+	DIV #0x1.ep6, R9
+	ADD R9, R8
+	MUL R8, R7
+; Instruction / ligne [19, 86]
+	LOAD #0x1.0p0, R8
+	DIV #0x1.8p4, R8
+	ADD R8, R7
+	MUL R7, R6
+; Instruction / ligne [19, 98]
+	LOAD #0x1.0p0, R7
+	DIV #0x1.8p2, R7
+	ADD R7, R6
+	MUL R6, R5
+; Instruction / ligne [19, 109]
+	LOAD #0x1.0p0, R6
+	DIV #0x1.0p1, R6
+	ADD R6, R5
+	MUL R5, R4
+	ADD #0x1.0p0, R4
+	MUL R4, R3
+; Instruction /* conv float */ ligne null
+	LOAD #1, R4
+	FLOAT R4, R4
+	SUB R4, R3
+; Instruction - ligne [19, 122]
+; Instruction * ligne [19, 9]
+	LOAD 7(GB), R2
+; Instruction + ligne [19, 11]
+; Instruction * ligne [19, 14]
+	LOAD 7(GB), R3
+; Instruction + ligne [19, 16]
+; Instruction * ligne [19, 19]
+	LOAD 7(GB), R4
+; Instruction + ligne [19, 21]
+; Instruction * ligne [19, 24]
+	LOAD 7(GB), R5
+; Instruction + ligne [19, 26]
+; Instruction * ligne [19, 29]
+	LOAD 7(GB), R6
+; Instruction + ligne [19, 31]
+; Instruction * ligne [19, 34]
+	LOAD 7(GB), R7
+; Instruction + ligne [19, 36]
+; Instruction * ligne [19, 40]
+	LOAD 7(GB), R8
+; Instruction / ligne [19, 42]
+	LOAD #0x1.0p0, R9
+	DIV #0x1.3bp12, R9
+	MUL R9, R8
+; Instruction / ligne [19, 60]
+	LOAD #0x1.0p0, R9
+	DIV #0x1.68p9, R9
+	ADD R9, R8
+	MUL R8, R7
+; Instruction / ligne [19, 73]
+	LOAD #0x1.0p0, R8
+	DIV #0x1.ep6, R8
+	ADD R8, R7
+	MUL R7, R6
+; Instruction / ligne [19, 86]
+	LOAD #0x1.0p0, R7
+	DIV #0x1.8p4, R7
+	ADD R7, R6
+	MUL R6, R5
+; Instruction / ligne [19, 98]
+	LOAD #0x1.0p0, R6
+	DIV #0x1.8p2, R6
+	ADD R6, R5
+	MUL R5, R4
+; Instruction / ligne [19, 109]
+	LOAD #0x1.0p0, R5
+	DIV #0x1.0p1, R5
+	ADD R5, R4
+	MUL R4, R3
+	ADD #0x1.0p0, R3
+	MUL R3, R2
+; Instruction /* conv float */ ligne null
+	LOAD #1, R3
+	FLOAT R3, R3
+	SUB R3, R2
+	STORE R2, 8(GB)
+; Beginning of IF ELSE
+; Instruction > ligne [20, 8]
+	LOAD 8(GB), R0
+	CMP #0x0.0p0, R0
+	SGT R0
+	CMP #0, R0
+	BNE E_Sioui.0
+	BRA E_Sinon.0
+E_Sioui.0:
+; Instruction = ligne [21, 5]
+	LOAD 7(GB), R3
+	LOAD 7(GB), R2
+	STORE R2, 4(GB)
+; Instruction = ligne [22, 5]
+	LOAD 8(GB), R3
+	LOAD 8(GB), R2
+	STORE R2, 6(GB)
+	BRA E_Fin.0
+E_Sinon.0:
+; Instruction = ligne [24, 5]
+	LOAD 7(GB), R3
+	LOAD 7(GB), R2
+	STORE R2, 3(GB)
+; Instruction = ligne [25, 5]
+	LOAD 8(GB), R3
+	LOAD 8(GB), R2
+	STORE R2, 5(GB)
+E_Fin.0:
+E_Cond.0:
+; Instruction >= ligne [17, 12]
+	LOAD 4(GB), R1
+; Instruction + ligne [17, 14]
+	LOAD 3(GB), R2
+	ADD #0x1.0p-23, R2
+	CMP R2, R1
+	SGE R1
+	CMP #0, R1
+	BNE E_Debut.0
+; Restauration des registres
+	POP R11
+	POP R10
+	POP R9
+	POP R8
+	POP R7
+	POP R6
+	POP R5
+	POP R4
+	POP R3
+	LOAD 3(GB), R1
+	WFLOAT
+	WSTR " = "
+	LOAD 3(GB), R1
+	WFLOATX
+	WNL
+	HALT
+; --------------------------------------------------
+;                   Class Object                   
+; --------------------------------------------------
+; ---------- Code de la methode equals dans la classe Object
+code.Object.equals:
+	TSTO #1
+	BOV pile_pleine
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+; --------------------------------------------------
+;        Message d'erreur : pile_pleine        
+; --------------------------------------------------
+pile_pleine:
+	WSTR "Erreur: Pile pleine "
+	WNL
+	ERROR
+; --------------------------------------------------
+; Message d'erreur : dereferencement_null
+; --------------------------------------------------
+dereferencement_null:
+	WSTR "Erreur: Dereferencement de null"
+	WNL
+	ERROR
+; --------------------------------------------------
+;           Message d'erreur : io_error           
+; --------------------------------------------------
+io_error:
+	WSTR "Erreur: Input/Output error"
+	WNL
+	ERROR
+; --------------------------------------------------
+;          Message d'erreur : tas_plein          
+; --------------------------------------------------
+tas_plein:
+	WSTR "Erreur: Tas plein"
+	WNL
+	ERROR
+; --------------------------------------------------
+;  Message d'erreur : division_par_zero  
+; --------------------------------------------------
+division_par_zero:
+	WSTR "Erreur: Division par zero"
+	WNL
+	ERROR
+; --------------------------------------------------
+;     Message d'erreur : float_imprecis     
+; --------------------------------------------------
+float_imprecis:
+	WSTR "Erreur: Résultat n’est pas codable sur un flottant"
+	WNL
+	ERROR
+; end main program

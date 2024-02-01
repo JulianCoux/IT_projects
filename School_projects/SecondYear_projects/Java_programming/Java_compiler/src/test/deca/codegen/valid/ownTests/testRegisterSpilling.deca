@@ -1,0 +1,16 @@
+// Description:
+//    Programme minimaliste utilisant une affectation et println.
+//
+// Resultats:
+//    1
+//
+// Historique:
+//    cree le 22/12/2023
+
+{
+	int x;
+
+	x = (9 + (2 - (1 + (8 - (2 - ((9 + (2 - (1 + (8 - (2 - ((9 + (2 - (1 + (8 + (2 - 5))))) - 2)))))) + 2)))))) - 2;
+	print(x);
+}
+

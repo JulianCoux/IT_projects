@@ -1,0 +1,30 @@
+// Description:
+//    Tests calling a method of the same object inside another method
+//
+// Resultats:
+//    inside
+//    	double inside
+//    	double inside
+//
+// Historique:
+//    cree le 22/12/2023
+
+class Q {
+	void in1() {
+		println("inside");
+		in2();
+		this.in2();
+	}
+
+	void in2() {		
+		println("	double inside");
+		
+	}
+}
+
+{    
+    Q q = new Q();
+    
+    q.in1();
+}
+

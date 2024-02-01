@@ -1,0 +1,10 @@
+{
+    int x = 8;
+    int y = 12;
+
+    if (x + y > 15) {
+        println("Sum is greater than 15");
+    } else {
+        println("Sum is not greater than 15");
+    }
+}

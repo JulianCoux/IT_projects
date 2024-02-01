@@ -1,0 +1,9 @@
+#include "Math.decah"
+// Description : test de la fonction power avec valeur positive
+// Résultat attendu :
+// power(2.5, 3) = 15.625
+//
+{
+    Math m = new Math();
+    println("power(2.5, 3) = ", m._power(2.5, 3));
+}

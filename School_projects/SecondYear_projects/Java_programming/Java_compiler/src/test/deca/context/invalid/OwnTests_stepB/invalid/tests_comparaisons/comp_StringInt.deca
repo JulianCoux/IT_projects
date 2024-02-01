@@ -1,0 +1,4 @@
+//Comparaison entre '1' et 1
+{
+    boolean un = "1" == 1;
+}

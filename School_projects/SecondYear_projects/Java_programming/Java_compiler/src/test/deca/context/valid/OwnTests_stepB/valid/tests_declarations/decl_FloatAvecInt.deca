@@ -1,0 +1,4 @@
+{
+    int entier = 10;
+    float float_int = entier;
+}

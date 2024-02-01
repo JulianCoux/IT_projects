@@ -38,6 +38,8 @@ public class TestPlusWithoutMock {
             return INT;
         }
 
+
+
         @Override
         public void decompile(IndentPrintStream s) {
             throw new UnsupportedOperationException("Should not be called.");

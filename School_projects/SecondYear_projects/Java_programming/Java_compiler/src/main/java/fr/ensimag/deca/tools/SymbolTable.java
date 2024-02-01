@@ -2,6 +2,7 @@ package fr.ensimag.deca.tools;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Manage unique symbols.
@@ -56,5 +57,18 @@ public class SymbolTable {
         }
 
         private String name;
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Symbol symbol = (Symbol) o;
+            return getName().equals(symbol.getName());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getName());
+        }
     }
 }

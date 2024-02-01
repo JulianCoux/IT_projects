@@ -1,0 +1,6 @@
+//test de OR en mettant que | au lieu de ||
+//erreur attendue : token recognition error at: '| '
+
+{
+    boolean b = true | false;
+}

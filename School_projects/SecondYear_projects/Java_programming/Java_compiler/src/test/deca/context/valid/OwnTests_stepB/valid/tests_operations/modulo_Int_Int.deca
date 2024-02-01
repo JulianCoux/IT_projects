@@ -1,0 +1,6 @@
+//Test du calcul du modulo avec un int
+//
+{
+    int a = 16%2;
+    println(a);
+}

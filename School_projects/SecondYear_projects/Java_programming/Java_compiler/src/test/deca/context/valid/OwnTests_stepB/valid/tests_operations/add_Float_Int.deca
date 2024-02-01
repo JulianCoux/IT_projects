@@ -1,0 +1,9 @@
+//Addition d'un float avec un int dans un float
+//
+{
+    float f1 = 0.5;
+    int i1 = 1;
+    float f2 = f1 + i1;
+    
+    print(f2);
+}

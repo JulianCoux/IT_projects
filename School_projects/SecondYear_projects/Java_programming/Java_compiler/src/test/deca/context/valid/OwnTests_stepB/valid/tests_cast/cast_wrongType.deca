@@ -1,0 +1,5 @@
+//Cast d'un Int pour un Float
+
+{
+    float f = (int)(1.6);
+}

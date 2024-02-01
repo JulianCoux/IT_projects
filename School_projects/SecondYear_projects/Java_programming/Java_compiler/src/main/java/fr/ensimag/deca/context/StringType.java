@@ -3,6 +3,8 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.ima.pseudocode.DVal;
+import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.ImmediateString;
 
 /**
  *
@@ -22,8 +24,11 @@ public class StringType extends Type {
 
     @Override
     public boolean sameType(Type otherType) {
-        throw new UnsupportedOperationException("not yet implemented");
+        return otherType.isString();
     }
 
-
+    @Override
+    public DVal getDefaultValue() {
+        return new ImmediateInteger(0);
+    }
 }

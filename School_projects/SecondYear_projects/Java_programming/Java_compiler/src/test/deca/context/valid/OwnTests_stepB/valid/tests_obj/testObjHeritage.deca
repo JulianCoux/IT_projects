@@ -1,0 +1,9 @@
+//Declaration d'une classe avec extends
+class A {
+    int x;
+}
+
+class B extends A {
+    int y;
+}
+

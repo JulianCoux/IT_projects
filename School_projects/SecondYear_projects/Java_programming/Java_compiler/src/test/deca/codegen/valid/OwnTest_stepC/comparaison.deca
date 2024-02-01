@@ -1,0 +1,141 @@
+//Test de tous les opérateurs de comparaison (doit renvoyer un booléen) avec des INT
+//
+// Resultats:
+//    inf ou egal
+//    true
+//    true
+//    false
+//    inf str
+//    true
+//    false
+//    false
+//    égalit
+//    false
+//    true
+//    pas egal
+//    false
+//    true
+//    supp ou egal
+//    true
+//    true
+//    false
+//    supp str
+//    true
+//    false
+//    false
+//
+// Historique:
+//    cree le 01/01/2024
+
+{
+    //inférieur ou égal
+    boolean b = 1 <= 2;
+    boolean d = true;
+    int c = 3 + 4;
+    println("inf ou egal");
+    if (b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 2 <= 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 3 <= 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //inférieur strict
+    println("inf str");
+    b = 1 < 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 3 < 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 2 < 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //egalité
+    println("égalit");
+    b = 1 == 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1 == 1;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //pas égale
+    println("pas egal");
+    b = 1 != 1;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1 != 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //supérieur ou égal
+    println("supp ou egal");
+    b = 3 >= 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 2 >= 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1 >= 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    //supérieur strict
+    println("supp str");
+    b = 3 > 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1 > 2;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+    b = 1 > 1;
+    if(b) {
+        println("true");
+    } else {
+        println("false");
+    }
+}

@@ -1,0 +1,23 @@
+// Description:
+//    Simple program that should return an error because the function ends and it doesn't return any value
+//
+// Resultats:
+//    Erreur : sortie de la methode sans return
+//
+// Historique:
+//    cree le 22/12/2023
+
+class Q {
+	float abs(float x) {
+		if (x < 0.0) {
+			return -x;
+		}
+	}
+}
+
+{    
+    Q q = new Q();
+    float x = q.abs(1.0);
+    
+    println(x);
+}

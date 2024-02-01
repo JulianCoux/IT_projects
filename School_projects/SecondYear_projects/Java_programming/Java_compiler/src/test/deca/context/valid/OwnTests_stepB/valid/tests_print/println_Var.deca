@@ -1,0 +1,11 @@
+//Affichage d'une variable avec println
+//
+
+{
+    int a = 10;
+    float b = 11.1;
+    println(a);
+    println("variable a = ", a);
+    println("variable b = ", b);
+    println(b);
+}

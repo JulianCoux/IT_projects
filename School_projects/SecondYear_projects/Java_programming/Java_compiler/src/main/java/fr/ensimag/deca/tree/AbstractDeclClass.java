@@ -1,7 +1,11 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.codegen.MethodName;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.ima.pseudocode.Label;
+
+import java.util.List;
 
 /**
  * Class declaration.
@@ -15,7 +19,7 @@ public abstract class AbstractDeclClass extends Tree {
      * Pass 1 of [SyntaxeContextuelle]. Verify that the class declaration is OK
      * without looking at its content.
      */
-    protected abstract void verifyClass(DecacCompiler compiler)
+    protected abstract void verifyClass(DecacCompiler compiler, DeclClass declSuper)
             throws ContextualError;
 
     /**
@@ -32,4 +36,14 @@ public abstract class AbstractDeclClass extends Tree {
     protected abstract void verifyClassBody(DecacCompiler compiler)
             throws ContextualError;
 
+    public abstract List<Label> getMethodLabels();
+    public abstract List<MethodName> getMethodNames();
+
+    public abstract AbstractIdentifier getName();
+
+    public abstract AbstractIdentifier getSuperclass();
+
+    public abstract ListDeclField getListFields();
+
+    public abstract void addClassMethod(DecacCompiler compiler);
 }

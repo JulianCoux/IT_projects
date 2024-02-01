@@ -1,0 +1,21 @@
+// Description:
+//    Tests if a method that returns void runs without declaring the instruction return
+//
+// Resultats:
+//    Hello
+//
+// Historique:
+//    cree le 22/12/2023
+
+class Q {
+	void hi() {
+		println("Hello");
+	}
+}
+
+{    
+    Q q = new Q();
+    
+    q.hi();
+}
+

@@ -1,0 +1,6 @@
+//Test de deux opérateurs à la suite
+//erreur attendue : one operator is not an Arith type in AbstractOpCmp
+
+{
+    boolean b = 10.5 > (10<11);
+}

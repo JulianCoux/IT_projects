@@ -1,0 +1,25 @@
+// Description:
+//    Test the heritage of fields
+//
+// Resultats:
+//    b.x = 1
+//    b.y = 2
+//
+// Historique:
+//    cree le 22/12/2023
+
+class A {
+	int x = 1;
+}
+
+class B extends A {
+	int y = 2;
+}
+
+{
+    A a = new A();
+    B b = new B();
+    
+    println("b.x = ", b.x);
+    println("b.y = ", b.y);
+}

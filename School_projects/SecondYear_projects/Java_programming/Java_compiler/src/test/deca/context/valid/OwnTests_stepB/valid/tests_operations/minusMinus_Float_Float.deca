@@ -1,0 +1,8 @@
+//test des opérations mathématiques
+//
+{
+    float a = 1.5;
+    float b = 10.5;
+    float c = a - -b;
+    float d = -a - b;
+}

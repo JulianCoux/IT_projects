@@ -1,0 +1,7 @@
+//Multiplication d'un flotant avec un int dans un int
+//
+{
+    float a = 2.5;
+    int b = 3;
+    int c = a*b;
+}

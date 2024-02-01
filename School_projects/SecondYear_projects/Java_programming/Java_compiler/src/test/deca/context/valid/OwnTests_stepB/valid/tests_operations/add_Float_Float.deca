@@ -1,0 +1,8 @@
+//Addition d'un float avec un float
+//
+{
+    float f1 = 0.5;
+    float f2 = 1.5;
+    float f3 = f1 + f2;
+    printx(f1, " ", f2, " ", f3, " ", 2.4);
+}

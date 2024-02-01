@@ -4,6 +4,7 @@ import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.Location;
+import fr.ensimag.ima.pseudocode.DVal;
 
 /**
  * Deca Type (internal representation of the compiler)
@@ -80,4 +81,9 @@ public abstract class Type {
         throw new ContextualError(errorMessage, l);
     }
 
+    public abstract DVal getDefaultValue();
+
+    public boolean isSubType(Type superType) {
+        return true;
+    }
 }

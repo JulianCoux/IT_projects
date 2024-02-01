@@ -1,0 +1,9 @@
+//Division d'un float avec un int dans un int
+//Message d'erreur : Incompatibilité de type !
+//
+
+{
+    float a = 9.0;
+    int b = 3;
+    int c = a/b;
+}

@@ -1,0 +1,144 @@
+	TSTO #6
+	BOV pile_pleine
+	ADDSP #5
+; start main program
+; --------------------------------------------------
+;       Construction des tables des methodes        
+; --------------------------------------------------
+; Construction de la table des methodes de Object
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; --------------------------------------------------
+;            Code du programme principal            
+; --------------------------------------------------
+; Variables declarations:
+	LOAD #42, R2
+	STORE R2, 3(GB)
+	LOAD #0, R2
+	STORE R2, 4(GB)
+; Beginning of main instructions:
+; Beginning of WHILE Loop
+; Sauvegarde des registres
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	BRA E_Cond.0
+E_Debut.0:
+; Beginning of IF ELSE
+; Instruction == ligne [14, 9]
+; Instruction % ligne [14, 6]
+	LOAD 3(GB), R0
+	REM #2, R0
+	CMP #0, R0
+	SEQ R0
+	CMP #0, R0
+	BNE E_Sioui.0
+	BRA E_Sinon.0
+E_Sioui.0:
+; Instruction = ligne [15, 5]
+; Instruction / ligne [15, 10]
+	LOAD 3(GB), R3
+	QUO #2, R3
+	BOV division_par_zero
+; Instruction / ligne [15, 10]
+	LOAD 3(GB), R2
+	QUO #2, R2
+	BOV division_par_zero
+	STORE R2, 3(GB)
+	BRA E_Fin.0
+E_Sinon.0:
+; Instruction = ligne [17, 5]
+; Instruction + ligne [17, 16]
+; Instruction + ligne [17, 13]
+; Instruction * ligne [17, 10]
+	LOAD #2, R3
+	MUL 3(GB), R3
+	ADD 3(GB), R3
+	ADD #1, R3
+; Instruction + ligne [17, 16]
+; Instruction + ligne [17, 13]
+; Instruction * ligne [17, 10]
+	LOAD #2, R2
+	MUL 3(GB), R2
+	ADD 3(GB), R2
+	ADD #1, R2
+	STORE R2, 3(GB)
+E_Fin.0:
+; Instruction = ligne [19, 1]
+; Instruction + ligne [19, 7]
+	LOAD 4(GB), R3
+	ADD #1, R3
+; Instruction + ligne [19, 7]
+	LOAD 4(GB), R2
+	ADD #1, R2
+	STORE R2, 4(GB)
+E_Cond.0:
+; Instruction == ligne [13, 12]
+	LOAD 3(GB), R1
+	CMP #1, R1
+	SNE R1
+	CMP #0, R1
+	BNE E_Debut.0
+; Restauration des registres
+	POP R4
+	POP R3
+	LOAD 4(GB), R1
+	WINT
+	WNL
+	HALT
+; --------------------------------------------------
+;                   Class Object                   
+; --------------------------------------------------
+; ---------- Code de la methode equals dans la classe Object
+code.Object.equals:
+	TSTO #1
+	BOV pile_pleine
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+; --------------------------------------------------
+;        Message d'erreur : pile_pleine        
+; --------------------------------------------------
+pile_pleine:
+	WSTR "Erreur: Pile pleine "
+	WNL
+	ERROR
+; --------------------------------------------------
+; Message d'erreur : dereferencement_null
+; --------------------------------------------------
+dereferencement_null:
+	WSTR "Erreur: Dereferencement de null"
+	WNL
+	ERROR
+; --------------------------------------------------
+;           Message d'erreur : io_error           
+; --------------------------------------------------
+io_error:
+	WSTR "Erreur: Input/Output error"
+	WNL
+	ERROR
+; --------------------------------------------------
+;          Message d'erreur : tas_plein          
+; --------------------------------------------------
+tas_plein:
+	WSTR "Erreur: Tas plein"
+	WNL
+	ERROR
+; --------------------------------------------------
+;  Message d'erreur : division_par_zero  
+; --------------------------------------------------
+division_par_zero:
+	WSTR "Erreur: Division par zero"
+	WNL
+	ERROR
+; --------------------------------------------------
+;     Message d'erreur : float_imprecis     
+; --------------------------------------------------
+float_imprecis:
+	WSTR "Erreur: Résultat n’est pas codable sur un flottant"
+	WNL
+	ERROR
+; end main program
