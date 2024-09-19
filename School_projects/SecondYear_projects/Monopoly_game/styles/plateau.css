@@ -1,0 +1,869 @@
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden; /* Pour empêcher les barres de défilement */
+    }
+
+    .conteneur {
+        display: flex;
+        height: 100%;
+    }
+
+    .plateau_jeux {
+        position: relative;
+        background-color: #cce3c7; /* Juste pour illustrer */
+        /* overflow-y: auto; Ajouter une barre de défilement verticale si nécessaire */
+    }
+
+    .plateau-image {
+        height: 100vh; /*Utilisation de la hauteur de la fenêtre */
+        object-fit: cover; /*Ajuster l'image pour remplir complètement le conteneur*/
+    }
+
+
+    /***********************
+    Bouton lancer_des
+    ***********************/
+    .lancer_des {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background-color: #eee;
+        border: none;
+        padding: 1rem;
+        font-size: 2rem;
+        width: 10em;
+        border-radius: 2rem;
+        color: red;
+        box-shadow: 0.4rem 0.4rem red;
+        cursor: pointer;
+    }
+    
+    .lancer_des:active {
+        color: white;
+        box-shadow: 0.2rem 0.2rem #d9d3d3;
+        /* transform: translateY(0.2rem); */  /*bizarre comment il se comporte lui...*/
+    }
+    
+    .lancer_des:hover:not(:disabled) {
+        background: red;
+        color: white;
+        /* text-shadow: 0.1rem 0.1rem #bcb4b4; */
+        box-shadow: 0.2rem 0.2rem white;
+    }
+    
+    .lancer_des:disabled {
+        cursor: auto;
+        color: grey;
+        box-shadow: 0.4rem 0.4rem grey;
+    }
+
+    /***********************
+    Bouton buttonSuivant
+    ***********************/
+    #buttonSuivant{
+        position: absolute;
+        top: 28%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background-color: #eee;
+        border: none;
+        padding: 1rem;
+        font-size: 2rem;
+        width: 10em;
+        border-radius: 2rem;
+        color: red;
+        box-shadow: 0.4rem 0.4rem red;
+        cursor: pointer;
+    }
+    
+    #buttonSuivant:active {
+        color: white;
+        box-shadow: 0.2rem 0.2rem #d9d3d3;
+    }
+    
+    #buttonSuivant:hover:not(:disabled) {
+        background: red;
+        color: white;
+        box-shadow: 0.2rem 0.2rem white;
+    }
+    
+    #buttonSuivant:disabled {
+        cursor: auto;
+        color: grey;
+        box-shadow: 0.4rem 0.4rem grey;
+    }
+
+    /***********************
+    Bouton pour sortir de prison
+    ***********************/
+    .btnSortirPrison {
+        position: absolute;
+        top: 83%;
+        left: 21%;
+        transform: translate(-50%, -50%);
+
+        width: 160px;
+        height: 50px;
+        background: linear-gradient(to top, #d28a25, #dc8812, #f98807);
+        color: #fff;
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+
+    .btnSortirPrison:active{
+        box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
+    }
+    
+    .btnSortirPrison span {
+        font-size: 19px;
+        letter-spacing: 1px;
+        transition: top 0.5s;
+    }
+    
+    .btn-text-one {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+    
+    .btn-text-two {
+        position: absolute;
+        width: 100%;
+        top: 150%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+    
+    .btnSortirPrison:hover .btn-text-one {
+        top: -100%;
+    }
+    
+    .btnSortirPrison:hover .btn-text-two {
+        top: 50%;
+    }
+      
+ 
+
+    /***********************
+    Style des dés
+    ***********************/
+    .de_1 img,
+    .de_2 img{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        max-width: 12%; /* Limiter la largeur à 20% de la largeur du plateau */
+        max-height: 12%; /* Limiter la hauteur à 20% de la hauteur du plateau */
+    }
+
+    .de_1 img{
+        top: 25%; /* Position verticale pour le dé 1 */
+        left: 25%; /* Position horizontale pour le dé 1 */
+    }
+
+    .de_2 img{
+        top: 75%; /* Position verticale pour le dé 2 */
+        left: 75%; /* Position horizontale pour le dé 2 */
+    }
+
+    /***********************
+    TOUTES LES ALERTES
+    ***********************/
+    .alerte-prison, .alerte-argent, .alerte-potCommun, .alerte-taxeLuxe, .alerte-impots, .alerte-perdu, .alerte-gagne {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background-color: #f8d7da;
+        border: 2px solid #f5c6cb;
+        border-radius: 10px;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .alerte-prison {
+        background-color: #f8d7da;
+        border: 2px solid #f5c6cb;
+    }
+    .alerte-argent {
+        background-color: #a5c3df;
+        border: 2px solid #7b89ad;
+    }
+    .alerte-potCommun{
+        background-color: #FFB76A;
+        border: 2px solid #9b6d3b;
+    }
+    .alerte-taxeLuxe {
+        background-color: #f8d7da;
+        border: 2px solid #f5c6cb;
+    }
+    .alerte-impots {
+        background-color: #f8d7da;
+        border: 2px solid #f5c6cb;
+    }
+    .alerte-perdu {
+      background-color: #f8d7da;
+      border: 2px solid #f5c6cb;
+    }
+    .alerte-gagne {
+      font-size: 28px;
+      background-color: #89c694;
+      border: 2px solid rgb(70, 168, 85);
+    }
+    
+    .alerte-prison p, .alerte-argent p, .alerte-potCommun p, .alerte-taxeLuxe p, .alerte-impots p, .alerte-perdu p, .alerte-gagne p {
+      padding-bottom: 6px;  
+      margin: 0;
+    }
+    
+    .alert-prison-button, .alert-argent-button, .alert-potCommun-button, .alert-taxeLuxe-button, .alert-impots-button, .alert-perdu-button, .alert-gagne-button {
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .alert-prison-button {
+        background-color: #dc3545;
+    }
+    .alert-argent-button {
+        background-color: #0b5ff0;
+    }
+    .alert-potCommun-button {
+        background-color: #ff8503;
+    }
+    .alert-taxeLuxe-button {
+        background-color: #dc3545;
+    }
+    .alert-impots-button {
+        background-color: #dc3545;
+    }
+    .alert-perdu-button {
+      background-color: #dc3545;
+    }
+    .alert-gagne-button {
+      font-size: 22px;
+      background-color: #39a92d;
+    }
+
+
+    #police-icon, #broke-icon, #car-icon, #diamant-icon, #impots-icon, #perdu-icon, #gagne-icon {
+        width: 15%; /* Fixe la largeur de l'image à 10% du conteneur */
+        height: auto;
+        display: block; /* Permet de centrer l'image horizontalement */
+        margin: 0 auto 10px; /* Centre l'image horizontalement et ajoute un espace en bas */
+    }
+
+    /***********************
+    FIN DES ALERTES
+    ***********************/
+
+
+    #carte {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        text-align: center;
+        display: none;
+    }
+
+    .pasProprio {
+        display: none;
+    }
+
+    .Proprio {
+        display: none;
+    }
+
+    .boutonCarte .pasProprio button {
+        display: inline-block;
+    }
+
+    
+
+    .chanceCommunaute {
+        display: none;
+    }
+
+    .boutonCarte {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .acheter {
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        padding-block: 0.5rem;
+        padding-inline: 1.25rem;
+        background-color: rgb(220, 41, 77);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #ffff;
+        gap: 10px;
+        font-weight: bold;
+        border: 3px solid #ffffff4d;
+        outline: none;
+        overflow: hidden;
+        font-size: 15px;
+    }
+    .enchere{
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        padding-block: 0.5rem;
+        padding-inline: 1.25rem;
+        background-color: rgb(220, 41, 77);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #ffff;
+        gap: 10px;
+        font-weight: bold;
+        border: 3px solid #ffffff4d;
+        outline: none;
+        overflow: hidden;
+        font-size: 15px;
+    }
+    .payer {
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        padding-block: 0.5rem;
+        padding-inline: 1.25rem;
+        background-color: rgb(220, 41, 77);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #ffff;
+        gap: 10px;
+        font-weight: bold;
+        border: 3px solid #ffffff4d;
+        outline: none;
+        overflow: hidden;
+        font-size: 15px;
+    }
+    
+    
+    .acheter:hover {
+        transform: scale(1.05);
+        border-color: #fff9;
+    }
+
+    .enchere:hover{
+        transform: scale(1.05);
+        border-color: #fff9;
+    }
+    .payer:hover{
+        transform: scale(1.05);
+        border-color: #fff9;
+    }
+    
+    .acheter:hover {
+        transform: translate(4px);
+    }
+
+    .enchere:hover{
+        transform: translate(4px);
+    }
+    .payer:hover{
+        transform: translate(4px);
+    }
+    
+    .acheter:hover::before {
+        animation: shine 1.5s ease-out infinite;
+    }
+    
+    .enchere:hover::before {
+        animation: shine 1.5s ease-out infinite;
+    }
+
+    .payer:hover::before {
+        animation: shine 1.5s ease-out infinite;
+    }
+
+    .acheter::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        background-image: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0) 70%
+        );
+        top: 0;
+        left: -100px;
+        opacity: 0.6;
+    }
+
+    .enchere::before{
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        background-image: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0) 70%
+        );
+        top: 0;
+        left: -100px;
+        opacity: 0.6;
+    }
+    .payer::before{
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        background-image: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0) 70%
+        );
+        top: 0;
+        left: -100px;
+        opacity: 0.6;
+        }
+    
+    @keyframes shine {
+    0% {
+        left: -100px;
+    }
+    
+    60% {
+        left: 100%;
+    }
+    
+    to {
+        left: 100%;
+    }
+    }
+      
+
+    /* La c'est pour tout ce qui est formulaire y'a moyen de raccourcir je pense */
+
+    .login-box, .maison-box {
+        display: none;
+    }
+
+    
+
+    .center {
+        text-align: center;
+      }
+    
+    .login-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      padding: 40px;
+      transform: translate(-50%, -50%);
+      background: rgba(20, 24, 21, 0.987);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+    }
+    
+    .login-box .user-box {
+      position: relative;
+    }
+    
+    .login-box .user-box input {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 30px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
+    }
+  
+    .validForm {
+      background: none;
+      border: none;
+    }
+    
+    .login-box .user-box label {
+      position: absolute;
+      top: 10;
+      left: 0;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      pointer-events: none;
+      transition: .5s;
+    }
+    
+    .login-box .user-box input:focus ~ label,
+    .login-box .user-box input:valid ~ label {
+      top: -20px;
+      left: 0;
+      color: #bdb8b8;
+      font-size: 12px;
+    }
+    
+    .login-box form .validForm {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      color: #ffffff;
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: .5s;
+      margin-top: 40px;
+      letter-spacing: 4px
+    }
+    
+    .login-box .validForm:hover {
+      background: #03f40f;
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #03f40f,
+                  0 0 25px #03f40f,
+                  0 0 50px #03f40f,
+                  0 0 100px #03f40f;
+    }
+
+    .login-box .validForm:disabled {
+      background: #555151;
+      color: #fff;
+      border-radius: 5px;
+    }
+    
+    .login-box .validForm span {
+      position: absolute;
+      display: block;
+    }
+    
+    @keyframes btn-anim1 {
+      0% {
+        left: -100%;
+      }
+    
+      50%,100% {
+        left: 100%;
+      }
+    }
+    
+    .login-box .validForm span:nth-child(1) {
+      bottom: 2px;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #03f40f);
+      animation: btn-anim1 2s linear infinite;
+    }
+    
+    
+    .maison-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      padding: 40px;
+      transform: translate(-50%, -50%);
+      background: rgba(20, 24, 20, 0.987);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+    }
+    
+    .maison-box .style-box {
+      position: relative;
+    }
+    
+    .maison-box .style-box input {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 30px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
+    }
+  
+    
+    .maison-box .style-box label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      pointer-events: none;
+      transition: .5s;
+    }
+    
+    .maison-box .style-box input:focus ~ label,
+    .maison-box .style-box input:valid ~ label {
+      top: -20px;
+      left: 0;
+      color: #bdb8b8;
+      font-size: 12px;
+    }
+    
+    .maison-box form .validForm {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      color: #ffffff;
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: .5s;
+      margin-top: 40px;
+      letter-spacing: 4px
+    }
+    
+    .maison-box .validForm:hover {
+      background: #03f40f;
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #03f40f,
+                  0 0 25px #03f40f,
+                  0 0 50px #03f40f,
+                  0 0 100px #03f40f;
+    }
+    
+    .maison-box .validForm span {
+      position: absolute;
+      display: block;
+    }
+    
+    @keyframes btn-anim1 {
+      0% {
+        left: -100%;
+      }
+    
+      50%,100% {
+        left: 100%;
+      }
+    }
+    
+    .maison-box .validForm span:nth-child(1) {
+      bottom: 2px;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #03f40f);
+      animation: btn-anim1 2s linear infinite;
+    }
+    
+      
+      /* Style du select */
+    .maison-box select, .login-box select {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #000000; /* Couleur de fond */
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      appearance: none; /* Masque les styles par défaut du navigateur */
+      -webkit-appearance: none; /* Pour les navigateurs basés sur WebKit */
+      -moz-appearance: none; /* Pour les navigateurs basés sur Gecko */
+    }
+    
+    /* Style des options du select */
+    .maison-box select option, .login-box select option {
+      background-color: #000; /* Couleur de fond */
+      color: #fff;
+    }
+    
+    /* Style lorsque le select est survolé */
+    .maison-box select:hover, .login-box select:hover {
+      background-color: #333; /* Couleur de fond au survol */
+    }
+    
+    /* Style lorsque le select est focus */
+    .maison-box select:focus, .login-box select:focus{
+      border-bottom: 1px solid #bdb8b8; /* Couleur de la bordure lorsqu'il est focus */
+    }
+    
+
+    /* Pour les boutons annule des form*/
+    .annuleForm {
+        background: none;
+        border: none;
+    }
+
+    .login-box form .annuleForm {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #ffffff;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px
+    }
+
+    .login-box .annuleForm:hover {
+        background: #f40303;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #f40303,
+                    0 0 25px #f40303,
+                    0 0 50px #f40303,
+                    0 0 100px #f40303;
+      }
+
+      .login-box .annuleForm:disabled {
+        background: #555151;
+        color: #fff;
+        border-radius: 5px;
+      }
+
+      .login-box .annuleForm span {
+        position: absolute;
+        display: block;
+      }
+
+      .login-box .annuleForm span:nth-child(1) {
+        bottom: 2px;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #f40303);
+        animation: btn-anim1 2s linear infinite;
+      }
+
+      .maison-box form .annuleForm {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #ffffff;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px
+    }
+
+    .maison-box .annuleForm:hover {
+        background: #f40303;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #f40303,
+                    0 0 25px #f40303,
+                    0 0 50px #f40303,
+                    0 0 100px #f40303;
+      }
+
+      .maison-box .annuleForm span {
+        position: absolute;
+        display: block;
+      }
+
+      .maison-box .annuleForm span:nth-child(1) {
+        bottom: 2px;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #f40303);
+        animation: btn-anim1 2s linear infinite;
+      }
+
+/* Ca c'est pour le bouton ajouter des maisons et tout */
+.btn-maison {
+    /* Variables */
+    --button_radius: 0.75em;
+    --button_color: #e8e8e8;
+    --button_outline_color: #000000;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--button_radius);
+    background: var(--button_outline_color);
+  }
+  
+  .button_top {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.75em 1.5em;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+  }
+  
+  .btn-maison:hover .button_top {
+    /* Pull the button upwards when hovered */
+    cursor: pointer;
+    transform: translateY(-0.33em);
+  }
+  
+  .btn-maison:active .button_top {
+    /* Push the button downwards when pressed */
+    transform: translateY(0);
+  }
+
+
+  /* Test de style pour les cartes dans la partie droite */
+  .info_glob div img {
+    width: 15%; /* Largeur de l'image */
+    height: 15%; /* Hauteur de l'image */
+    /* Autres styles si nécessaire */
+}
+
+#valeurEnchere {
+  display: none;
+}
+
+#tourEnchere {
+  display: none;
+}
+
+h3{
+  color: white;
+  text-align: center;
+}

@@ -1,0 +1,80 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background-image: url('images/fond_monopoly.png');
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir l'ensemble de la fenêtre du navigateur */
+    background-position: center center; /* Centre l'image horizontalement et verticalement */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+}
+
+.container {
+    width: 33vw; /* Utilisation d'environ un tiers de la largeur de l'écran */
+    height: 30vh;
+    background-color: #78a97e;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2%;
+    border-radius: 45px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+a {
+    display: block;
+    width: 80%; /* Ajustez la largeur des boutons */
+    height: 15%; /* Ajustez la hauteur des boutons  */
+    padding: 10px;
+    margin: 10px 0; /* Ajoute une marge en haut et en bas des boutons */
+    background-color: #c4dac7;
+    color: #000;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    font-size: 1.5vw; /* Utilisation d'une unité relative pour la taille de la police */
+    text-decoration: none;
+}
+
+.animation:hover {
+    background-color: #ffffff; /* Couleur de fond au survol */
+    color: #78a97e;
+}
+
+.param {
+    position: absolute; /* Utilise une position absolue pour rester fixe par rapport à la fenêtre */
+    top: 10px;
+    right: 10px;
+}
+
+.btn-param {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.img-param {
+    width: 30px; /* Ajustez la largeur de l'image */
+    height: auto;
+}
+
+footer {
+    position: fixed; /* Utilise une position fixe pour rester en bas de la fenêtre */
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1vw; /* Utilisation d'une unité relative pour la taille de la police */
+}
+
+.btn-param:hover .img-param {
+    filter: brightness(3.5); /* Change la luminosité de l'image au survol */
+}

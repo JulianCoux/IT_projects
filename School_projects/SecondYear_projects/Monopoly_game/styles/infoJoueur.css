@@ -1,0 +1,72 @@
+.info_jeux {
+    position: relative;
+    background-color: #eee; /* Juste pour illustrer */
+    overflow-y: auto; /* Ajouter une barre de défilement verticale si nécessaire */
+    flex-grow: 1; /* Faire en sorte que .info_jeux utilise tout l'espace disponible */
+    flex-shrink: 0;
+}
+
+.param {
+    text-align: right;  
+    width: auto;
+}
+.img-param {
+    width: 40px;
+    height: 40px;
+}
+
+.tour, .info_perso, .info_glob, .classement_joueurs, .mode_test{
+    border-radius: 25px; /* Rayon des coins arrondis */
+    padding: 1px; /* Espacement intérieur */
+    margin: 15px; /* Espacement extérieur */
+    padding-left: 20px; /* Décalage du texte du bord gauche */
+    text-align: center;
+    background-color: #c4dac7;
+}
+
+
+.info_perso{
+
+}
+
+.info_glob{
+
+}
+
+#prix_complet, #nom_joueur{
+    color: red;
+}
+
+.classement_joueurs {
+    text-align: center; /* Centre le contenu horizontalement */
+}
+
+table {
+    margin: 0 auto; /* Centre la table horizontalement */
+    border-collapse: collapse; /* Fusionne les bordures de la table */
+}
+
+tr, td {
+    padding: 8px 14px; /* Espacement autour du contenu dans les cellules */
+    text-align: center; /* Centre le texte à l'intérieur des cellules */
+    font-size: 20px;
+}
+
+.icone-monnaie {
+    display: inline-block;
+    width: 12px; /* Définissez la taille de votre icône */
+    height: 12px; /* Définissez la taille de votre icône */
+    margin-bottom: 5px;
+    background-image: url('../styles/images/symvole_G_monnaie.png'); /* Chemin vers votre image d'icône */
+    background-size: cover; /* Assurez-vous que l'image couvre toute la zone de l'icône */
+}
+
+
+
+.copyrigth{
+    position: absolute;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: auto;
+}

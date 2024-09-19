@@ -1,0 +1,144 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Pour empêcher les barres de défilement */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+footer {
+    position: fixed; /* Utilise une position fixe par rapport à la fenêtre du navigateur */
+    bottom: 0; /* Place le footer au bas de la fenêtre */
+    width: 100%; /* Fait en sorte que le footer ait la largeur complète de la fenêtre */
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    text-align: center; /* Pour centrer le texte à l'intérieur du div */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.add {
+    background-color: #78A97E; /* Couleur de fond du div */
+    border-radius: 45px; /* Bords arrondis */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    margin-top: 100px;
+}
+
+.retour {
+    position: fixed; /* Utilise une position fixe par rapport à la fenêtre du navigateur */
+    top: 10px; /* Ajustez la distance depuis le haut  */
+    left: 10px; /* Ajustez la distance depuis la droite  */
+}
+
+.btn-retour {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.img-retour {
+    width: 40px;
+    height: 40px;
+}
+
+.btn-retour:hover {
+    filter: brightness(300%); /* Change la luminosité de l'image au survol */
+}   
+/* ça ne marche aps */
+
+
+.btn-plus {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.img-plus {
+    width: 40px;
+    height: 40px;
+}
+
+.joueurs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.joueur {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    font-size: 20px;
+}
+
+
+.nomJoueur {
+    background-color: #C4DAC7;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Ajoutez ces styles pour centrer le texte dans .nomJoueur */
+.nomJoueur {
+    display: flex;
+    align-items: center;
+    border-radius: 45px;
+}
+
+#username {
+    text-align: center;
+    border: none;
+    background: none;
+    font-size: 20px;
+    outline: none;
+}
+.jouer {
+    position: fixed;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: black;
+    background-color: #78A97E;
+    padding: 10px;
+    border-radius: 45px;
+    font-size: 30px;
+    width: 30vh;
+}
+
+.jouer:hover {
+    background-color: #C4DAC7;
+}
+
+.btn-annule {
+    margin: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.img-annule {
+    width: 20px;
+    height: 20px;
+}

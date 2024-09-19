@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Plateau de jeux du Grenopoly">
+    <meta name="author" content="ENSIMAG-Grenopoly">
+    
+    <link rel="stylesheet" type="text/css" href="../styles/plateau.css">
+    <link rel="stylesheet" type="text/css" href="../styles/infoJoueur.css">
+    <link rel="stylesheet" type="text/css" href="../styles/param_local.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="../script/ModeDefiner.js" type="text/javascript" id="modeDefiner"></script>
+    <script src="../script/plateau.js" type="text/javascript"></script>
+    <script src="../script/infoJoueur.js" type="text/javascript"></script>
+    <script src="../script/Joueur.js" type="text/javascript"></script>
+    <script src="../script/CasePropriete.js" type="text/javascript"></script>
+    <script src="../script/CarteLibererPrison.js" type="text/javascript"></script>
+    <script src="../script/CaseCaisseCommunaute.js" type="text/javascript"></script>
+    <script src="../script/CaseChance.js" type="text/javascript"></script>
+    <script src="../script/CaseCompagnie.js" type="text/javascript"></script>
+    <script src="../script/CaseGare.js" type="text/javascript"></script>
+    <script src="../script/param_local.js" type="text/javascript"></script>
+
+    <title>Grenopoly</title>
+</head>
+
+<body>
+    <header>
+        <!-- rien à mettre pour le moment -->
+    </header>
+    
+    <div class="conteneur">
+        <!-- section qui concerne le plateau de jeux -->
+        <div class="plateau_jeux">    
+            <img src="../styles/images/plateau.png" alt="plateau jeux" class="plateau-image">
+
+            <button class="lancer_des" id="lancer_des">Lancer les dés</button>
+
+            <button id="buttonSuivant">Terminer son tour</button>
+
+            <button class="btnSortirPrison" id="btnSortirPrison">
+                <span class="btn-text-one">Sortir de prison</span>
+                <span class="btn-text-two"></span>
+            </button>
+
+            <div class="de_1" id="de_1">
+                <!-- sera ajouté par le javascript -->
+            </div>
+            <div class="de_2" id="de_2">
+                <!-- sera ajouté par le javascript -->
+            </div>
+            <div class="pionsJeux">
+                <!-- sera ajouté par le javascript -->
+            </div>
+            <div class="pionsProprietes">
+                <!-- sera ajouté par le javascript -->
+                <!-- l'id du div sera sous la forme : "nomJoueur_numCarte" -->
+            </div>
+
+            <!-- Les différentes alertes qui servent à signaler quelque chose à l'utilisateur -->
+            <div id="alertPrison" class="alerte-prison">
+                <p><b>Vous allez en prison !</b></p>
+                <img src="../styles/images/policier.png" id="police-icon">
+                <button class="alert-prison-button" onclick="closeAlertPrison()">OK</button>
+            </div>
+            <div id="alerteArgent" class="alerte-argent">
+                <p><b>Argent insuffisant...</b></p>
+                <img src="../styles/images/broke.png" id="broke-icon">
+                <button class="alert-argent-button" onclick="closeAlerteArgent()">OK</button>
+            </div>
+            <div id="alertePotCommun" class="alerte-potCommun">
+                <p><b>Vous touchez <span id="argentPotCommun">0</span>$</b></p>
+                <img src="../styles/images/car.png" id="car-icon">
+                <button class="alert-potCommun-button" onclick="closeAlertePotCommun()">OK</button>
+            </div>
+            <div id="alerteTaxeLuxe" class="alerte-taxeLuxe">
+                <p><b>Vous devez payer 100$</b></p>
+                <img src="../styles/images/diamant.png" id="diamant-icon">
+                <button class="alert-taxeLuxe-button" onclick="closeAlerteTaxeLuxe()">OK</button>
+            </div>
+            <div id="alerteImpots" class="alerte-impots">
+                <p><b>Vous devez payer 200$</b></p>
+                <img src="../styles/images/payer.png" id="impots-icon">
+                <button class="alert-impots-button" onclick="closeAlerteImpots()">OK</button>
+            </div>
+            <div id="alertePerdu" class="alerte-perdu">
+                <!-- EN REALITE IL PEUT HYPOTHEQUER SES PROPRIETES... POUR PLUS TARD -->
+                <!-- TODO -->
+                <p><b>Vous n'avez plus de sous... vous avez perdu</b></p>
+                <img src="../styles/images/perdu.png" id="perdu-icon">
+                <button class="alert-perdu-button" onclick="supprUnJoueurPerdu()">Partir</button>
+            </div>
+            <div id="alerteGagne" class="alerte-gagne">
+                <p><b><span id="grandGagnant">Michel</span></b> est le grand gagnant !!!</p>
+                <img src="../styles/images/gagne.png" id="gagne-icon">
+                <button class="alert-gagne-button" onclick="closeAlerteGagne()">Finir</button>  <!-- est dans param_local.js pour finir la partie -->
+            </div>
+            <div id="carte">
+                <img id="carteImg" src="../styles/images/placeholder.png" alt="Carte">
+                <!-- Les boutons ne sont pas bien positionné-->
+                <div class="boutonCarte">
+                    <div class="pasProprio" id="cartePasProprio">
+                        <button class="acheter" onclick="acheterPropriete()"></button>
+                        <button class="enchere" onclick="enchere()">Mettre aux enchères</button>
+                    </div>
+                    <div class="Proprio" id="carteProprio">
+                        <button class="payer" onclick="payerLoyer()"></button>
+                    </div>
+                    <div class="chanceCommunaute">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="login-box">
+                <form id="login-form">
+                    <div class="user-box">
+                        <!-- <input type="text" id="pseudo" name="pseudo" required="">-->
+                        <h3 id="tourEnchere">Au tour de <span id="joueurEnchere"></span></h3>
+                        <label id="valeurEnchere">Valeur courante : <span id="prixEnchere">0</span></label>
+                        <select id="pseudo" name="pseudo" required="">
+                            <option value="" disabled selected hidden>Pseudo</option>
+                            <!-- <option value="John">John</option>
+                            <option value="Alice">Alice</option>
+                            <option value="Bob">Bob</option>
+                            Ajoutez d'autres options si nécessaire -->
+                        </select>
+                    </div>
+                    <br><br>
+                    <div class="user-box">
+                        <input type="number" id="price" name="price" required="">
+                        <label>Prix</label>
+                    </div>
+                    <div class="center">
+                        <button type="button" class="validForm" onclick="validateForm()">
+                            VALIDER
+                            <span></span>
+                        </button>
+                        <button type="button" class="annuleForm" onclick="annuleEnchere()">
+                            ANNULER
+                            <span></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        
+        <!-- section qui concerne les informations relatives aux joueurs -->
+        <div class = "info_jeux" id="info_jeux">
+            <div class="param">
+                <h2>Modifier la partie  <img src="../styles/images/param_vert.png" alt="parametre" class="img-param" id="img-param"></h2>
+            </div>
+            
+            <div class="tour">  
+                <!-- <button id="buttonSuivant">Terminer son tour</button> -->
+                <h1>Au tour de : <span id="nom_joueur">player1</span></h1>
+                <!-- Mettre un texte qui pourra être modifié => nom du joueur -->
+            </div>
+            <div class="info_perso">
+                <h1>Compte en banque :</h1>
+                <h1><span id="prix_complet"><span id="solde_compte">1000</span>€</span></h1>
+                <!-- Mettre un texte qui pourra être modifié => solde du compte -->
+            </div>
+            <div class="info_glob">
+                <!-- Mettre en javascript toutes les cartes du joueur -->
+                <h1>Cartes du joueur</h1>
+                <div class="marron"></div>
+                <div class="bleuClair"></div>
+                <div class="rose"></div>
+                <div class="orange"></div>
+                <div class="rouge"></div>
+                <div class="jaune"></div>
+                <div class="vert"></div>
+                <div class="bleuFonce"></div>
+                <div class="gare"></div>
+                <div class="compagnie"></div>
+                <div class="freedom"></div>
+            </div>
+            <div class="classement_joueurs">
+                <!-- Mettre en javascript tous les joueurs avec leur solde -->
+                <h1>Classement des joueurs :</h1>
+                <table>
+                    <!-- Les données des joueurs seront insérées ici dynamiquement -->
+                </table>
+                
+            </div>
+            <button class="btn-maison"><span class="button_top"> Ajouter des maisons ou un hôtel
+            </span>
+            </button>
+            <div class="maison-box">
+                <form id="maison-form">
+                    <div class="style-box">
+                      <select id="propriete" name="propriete" required="" oninput="calculateTotal()">
+                          <option value="" disabled selected hidden>Choisir une propriété</option>
+                          <!-- <option value="John">John</option>
+                          <option value="Alice">Alice</option>
+                          <option value="Bob">Bob</option>
+                          Ajoutez d'autres options si nécessaire -->
+                      </select>
+                    </div>
+                    <br>
+                    <div class="style-box">
+                        <input type="number" id="maison" name="maison" required="" oninput="calculateTotal()">
+                        <label>Nombre de maisons</label>
+                    </div>
+                    <div class="style-box">
+                        <input type="number" id="hotel" name="hotel" required="" oninput="calculateTotal()">
+                        <label>Nombre d'hôtel</label>
+                    </div>
+                    <div class="center">
+                        <button type="button" id="validateForm" class="validForm" onclick="validateFormMaison()">
+                            PAYER 0$
+                            <span></span>
+                        </button>
+                        <button type="button" class="annuleForm" onclick="annuleMaison()">
+                            ANNULER
+                            <span></span>
+                        </button>
+                    </div>
+                </form>
+              </div>
+            <div class="copyrigth">
+                <p>Grenopoly-ENSIMAG&copy;. Tous droits réservés.</p>
+            </div>
+        </div>
+
+        <div class="param_jeux" id="param_jeux_local">
+            <div class="back_home">
+                <img src="../styles/images/home.png" alt="back-home" class="img-home" id="img-home">
+            </div>
+            
+
+            <p class="animation" id="supprimer_joueurs"><img src="../styles/images/bin.png" alt="Info" class="icon">Supprimer un joueur</p>
+            <div class="supp_joueur" id="supp_joueur">
+                <!-- On ajoute en javascript tous les joueurs à l'intérieur du div -->
+            </div>
+
+            <button class="btnFinPartie" id="btnFinPartie">
+                Finir la partie
+            </button>
+            <div class="alert_supprimer" id="alert_supprimer">
+                <p>Êtes-vous sur de vouloir supprimer <b><span id="joueur_a_suppr">Darwin</span></b> ?</p>
+                <button class="alert-supprOUI-button" onclick="alerteSupprOUIJoueur()">OUI</button>
+                <button class="alert-supprNON-button" onclick="alerteSupprNONJoueur()">NON</button>
+            </div>
+        </div>
+    </div>
+        
+    <footer>
+    </footer>
+</body>
+</html>

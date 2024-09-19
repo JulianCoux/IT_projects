@@ -1,0 +1,149 @@
+.param_jeux {
+    position: relative;
+    background-color: #eee; /* Juste pour illustrer */
+    overflow-y: auto; /* Ajouter une barre de défilement verticale si nécessaire */
+    flex-grow: 1; /* Faire en sorte que .info_jeux utilise tout l'espace disponible */
+    flex-shrink: 0;
+    background-color: #c4dac7;
+    border-radius: 25px;
+    margin: 8px;
+}
+
+
+/* Style pour le conteneur des joueurs */
+.supp_joueur {
+    display: inline-block;
+    
+    padding: 10px;
+    margin-top: 10px; /* Marge supérieure pour l'espace */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #9db3a0;
+    border-radius: 25px;
+}
+
+/* Style pour chaque div de joueur */
+.supp_joueur div {
+    display: flex; /* Utilisation de Flexbox pour aligner les éléments */
+    align-items: center; /* Centrer verticalement les éléments */
+    margin-bottom: 5px; /* Marge inférieure entre chaque joueur */
+    font-size: 30px;
+}
+
+/* Style pour l'icône de suppression */
+.supp_joueur button {
+    background: none; /* Supprimer l'arrière-plan du bouton */
+    border: none; /* Supprimer les bordures du bouton */
+    cursor: pointer; /* Curseur pointer pour indiquer la possibilité de clic */
+    margin-right: 5px; /* Marge à droite de l'icône */
+}
+
+.img-suppr {
+    width: 30px;
+    height: 30px;
+}
+
+/* Style pour le nom du joueur */
+.img-home {
+    margin: 10px;
+    width: 45px;
+    height: 45px;
+}
+
+.animation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+    color: #48664c;
+    background: none; /* Aucune couleur de fond */
+    border: none; /* Aucun contour */
+    cursor: pointer;
+    line-height: 50px;
+    text-decoration: none;
+}
+
+.animation:hover {
+    color: #fff;
+    filter: brightness(3.5); /* Change la luminosité de l'image au survol du bouton */
+
+}
+
+
+.icon {
+    width: 40px; 
+    height: 40px; 
+    margin-right: 10px; /* Ajoute une marge à droite de l'icône pour l'espace */
+}
+
+.btnFinPartie {
+
+    width: auto;
+    height: 60px;
+    border: 3px solid red;
+    border-radius: 45px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: white;
+    color: red;
+    font-size: 1.2em;
+    font-weight: 550;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+  
+.btnFinPartie:hover {
+    background: red;
+    color: white;
+    font-size: 1.5em;
+}
+
+
+.alert_supprimer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: white;
+    padding: 20px;
+    font-size: 22px;
+    border: 1px solid #ccc;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+}
+
+.alert_supprimer p {
+    margin: 0;
+    font-size: 24px;
+}
+.alert_supprimer button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.alert-supprOUI-button {
+    background-color: #42a867;
+}
+.alert-supprNON-button {
+    background-color: #bd4a4a;
+}
+
+.alert_supprimer button:hover {
+    font-weight: bold;
+}
+.alert-supprOUI-button:hover {
+    background-color: #14d75b;
+}
+.alert-supprNON-button:hover {
+    background-color: #e61414;
+}

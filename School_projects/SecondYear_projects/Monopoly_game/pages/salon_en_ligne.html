@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Salon">
+    <meta name="author" content="ENSIMAG-Grenopoly">
+
+    <link rel="stylesheet" type="text/css" href="../styles/salon_en_ligne.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="/script/salonEnLigne.js"></script>
+    <title>Grenopoly</title>
+</head>
+<body>
+    <header>
+        <div class="retour">
+            <a href="../index.html" class="btn-retour"><img src="../styles/images/bouton-retour.png" alt="retour" class="img-retour"></a>
+        </div>
+    </header>
+    <main>
+        <fieldset id="nombre-joueurs">
+            <div id="nombre-joueurs-div">
+                <div class="demandeJoueur">Veuillez sélectionner un nombre de joueur</div>
+                <div id="choixNombreJoueurs">
+                    <input type="radio" id="radio2" name="nombreJoueur" value="2">
+                    <label for="radio2">2</label>
+
+                    <input type="radio" id="radio3" name="nombreJoueur" value="3">
+                    <label for="radio3">3</label>
+
+                    <input type="radio" id="radio4" name="nombreJoueur" value="4">
+                    <label for="radio4">4</label>
+
+                    <input type="radio" id="radio5" name="nombreJoueur" value="5">
+                    <label for="radio5">5</label>
+
+                    <input type="radio" id="radio6" name="nombreJoueur" value="6">
+                    <label for="radio6">6</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="username-input" id="usercard">
+            <div class="d-none" id="usercard-div">
+                <form method="POST" id="form">
+                    <div class="username">
+                        <label for="username" id="username-label">Pseudo</label>
+                        <input type="text" id="username" minlength="2" maxlength="20"
+                               placeholder="Saisissez votre nom de joueur" autocomplete="off" required>
+                    </div>
+                    <button id="start" type="submit">Créer un salon privé</button>
+                </form>
+            </div>
+        </fieldset>
+
+        <div id="code-area" class="d-none">Le code de votre partie: </div>
+
+        <div class="d-none" id="model-waiter">
+            <img src="../styles/images/la-personne.png" alt="Perso " class="img-perso"><div class="text-pseudo">Pseudo</div>
+        </div>
+
+        <div id="waiting-area" class="d-none">
+            <ul id="players-container"></ul>
+            <div class="enAttente">En attente de joueur...</div>
+        </div>
+
+    </main>
+    <footer>
+        <p>Grenopoly-ENSIMAG&copy;. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

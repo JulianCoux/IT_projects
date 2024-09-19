@@ -1,0 +1,204 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Pour empêcher les barres de défilement */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+footer {
+    position: fixed; /* Utilise une position fixe par rapport à la fenêtre du navigateur */
+    bottom: 0; /* Place le footer au bas de la fenêtre */
+    width: 100%; /* Fait en sorte que le footer ait la largeur complète de la fenêtre */
+    padding: 1% ;
+    text-align: center;
+}
+
+header {
+    position: fixed; /* Utilise une position fixe par rapport à la fenêtre du navigateur */
+    top: 0; /* Place le footer au bas de la fenêtre */
+    width: 100%; /* Fait en sorte que le footer ait la largeur complète de la fenêtre */
+    padding: 1% ;
+}
+
+main {
+    padding: 1%;
+    width: 80%;
+    height: 70%;
+    text-align: center;
+}
+
+fieldset {
+    border: none;
+}
+
+.d-none {
+    display: none;
+}
+
+fieldset#nombre-joueurs, fieldset#usercard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 30%;
+}
+
+div#nombre-joueurs-div, div#usercard-div, div.username{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.username {
+    height: 50%;
+}
+
+div.demandeJoueur {
+    font-size: x-large;
+    height: 25%;
+}
+
+div#choixNombreJoueurs{
+    background-color: #78A97E;
+    border-radius: 45px; /* Bords arrondis */
+    width: 40%;
+    height: 10%;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: large;
+    margin: auto;
+    padding: 1%;
+}
+
+div#choixNombreJoueurs > input + label{
+    width: 15%;
+    height: 50%;
+    font-size: large;
+    margin: 0;
+    padding: 0;
+}
+
+form#form {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+input#username{
+    background-color: #78A97E; /* Couleur de fond du div */
+    border-radius: 45px; /* Bords arrondis */
+    width: 20%;
+    height: 25%;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: large;
+    margin: 0;
+    padding: 0;
+}
+
+label.username-label {
+    width: 15%;
+    height: 35%;
+    font-size: x-large;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+button#start{
+    background-color: #78A97E;
+    border-radius: 45px; /* Bords arrondis */
+    width: 10%;
+    height: 25%;
+    text-align: center;
+    justify-items: center;
+    border: none;
+    outline: none;
+    font-size: large;
+    margin: 1%;
+    padding: 0;
+}
+
+div#code-area {
+    position: fixed;
+    top: 15%;
+    left: 40%;
+    width: 20%;
+    height: 30%;
+    font-size: x-large;
+    text-align: center;
+    margin: auto;
+    padding: 0;
+}
+
+.img-perso {
+    width: 30%;
+    height: 30%;
+}
+
+div#waiting-area {
+    bottom: 20%;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 50%;
+}
+
+div#waiting-area > ul {
+    list-style: none;
+    width: 60%;
+    height: 70%;
+    border: none;
+
+}
+
+div#waiting-area > ul > li {
+    align-self: flex-end;
+    display: inline-block;
+    margin: auto;
+    width: 33%;
+    height: 50%;
+    font-size: x-large;
+}
+
+div.enAttente {
+    align-items: center;
+    font-size: x-large;
+    width: 100%;
+}
+
+
+.retour {
+    position: fixed; /* Utilise une position fixe par rapport à la fenêtre du navigateur */
+    top: 1%; /* Ajustez la distance depuis le haut  */
+    left: 1%; /* Ajustez la distance depuis la droite  */
+}
+
+.img-retour {
+    width: 8%;
+    height: 8%;
+}
+
+.btn-retour:hover {
+    filter: brightness(300%); /* Change la luminosité de l'image au survol */
+}

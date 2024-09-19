@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Rejoindre">
+    <meta name="author" content="ENSIMAG-Grenopoly">
+
+    <link rel="stylesheet" type="text/css" href="../styles/rejoindre_partie.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script/rejoindrePartie.js"></script>
+    <title>Grenopoly</title>
+</head>
+<body>
+    <header>
+        <div class="retour">
+            <a href="../index.html" class="btn-retour"><img src="../styles/images/bouton-retour.png" alt="retour" class="img-retour"></a>
+        </div>
+    </header>
+
+    <main>
+        <fieldset class="pseudo">
+            <div id="pseudo-div">
+                <form id="pseudo-form">
+                    <label for="pseudo-input" class="pseudo-label">Votre Pseudo</label><input type="text" id="pseudo-input" name="pseudo" minlength="2" maxlength="20"
+                                                                                        placeholder="Saisissez votre nom de joueur" autocomplete="off" required>
+                </form>
+            </div>
+        </fieldset>
+        <fieldset id="rejoindre">
+            <div class="d-none" id="rejoindre-div">
+                <form method="POST" id="rejoindre-form">
+                    <label for="code"></label><input type="text" id="code" name="code" placeholder="Entrer le code de la partie" autocomplete="off">
+                    <label for="btn_rejoindre"></label><button type="submit" id="btn_rejoindre">Rejoindre</button>
+                </form>
+            </div>
+        </fieldset>
+
+        <div class="d-none" id="model-waiter">
+            <img src="../styles/images/la-personne.png" alt="Perso " class="img-perso"><div class="text-pseudo">Pseudo</div>
+        </div>
+
+        <div class="d-none" id="waiting-area">
+            <ul></ul>
+        </div>
+
+        <div class="d-none" id="en-attente">En attente du début de la partie...</div>
+
+    </main>
+
+    <footer>
+        <p>Grenopoly-ENSIMAG&copy;. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
